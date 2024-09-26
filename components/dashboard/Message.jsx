@@ -10,9 +10,9 @@ export default function Message() {
         <div className="row pb-50 mb-10">
           <div className="col-auto">
             <h1 className="text-30 lh-12 fw-700">Messages</h1>
-            <div className="mt-10">
+            {/* <div className="mt-10">
               Lorem ipsum dolor sit amet, consectetur.
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -20,7 +20,7 @@ export default function Message() {
           <div className="col-xl-4">
             <div className="rounded-16 bg-white -dark-bg-dark-1 shadow-4 h-100">
               <div className="d-flex items-center py-20 px-30 border-bottom-light">
-                <h2 className="text-17 lh-1 fw-500">Basic Information</h2>
+                <h2 className="text-17 lh-1 fw-500">Chats</h2>
               </div>
 
               <div className="py-30 px-30">
@@ -41,7 +41,7 @@ export default function Message() {
                           <div className="lh-11 fw-500 text-dark-1">
                             {elm.name}
                           </div>
-                          <div className="text-14 lh-11 mt-5">{elm.title}</div>
+                          {/* <div className="text-14 lh-11 mt-5">{elm.title}</div> */}
                         </div>
                       </div>
 

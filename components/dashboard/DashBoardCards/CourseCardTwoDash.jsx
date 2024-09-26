@@ -32,11 +32,11 @@ export default function CourseCardTwoDash({ data }) {
           </div>
 
           <div className="col-md">
-            <div className="absolute-bookmark -dark-bg-dark-2 shadow-5">
+            {/* <div className="absolute-bookmark -dark-bg-dark-2 shadow-5">
               <i className="icon-bookmark"></i>
-            </div>
+            </div> */}
 
-            <div className="d-flex items-center">
+            {/* <div className="d-flex items-center">
               <div className="text-14 lh-1 fw-500 text-yellow-1 mr-10">4.5</div>
               <div className="d-flex x-gap-5 items-center">
                 {rating.map((itm, i) => (
@@ -46,23 +46,23 @@ export default function CourseCardTwoDash({ data }) {
               <div className="text-13 lh-1 fw-500 ml-10">
                 ({data.ratingCount}))
               </div>
-            </div>
+            </div> */}
 
             <h3 className="text-17 lh-16 fw-500 mt-10 pr-40 xl:pr-0">
-              {data.title}
+              Alexandra Budescu
             </h3>
 
-            <div className="d-flex x-gap-20 y-gap-5 items-center flex-wrap pt-10">
+            {/* <div className="d-flex x-gap-20 y-gap-5 items-center flex-wrap pt-10">
               <div className="d-flex items-center">
                 <div className="mr-10">
                   <Image
                     width={16}
                     height={17}
-                    src="/assets/img/coursesCards/icons/1.svg"
+                    src="/assets/img/coursesCards/icons/2.svg"
                     alt="icon"
                   />
                 </div>
-                <div className="text-14 lh-1">{data.lessonCount} lesson</div>
+                <div className="text-14 lh-1">Femeie</div>
               </div>
 
               <div className="d-flex items-center">
@@ -90,8 +90,8 @@ export default function CourseCardTwoDash({ data }) {
                 </div>
                 <div className="text-14 lh-1">{data.level}</div>
               </div>
-            </div>
-
+            </div> */}
+{/* 
             <div className="d-flex y-gap-10 justify-between items-center flex-wrap border-top-light pt-10 mt-10">
               <div className="d-flex items-center">
                 <Image
@@ -120,7 +120,7 @@ export default function CourseCardTwoDash({ data }) {
                   </>
                 )}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </a>

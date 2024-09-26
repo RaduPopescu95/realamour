@@ -4,14 +4,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
 import Preloader from '@/components/common/Preloader'
-import DashboardOne from '@/components/dashboard/DashboardOne'
-import Message from '@/components/dashboard/Message'
+import Settings from '@/components/dashboard/ClientCompatibil/Settings'
 import Sidebar from '@/components/dashboard/SidebarClient'
 import HeaderDashboard from '@/components/layout/headers/HeaderDashboard'
 import React from 'react'
 export const metadata = {
-  title: 'Dashboard-messages || Educrat - Professional LMS Online Education Course NextJS Template',
+  title: 'Dashboard-settings || Educrat - Professional LMS Online Education Course NextJS Template',
   description:
     'Elevate your e-learning content with Educrat, the most impressive LMS template for online courses, education and LMS platforms.',
   
@@ -28,7 +36,7 @@ export default function page() {
                     <Sidebar/>
 
                 </div>
-                <Message/>
+                <Settings/>
               </div>
           </div>
         </main>

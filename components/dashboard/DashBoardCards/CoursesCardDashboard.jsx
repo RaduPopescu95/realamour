@@ -23,7 +23,7 @@ export default function CoursesCardDashboard({ data }) {
           alt="image"
         />
 
-        <button
+        {/* <button
           onClick={() => setActiveShare((pre) => !pre)}
           className="absolute-button"
           data-el-toggle=".js-more-1-toggle"
@@ -31,9 +31,9 @@ export default function CoursesCardDashboard({ data }) {
           <span className="d-flex items-center justify-center size-35 bg-white shadow-1 rounded-8">
             <i className="icon-menu-vertical"></i>
           </span>
-        </button>
+        </button> */}
 
-        <div
+        {/* <div
           className={`toggle-element -dshb-more js-more-1-toggle ${
             activeShare ? "-is-el-visible" : ""
           } `}
@@ -49,11 +49,11 @@ export default function CoursesCardDashboard({ data }) {
               <div className="text-17 lh-1 fw-500 ml-12">Favorite</div>
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="pt-15">
-        <div className="d-flex y-gap-10 justify-between items-center">
+        {/* <div className="d-flex y-gap-10 justify-between items-center">
           <div className="text-14 lh-1">{data.authorName}</div>
 
           <div className="d-flex items-center">
@@ -66,11 +66,11 @@ export default function CoursesCardDashboard({ data }) {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
 
         <h3 className="text-16 fw-500 lh-15 mt-10">{data.title}</h3>
 
-        <div className="progress-bar mt-10">
+        {/* <div className="progress-bar mt-10">
           <div className="progress-bar__bg bg-light-3"></div>
           <div className="progress-bar__bar bg-purple-1 w-1/5"></div>
         </div>
@@ -78,7 +78,7 @@ export default function CoursesCardDashboard({ data }) {
         <div className="d-flex y-gap-10 justify-between items-center mt-10">
           <div className="text-dark-1">% {data.completed} Completed</div>
           <div>25%</div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
