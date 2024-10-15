@@ -128,13 +128,13 @@ export default function PaymentSuccessPage() {
                       </Link>
                     </div>
                     {/* Buton pentru a reveni la pagina principală */}
-                    <div className="col-auto">
+                    {/* <div className="col-auto">
                       <Link href="/home">
                         <button className="button px-40 py-20 fw-500 -outline-purple-1 text-purple-1">
                           Înapoi la Pagina Principală
                         </button>
                       </Link>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

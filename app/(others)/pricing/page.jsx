@@ -36,7 +36,7 @@ export default function page() {
             <PageLinks/>
             <Pricing/>
             {/* <Brands/> */}
-            <FooterOne/>
+            {/* <FooterOne/> */}
         </div>
 
     </div>

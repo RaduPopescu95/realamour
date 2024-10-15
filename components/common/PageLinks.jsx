@@ -11,26 +11,26 @@ export default function PageLinks({ dark }) {
               <div
                 className={`breadcrumbs__item ${dark ? "text-dark-3" : ""} `}
               >
-                <Link href="/">Home</Link>
+                <Link href="/">Acasa</Link>
               </div>
 
               <div
                 className={`breadcrumbs__item ${dark ? "text-dark-3" : ""} `}
               >
-                <Link href="/courses-list-3">All courses</Link>
+                <Link href="/courses-list-3">RealAmor</Link>
               </div>
 
               <div
                 className={`breadcrumbs__item ${dark ? "text-dark-3" : ""} `}
               >
-                <Link href="/courses-list-5">User Experience Design</Link>
+                <Link href="/courses-list-5">Pricing</Link>
               </div>
 
-              <div
+              {/* <div
                 className={`breadcrumbs__item ${dark ? "text-dark-3" : ""} `}
               >
                 <Link href="/courses-list-6">User Interface</Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

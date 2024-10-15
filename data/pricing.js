@@ -1,41 +1,40 @@
 export const pricingData = [
   {
-    type: "Basic",
+    type: "Essentiel",
     price: 0,
-    period: "per month",
+    period: "par mois",
 
     features: [
-      "All Operating Supported",
-      "Great Interface",
-      "Allows encryption",
-      "Face recognized system",
-      "24/7 Full support",
+      "Accès limité aux profils",
+      "Suggestions de compatibilité basiques",
+      "Interface conviviale",
+      "Support par email uniquement",
     ],
   },
   {
-    type: "Professional",
-    price: 599.95,
-    period: "per month",
+    type: "Avancé",
+    price: 9,
+    period: "par mois",
 
     features: [
-      "All Operating Supported",
-      "Great Interface",
-      "Allows encryption",
-      "Face recognized system",
-      "24/7 Full support",
+      "Accès complet aux profils",
+      "Algorithme de compatibilité avancé",
+      "Messages illimités",
+      "Suggestions de matchs prioritaires",
+      "Support par chat en direct",
     ],
   },
   {
-    type: "Business",
-    price: 10.95,
-    period: "per month",
+    type: "Premium",
+    price: 10,
+    period: "par mois",
 
     features: [
-      "All Operating Supported",
-      "Great Interface",
-      "Allows encryption",
-      "Face recognized system",
-      "24/7 Full support",
+      "Toutes les fonctionnalités de l'abonnement Avancé",
+      "Accès aux événements exclusifs",
+      "Mises en avant de profil",
+      "Analyse détaillée des compatibilités",
+      "Support VIP 24/7",
     ],
   },
 ];

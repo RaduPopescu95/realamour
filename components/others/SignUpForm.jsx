@@ -25,6 +25,7 @@ const SignUpForm = () => {
   const [formErrors, setFormErrors] = useState({});
   const [alertMessage, setAlertMessage] = useState({ type: "", content: "", showAlert: false });
   
+
   const validateForm = () => {
     let errors = {};
     let isValid = true;
@@ -192,11 +193,11 @@ const SignUpForm = () => {
           <div className="col-xl-10 col-lg-10">
             <div
               style={{
-                maxHeight: "95vh",
+                maxHeight: "90vh",
                 overflowY: "scroll",
                 overflowX: "hidden",
               }}
-              className="px-30 py-20 md:px-25 md:py-25 bg-white shadow-1 rounded-16"
+              className="px-30 py-20 mt-50 md:px-25 md:py-25 bg-white shadow-1 rounded-16"
             >
               <h3 className="text-30 lh-13">Sign Up</h3>
               <p className="mt-10">
@@ -412,7 +413,7 @@ const SignUpForm = () => {
                   />
                 </div>
 
-                {/* <div className="col-lg-12">
+                <div className="col-lg-12">
                   <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
                     Despre mine *
                   </label>
@@ -423,7 +424,7 @@ const SignUpForm = () => {
                     onChange={handleChange}
                     className={`form-control ${formErrors.aboutMe ? "border-danger-red" : ""}`}
                   />
-                </div> */}
+                </div>
 
     
 

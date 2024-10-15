@@ -76,7 +76,7 @@ export default function Header() {
 
                 <div className="header-right__buttons d-flex items-center ml-30 md:d-none">
                   {
-                    currentUser
+                    !currentUser
                     ?
                     <>
                   <Link href="/login" className="button -underline text-white">
@@ -93,11 +93,11 @@ export default function Header() {
                     :
 
                   <Link
-                    href="#"
+                    href="/profil-client"
                     className="button -sm -white text-dark-1 ml-30"
-                    onClick={handleLogout}
+                    // onClick={handleLogout}
                   >
-                    Disconect
+                    Cont
                   </Link>
                   }
                 </div>

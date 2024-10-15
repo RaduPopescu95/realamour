@@ -12,7 +12,7 @@ export default function HeaderAuth() {
       <div className="header__container py-10">
         <div className="row justify-between items-center">
           <div className="col-auto">
-            <div className="header-left">
+            {/* <div className="header-left">
               <div className="header__logo ">
                 <Link data-barba href="/">
                   <Image
@@ -23,7 +23,7 @@ export default function HeaderAuth() {
                   />
                 </Link>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="col-auto">

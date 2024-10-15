@@ -108,9 +108,9 @@ export default function Page() {
     
     <div className="main-content">
       <Preloader />
-    <Header />
+    <HeaderAuth />
       {/* <HeaderAuth /> */}
-      <div className="content-wrapper js-content-wrapper signupspace">
+      <div className="content-wrapper js-content-wrapper">
 
         <section className="form-page js-mouse-move-container">
           {/* Formularul inițial de întrebări */}
