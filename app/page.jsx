@@ -1,3 +1,5 @@
+"use client"
+
 // import HomeOne from "@/components/homes/home";
 import Header from "../components/layout/headers/Header";
 // import MobileMenu from "@/components/layout/component/MobileMenu";
@@ -16,33 +18,39 @@ import Blog from "../components/homes/blogs/Blog";
 import Join from "../components/homes/join/Join";
 import FooterNine from "../components/layout/footers/FooterNine";
 import Preloader from "@/components/common/Preloader";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-export const metadata = {
-  title:
-    "Home-1 || Educrat - Professional LMS Online Education Course NextJS Template",
-  description:
-    "Elevate your e-learning content with Educrat, the most impressive LMS template for online courses, education and LMS platforms.",
-};
+// export const metadata = {
+//   title:
+//     "Home-1 || Educrat - Professional LMS Online Education Course NextJS Template",
+//   description:
+//     "Elevate your e-learning content with Educrat, the most impressive LMS template for online courses, education and LMS platforms.",
+// };
 
 export default function HomePage() {
+  const router = useRouter()
+  useEffect(() => {
+    router.push("/signup")
+  },[])
   return (
     <>
       <Preloader />
       <Header />
 
       <div className="content-wrapper  js-content-wrapper overflow-hidden">
-        <HomeHero />
+        {/* <HomeHero /> */}
         {/* <Brands /> */}
         {/* <Categories /> */}
         {/* <Courses /> */}
-        <FeaturesOne />
-        <WhyCourse />
-        <TestimonialsOne />
-        <Instructors />
+        {/* <FeaturesOne /> */}
+        {/* <WhyCourse /> */}
+        {/* <TestimonialsOne /> */}
+        {/* <Instructors /> */}
         {/* <GetApp /> */}
         {/* <Blog /> */}
-        <Join />
-        <FooterNine />
+        {/* <Join /> */}
+        {/* <FooterNine /> */}
       </div>
     </>
   );

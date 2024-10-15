@@ -7283,6 +7283,14 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.signupspace {
+  margin-top: 90px;
+  /* padding: 16px 0;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-light-6); */
+}
+
 .breadcrumbs {
   margin-top: 90px;
   padding: 16px 0;
@@ -15734,4 +15742,38 @@ table.table td {
   border: 2px solid #ff4d4f; /* Culoare roșie pentru border */
   border-radius: 4px; /* Colțuri rotunjite */
   background-color: #fff5f5; /* Fundal roșu deschis pentru a evidenția */
+}
+
+/* ICON BIN DELETE */
+.icon-bin {
+  position: absolute;  /* Poziționează relativ față de containerul imaginii */
+  top: -10px !important;
+  right: -10px !important;
+  background-color: rgba(176, 176, 176, 0.8); /* gri mediu cu opacitate */
+  color: white; /* icon alb */
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  opacity: 0.8; /* Transparență pentru starea normală */
+}
+
+.icon-bin:hover {
+  background-color: rgba(112, 112, 112, 0.9); /* gri închis la hover cu opacitate */
+  color: white; /* icon alb */
+  opacity: 1; /* Fără transparență la hover */
+}
+
+
+.size-100 {
+  width: 100px;
+  height: 100px;
+}
+
+.icon-cloud {
+  font-size: 24px;
 }

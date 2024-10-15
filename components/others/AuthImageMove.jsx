@@ -41,7 +41,7 @@ export default function AuthImageMove() {
   return (
     <div className="form-page__img bg-dark-1">
       <div className="form-page-composition">
-        <div className="-bg">
+        {/* <div className="-bg">
           <Image
             width={1250}
             height={1000}
@@ -51,19 +51,19 @@ export default function AuthImageMove() {
             src="/assets/img/login/bg.png"
             alt="bg"
           />
-        </div>
+        </div> */}
         <div className="-el-1">
           <Image
             width={1250}
             height={1000}
-            style={{ width: "100%" }}
+            // style={{ width: "100%" }}
             data-move="20"
             className="js-mouse-move"
-            src="/assets/img/tgv4.png"
+            src="/assets/img/realamorlogo.png"
             alt="image"
             />
         </div>
-        <div className="-el-2">
+        {/* <div className="-el-2">
           <Image
             width={488}
             height={485}
@@ -92,7 +92,7 @@ export default function AuthImageMove() {
                   src="/assets/img/tgv3.png"
             alt="icon"
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -9,6 +9,8 @@ import AuthImageMove from "@/components/others/AuthImageMove";
 import SignUpForm from "@/components/others/SignUpForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import Header from "@/components/layout/headers/Header";
+import PageLinks from "@/components/common/PageLinks";
 
 // Valori pentru opțiunile selectabile
 const sexOptions = ["Masculin", "Feminin", "Altul"];
@@ -102,13 +104,17 @@ export default function Page() {
   };
 
   return (
+    <>
+    
     <div className="main-content">
       <Preloader />
-      <HeaderAuth />
-      <div className="content-wrapper js-content-wrapper overflow-hidden">
+    <Header />
+      {/* <HeaderAuth /> */}
+      <div className="content-wrapper js-content-wrapper signupspace">
+
         <section className="form-page js-mouse-move-container">
           {/* Formularul inițial de întrebări */}
-          {!showSignUpForm && (
+          {false && (
             <div className="container py-50">
               <div className="row justify-center items-center">
                 <div
@@ -151,7 +157,7 @@ export default function Page() {
           )}
 
           {/* Afișarea componentei AuthImageMove și a formularului de înregistrare */}
-          {showSignUpForm && (
+          {true && (
             <section className="form-page js-mouse-move-container">
               {/* Componența AuthImageMove primește răspunsurile ca props */}
               <AuthImageMove
@@ -165,7 +171,9 @@ export default function Page() {
           )}
         </section>
       </div>
-      <FooterOne />
+      {/* <FooterOne /> */}
     </div>
+    </>
+
   );
 }

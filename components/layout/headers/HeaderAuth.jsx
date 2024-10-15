@@ -18,8 +18,8 @@ export default function HeaderAuth() {
                   <Image
                     width={140}
                     height={50}
-                    src="/assets/img/general/realamour.svg"
-                    alt="logo"
+                    src="/assets/img/fulllogo_landscape.png"
+                    alt="Real Amor logo"
                   />
                 </Link>
               </div>
@@ -46,14 +46,14 @@ export default function HeaderAuth() {
                 </div>
               </div>
 
-              <div className="header-right__buttons md:d-none">
+              {/* <div className="header-right__buttons md:d-none">
                 <a
                   href="signup"
                   className="button -sm -rounded -dark-1 text-white"
                 >
                   Sign Up
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

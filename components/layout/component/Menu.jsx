@@ -38,47 +38,63 @@ export default function Menu({ allClasses, headerPosition }) {
       <div className="header-menu__content">
         <div className="mobile-bg js-mobile-bg"></div>
 
-        <div className="d-none xl:d-flex items-center px-20 py-20 border-bottom-light">
+        {/* <div className="d-none xl:d-flex items-center px-20 py-20 border-bottom-light">
           <Link href="/login" className="text-dark-1">
             Log in
           </Link>
           <Link href="/signup" className="text-dark-1 ml-30">
             Sign Up
           </Link>
-        </div>
+        </div> */}
 
-        {/* <div className="menu js-navList">
+        <div className="menu js-navList">
           <ul className={`${allClasses ? allClasses : ""}`}>
+            {/* <li className="menu-item-has-children">
+              <Link
+                data-barba
+                href="#"
+                className={menuItem == "Home" ? "activeMenu" : ""}
+              >
+                Home
+              </Link>
+
+    
+            </li> */}
             <li className="menu-item-has-children">
               <Link
                 data-barba
                 href="#"
                 className={menuItem == "Home" ? "activeMenu" : ""}
               >
-                Home <i className="icon-chevron-right text-13 ml-10"></i>
+                Real Amor
               </Link>
 
-              <ul className="subnav">
-                <li className="menu__backButton js-nav-list-back">
-                  <Link href="#">
-                    <i className="icon-chevron-left text-13 mr-10"></i> Home
-                  </Link>
-                </li>
+    
+            </li>
+            <li className="menu-item-has-children">
+              <Link
+                data-barba
+                href="#"
+                className={menuItem == "Home" ? "activeMenu" : ""}
+              >
+                Methode
+              </Link>
 
-                {menuList[0].links.map((elm, i) => (
-                  <li
-                    key={i}
-                    className={
-                      pathname.split('/')[1] == elm.href.split('/')[1] ? "activeMenu" : "inActiveMenu"
-                    }
-                  >
-                    <Link href={elm.href}>{elm.label}</Link>
-                  </li>
-                ))}
-              </ul>
+    
+            </li>
+            <li className="menu-item-has-children">
+              <Link
+                data-barba
+                href="#"
+                className={menuItem == "Home" ? "activeMenu" : ""}
+              >
+                Tarifs
+              </Link>
+
+    
             </li>
 
-            <li className="menu-item-has-children -has-mega-menu">
+            {/* <li className="menu-item-has-children -has-mega-menu">
               <Link
                 data-barba
                 href="#"
@@ -414,9 +430,9 @@ export default function Menu({ allClasses, headerPosition }) {
               }>
                 Contact
               </Link>
-            </li>
+            </li> */}
           </ul>
-        </div> */}
+        </div>
 
         {/* mobile footer start */}
         <MobileFooter />

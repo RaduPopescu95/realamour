@@ -10,10 +10,11 @@ import Image from "next/image";
 import { useState } from "react";
 import MobileMenu from "../component/MobileMenu";
 import { handleLogout } from "@/utils/authUtils";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Header() {
   const [activeMobileMenu, setActiveMobileMenu] = useState(false);
-
+  const {userData,currentUser} = useAuth()
   return (
     <>
       <header className="header -type-1 ">
@@ -26,8 +27,8 @@ export default function Header() {
                     <Image
                       width={140}
                       height={50}
-                      src="/assets/img/general/realamour.svg"
-                      alt="logo"
+                      src="/assets/img/RealAmorNoTextSVG.svg"
+                      alt="Real Amor logo"
                     />
                   </Link>
                 </div>
@@ -74,6 +75,10 @@ export default function Header() {
                 </div>
 
                 <div className="header-right__buttons d-flex items-center ml-30 md:d-none">
+                  {
+                    currentUser
+                    ?
+                    <>
                   <Link href="/login" className="button -underline text-white">
                     Log in
                   </Link>
@@ -83,6 +88,10 @@ export default function Header() {
                   >
                     Sign up
                   </Link>
+                    
+                    </>
+                    :
+
                   <Link
                     href="#"
                     className="button -sm -white text-dark-1 ml-30"
@@ -90,6 +99,7 @@ export default function Header() {
                   >
                     Disconect
                   </Link>
+                  }
                 </div>
               </div>
             </div>

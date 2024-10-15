@@ -9,6 +9,7 @@ import { storage } from "@/firebase"; // Asigură-te că importul storage este c
 import Link from "next/link";
 import Image from "next/image";
 import { v4 as uuidv4 } from "uuid"; // Pentru a genera ID-uri unice pentru imagini
+import AlertBox from "../uiElements/AlertBox";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -22,8 +23,8 @@ const SignUpForm = () => {
   const [tempImages, setTempImages] = useState([]); // Stocăm imaginile temporar înainte de upload
   const [tempVideo, setTempVideo] = useState(null); // Stocăm videoclipul temporar înainte de upload
   const [formErrors, setFormErrors] = useState({});
-  const [message, setMessage] = useState({ type: "", content: "", show: false });
-
+  const [alertMessage, setAlertMessage] = useState({ type: "", content: "", showAlert: false });
+  
   const validateForm = () => {
     let errors = {};
     let isValid = true;
@@ -76,14 +77,12 @@ const SignUpForm = () => {
         previewUrl: URL.createObjectURL(file), // URL pentru previzualizare locală
       };
       setTempImages((prev) => [...prev, tempImage]);
-      setMessage({ type: "success", content: "Imagine adăugată cu succes!", show: true });
-    }
+      setAlertMessage({ type: "success", content: "Imagine adăugată cu succes!", showAlert: true });    }
   };
 
   const handleImageDelete = (imageId) => {
     setTempImages((prev) => prev.filter((image) => image.id !== imageId));
-    setMessage({ type: "success", content: "Imagine ștearsă cu succes!", show: true });
-  };
+    setAlertMessage({ type: "success", content: "Imagine ștearsă cu succes!", showAlert: true });  };
 
   const handleVideoUpload = (e) => {
     const file = e.target.files[0];
@@ -95,99 +94,94 @@ const SignUpForm = () => {
         previewUrl: URL.createObjectURL(file), // URL pentru previzualizare locală
       };
       setTempVideo(tempVid);
-      setMessage({ type: "success", content: "Videoclip adăugat cu succes!", show: true });
-    }
+      setAlertMessage({ type: "success", content: "Videoclip adăugat cu succes!", showAlert: true });    }
   };
 
   const handleVideoDelete = () => {
     setTempVideo(null);
-    setMessage({ type: "success", content: "Videoclip șters cu succes!", show: true });
-  };
+    setAlertMessage({ type: "success", content: "Videoclip șters cu succes!", showAlert: true });  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!validateForm()) {
-      setMessage({ type: "error", content: "Te rugăm să completezi toate câmpurile corect.", show: true });
-      return;
-    }
-
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        authentication,
-        formData.email,
-        formData.password
-      );
-      const user = userCredential.user;
-
-      // Upload imagini în Firebase Storage
-      const uploadedImages = await Promise.all(
-        tempImages.map(async (image) => {
-          const storageRef = ref(storage, `images/${image.id}`);
-          const uploadTask = await uploadBytesResumable(storageRef, image.file);
-          const fileUrl = await getDownloadURL(uploadTask.ref);
-
-          return {
-            fileName: image.id, // Folosim `id` (UUID) pentru a seta `fileName`
-            fileUri: fileUrl,
-          };
-        })
-      );
-
-      // Upload videoclip în Firebase Storage
-      let uploadedVideo = null;
-      if (tempVideo) {
-        const storageRef = ref(storage, `videos/${tempVideo.id}`);
-        const uploadTask = await uploadBytesResumable(storageRef, tempVideo.file);
-        const videoUrl = await getDownloadURL(uploadTask.ref);
-
-        uploadedVideo = {
-          videoName: tempVideo.id, // Folosim `id` (UUID) pentru a seta `videoName`
-          videoUri: videoUrl,
-        };
+      e.preventDefault();
+  
+      if (!validateForm()) {
+        setAlertMessage({ type: "danger", content: "Te rugăm să completezi toate câmpurile corect.", showAlert: true });
+        return;
       }
-
-      // Crearea unui document în Firestore pentru utilizatorul înregistrat
-      await setDoc(doc(db, "Users", user.uid), {
-        uid: user.uid,
-        email: formData.email,
-        username: formData.username,
-        phone: formData.phone,
-        aboutMe: formData.aboutMe,
-        images: uploadedImages,
-        video: uploadedVideo,
-      });
-
-      setMessage({ type: "success", content: "Utilizator înregistrat cu succes!", show: true });
-    } catch (err) {
-      setMessage({ type: "error", content: err.message, show: true });
-    }
-  };
-
-  const handleGoogleSignIn = async () => {
-    try {
-      const result = await signInWithPopup(authentication, googleProvider);
-      const user = result.user;
-
-      await setDoc(
-        doc(db, "Users", user.uid),
-        {
+  
+      try {
+        const userCredential = await createUserWithEmailAndPassword(
+          authentication,
+          formData.email,
+          formData.password
+        );
+        const user = userCredential.user;
+  
+        const uploadedImages = await Promise.all(
+          tempImages.map(async (image) => {
+            const storageRef = ref(storage, `images/${image.id}`);
+            const uploadTask = await uploadBytesResumable(storageRef, image.file);
+            const fileUrl = await getDownloadURL(uploadTask.ref);
+  
+            return {
+              fileName: image.id,
+              fileUri: fileUrl,
+            };
+          })
+        );
+  
+        let uploadedVideo = null;
+        if (tempVideo) {
+          const storageRef = ref(storage, `videos/${tempVideo.id}`);
+          const uploadTask = await uploadBytesResumable(storageRef, tempVideo.file);
+          const videoUrl = await getDownloadURL(uploadTask.ref);
+  
+          uploadedVideo = {
+            videoName: tempVideo.id,
+            videoUri: videoUrl,
+          };
+        }
+  
+        await setDoc(doc(db, "Users", user.uid), {
           uid: user.uid,
-          email: user.email,
-          username: user.displayName,
-          phone: "",
-          aboutMe: "",
-          images: [],
-          video: null,
-        },
-        { merge: true }
-      );
+          email: formData.email,
+          username: formData.username,
+          phone: formData.phone,
+          aboutMe: formData.aboutMe,
+          images: uploadedImages,
+          video: uploadedVideo,
+        });
+  
+        setAlertMessage({ type: "success", content: "Utilizator înregistrat cu succes!", showAlert: true });
+      } catch (err) {
+        setAlertMessage({ type: "danger", content: err.message, showAlert: true });
+      }
+    };
 
-      setMessage({ type: "success", content: "Utilizator înregistrat cu succes cu Google!", show: true });
-    } catch (err) {
-      setMessage({ type: "error", content: err.message, show: true });
-    }
-  };
+    const handleGoogleSignIn = async () => {
+      try {
+        const result = await signInWithPopup(authentication, googleProvider);
+        const user = result.user;
+  
+        await setDoc(
+          doc(db, "Users", user.uid),
+          {
+            uid: user.uid,
+            email: user.email,
+            username: user.displayName,
+            phone: "",
+            aboutMe: "",
+            images: [],
+            video: null,
+          },
+          { merge: true }
+        );
+  
+        setAlertMessage({ type: "success", content: "Utilizator înregistrat cu succes cu Google!", showAlert: true });
+      } catch (err) {
+        setAlertMessage({ type: "danger", content: err.message, showAlert: true });
+      }
+    };
 
   const closeMessage = () => setMessage({ ...message, show: false });
 
@@ -195,14 +189,14 @@ const SignUpForm = () => {
     <div className="form-page__content lg:py-50 relative">
       <div className="container">
         <div className="row justify-center items-center">
-          <div className="col-xl-8 col-lg-9">
+          <div className="col-xl-10 col-lg-10">
             <div
               style={{
-                maxHeight: "90vh",
+                maxHeight: "95vh",
                 overflowY: "scroll",
                 overflowX: "hidden",
               }}
-              className="px-50 py-50 md:px-25 md:py-25 bg-white shadow-1 rounded-16"
+              className="px-30 py-20 md:px-25 md:py-25 bg-white shadow-1 rounded-16"
             >
               <h3 className="text-30 lh-13">Sign Up</h3>
               <p className="mt-10">
@@ -216,6 +210,137 @@ const SignUpForm = () => {
                 className="contact-form respondForm__form row y-gap-20 pt-30"
                 onSubmit={handleSubmit}
               >
+{/* Câmp pentru încărcarea imaginii */}
+<div className="row y-gap-10 x-gap-10 items-center" style={{ flexWrap: 'wrap' }}>
+  {tempImages.map((image, index) => (
+    <div key={image.id} className="position-relative" style={{
+      backgroundColor: "#f2f3f4",
+      width: 100,
+      height: 100,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      cursor: "pointer",
+      borderRadius: "4px",
+      border: "1px solid #ddd",
+      marginRight: 10, // Elimină margin-right la prima imagine de pe fiecare rând
+      marginTop: tempImages.length >= 4 ? 10 : 0,   // Adaugă margin-top pentru imaginile de pe al doilea rând
+      position: "relative"  // Poziționare relativă pentru iconul bin
+    }}>
+      <Image
+        width={100}
+        height={100}
+        className="rounded-md size-100"
+        src={image.previewUrl}
+        alt="uploaded image"
+        style={{ objectFit: "cover", width: "100%", height: "100%" }}
+      />
+      {/* Icon Bin pentru ștergerea imaginii */}
+      <i
+        className="icon-bin top-0 right-0 m-1 p-1 text-red-500"
+        style={{ cursor: "pointer", position: "absolute", top: 5, right: 5 }}
+        onClick={() => handleImageDelete(image.id)}
+      >
+        
+      </i>
+    </div>
+  ))}
+
+  {/* Label pentru adăugarea unei noi imagini */}
+  <label
+    className={`col-auto position-relative ${tempImages.length > 0 ? 'ml-10' : ''}`}
+    htmlFor="imageUpload"
+    style={{
+      backgroundColor: "#f2f3f4",
+      width: 100,
+      height: 100,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      cursor: "pointer",
+      borderRadius: "4px",
+      border: "1px solid #ddd",
+      marginTop: tempImages.length >= 4 ? 10 : 0, // Adaugă margin-top pentru rândurile următoare
+    }}
+  >
+    <div className="icon icon-cloud text-16"></div>
+    <input
+      id="imageUpload"
+      type="file"
+      accept="image/*"
+      onChange={handleImageUpload}
+      style={{ display: "none" }}
+    />
+  </label>
+</div>
+
+{/* Câmp pentru încărcarea videoclipului */}
+<div className="row y-gap-10 x-gap-10 items-center mt-10 mb-10">
+  {tempVideo ? (
+    <div className="position-relative" style={{
+      backgroundColor: "#f2f3f4",
+      width: 200, // Dimensiune mai mare pentru video
+      height: 200, // Dimensiune mai mare pentru video
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      cursor: "pointer",
+      borderRadius: "4px",
+      border: "1px solid #ddd",
+      marginRight: 10,
+      position: "relative"  // Asigură poziționarea relativă pentru iconul bin
+    }}>
+      <video
+        width={200}
+        height={200}
+        src={tempVideo.previewUrl}
+        controls
+        style={{ objectFit: "cover", width: "100%", height: "100%" }}
+      />
+      {/* Icon Bin pentru ștergerea videoclipului */}
+      <i
+        className="icon-bin top-0 right-0 m-1 p-1 text-red-500"
+        style={{ cursor: "pointer", position: "absolute", top: 5, right: 5 }}
+        onClick={handleVideoDelete}
+      >
+        
+      </i>
+    </div>
+  ) : (
+    <label
+      className="col-auto position-relative"
+      htmlFor="videoUpload"
+      style={{
+        backgroundColor: "#f2f3f4",
+        width: 100,
+        height: 100,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        cursor: "pointer",
+        borderRadius: "4px",
+        border: "1px solid #ddd"
+      }}
+    >
+      <div className="icon icon-cloud text-16"></div>
+      <input
+        id="videoUpload"
+        type="file"
+        accept="video/*"
+        onChange={handleVideoUpload}
+        style={{ display: "none" }}
+      />
+    </label>
+  )}
+</div>
+
+
+
+
+
+
+
+
                 {/* Inputuri pentru informații utilizator */}
                 <div className="col-lg-6">
                   <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
@@ -287,7 +412,7 @@ const SignUpForm = () => {
                   />
                 </div>
 
-                <div className="col-lg-12">
+                {/* <div className="col-lg-12">
                   <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
                     Despre mine *
                   </label>
@@ -298,88 +423,9 @@ const SignUpForm = () => {
                     onChange={handleChange}
                     className={`form-control ${formErrors.aboutMe ? "border-danger-red" : ""}`}
                   />
-                </div>
+                </div> */}
 
-                {/* Câmp pentru încărcarea imaginii */}
-                <div className="col-lg-12">
-                  <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
-                    Încărcați imaginea
-                  </label>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                    className="mb-10"
-                  />
-
-                  {/* Previzualizarea imaginilor încărcate temporar */}
-                  <div className="d-flex flex-wrap gap-4">
-                    {tempImages.map((image) => (
-                      <div
-                        key={image.id}
-                        className="relative"
-                        style={{ position: "relative" }}
-                      >
-                        <Image
-                          src={image.previewUrl}
-                          alt={image.file.name}
-                          width={100}
-                          height={100}
-                          className="rounded-md"
-                          style={{
-                            border: "1px solid #ddd",
-                            padding: "4px",
-                            objectFit: "cover",
-                          }}
-                        />
-                        {/* Buton de ștergere */}
-                        <button
-                          onClick={() => handleImageDelete(image.id)}
-                          className="absolute top-0 right-0 m-1 p-1 bg-red-500 text-white rounded-full"
-                        >
-                          &#x1F5D1;
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Câmp pentru încărcarea videoclipului */}
-                <div className="col-lg-12">
-                  <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
-                    Încărcați videoclipul de prezentare
-                  </label>
-                  <input
-                    type="file"
-                    accept="video/*"
-                    onChange={handleVideoUpload}
-                    className="mb-10"
-                  />
-
-                  {/* Previzualizare videoclip încărcat */}
-                  {tempVideo && (
-                    <div className="relative mt-4">
-                      <video
-                        src={tempVideo.previewUrl}
-                        width="200"
-                        height="200"
-                        controls
-                        style={{
-                          border: "1px solid #ddd",
-                          padding: "4px",
-                          objectFit: "cover",
-                        }}
-                      />
-                      {/* Buton de ștergere */}
-                      <button
-                        onClick={handleVideoDelete}
-                        className="absolute top-0 right-0 m-1 p-1 bg-red-500 text-white rounded-full"
-                      >
-                        &#x1F5D1;
-                      </button>
-                    </div>
-                  )}
-                </div>
+    
 
                 <div className="col-12">
                   <button
@@ -391,7 +437,7 @@ const SignUpForm = () => {
                 </div>
               </form>
 
-              <div className="lh-12 text-dark-1 fw-500 text-center mt-20">
+              {/* <div className="lh-12 text-dark-1 fw-500 text-center mt-20">
                 Sau conectează-te folosind
               </div>
 
@@ -404,22 +450,18 @@ const SignUpForm = () => {
                     Conectează-te cu Google+
                   </button>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
 
-        {/* Afișarea mesajelor utilizând MessageBoxes */}
-        {message.show && (
-          <div className={`message-box fixed bottom-10 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-md ${message.type === "success" ? "bg-green-500" : "bg-red-500"} text-white`}>
-            <div className="d-flex items-center justify-between">
-              <div>{message.content}</div>
-              <button onClick={closeMessage} className="ml-4">
-                &times;
-              </button>
-            </div>
-          </div>
-        )}
+       {/* Afișare componentă AlertBox */}
+       <AlertBox
+          type={alertMessage.type}
+          message={alertMessage.content}
+          showAlert={alertMessage.showAlert}
+          onClose={() => setAlertMessage({ ...alertMessage, showAlert: false })}
+        />
       </div>
     </div>
   );
