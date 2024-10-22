@@ -1,0 +1,146 @@
+Politica de Confidentialitate
+Versiunea 1.1 din 24 mai, 2018
+Aceasta Politica de Confidentialitate este parte din Termeni si Conditii si se aplica urmatoarelor site-uri: sentimente.ro, sentimente.com, datingacasa.ro, aman2.ro, matrimoniale.com.ro, senti.ro, feelings.ro ("Serviciile")
+
+Pentru utilizarea acestui Site, dar si a Aplicatiei Android este necesar sa cititi si sa acceptati aceste reguli in totalitate. Utilizarea in continuare a Site-ului si Aplicatiei presupune ca sunteti de acord cu aceste reguli.
+
+Echipa Sentimente asigura, in conditiile legii, pastrarea confidentialitatii datelor cu caracter personal ale Utilizatorului si respectarea dreptului acestuia la protectia vietii private.
+
+1. Date colectate
+
+In vederea furnizarii Serviciilor vom prelucra anumite date cu caracter personal precum: numele si prenumele, data nasterii, sexul, e-mail, telefon, localizarea, localitatea de resedinta, date legate de interactiunea cu Sentimente, informatii standard de autentificare pe internet, date de trafic, tipul, versiunea si limba browserului, timpii de acces si adresele IP, informatii legate de calitatea si utilizarea Site-ului si/sau a Aplicatiei, statistici legate de aplicatiile instalate.
+
+In cazul in care ne dati acordul, vom prelucra geolocatia pentru a autocompleta orasul in care va aflati (informatie dinamica care se schimba o data cu modificarea locatiei dvs. in cazul in care folositi un dispozitiv mobil) si pentru a putea sa va sugeram persoane din apropiere. De asemenea, solicitam aceasta informatie si pentru acuratetea informatiei (de ex. in cazul in care sunt localitati cu aceeasi denumire). Daca nu ne dati permisiunea a colecta aceasta informatie, nu o vom face si veti putea utiliza in continuare serviciile noastre.
+
+Anumite informatii, comentarii sau continut (de exemplu, fotografii, profil, stil de viata) pe care Utilizatorul le ofera in mod optional, sub responsabilitatea si la initiativa Utilizatorului in cauza, dezvaluie situatia familiala, situatia economica si financiara, originea etnica, originea rasiala convingerea politica, convingerile religioase a Utilizatorului si/sau orientarea sexuala. Prin furnizarea unor astfel de informatii optionale, Utilizatorul isi da acordul in mod expres pentru prelucrarea acestor categorii speciale de date cu caracter personal.
+
+Pentru a gestiona Site-ul si pentru a facilita o navigare imbunatatita, atat Administratorul Site-ului cat si furnizorii nostri de servicii au interesul legitim de a utiliza cookie-uri sau semnalizatoare web (imagini electronice care permit acestui Site web contorizarea vizitatorilor care au accesat o anumita pagina si accesarea anumitor cookie-uri) pentru a colecta date agregate. Utilizarea de cookie-uri se face pentru a permite afisarea corecta a continutului, crearea si retinerea datelor de autentificare, personalizarea interfetei, de exemplu limba de utilizarea a serviciului, imbunatatirea serviciului, prin implementare si testare de solutii tehnice. Puteti obtine informatii suplimentare despre modul in care folosim modulele cookie si alte tehnologii de urmarire si modul in care le puteti controla in Politica de Cookie.
+
+Aceste Servicii iti pot oferi facilitatea de a te conecta (creare cont nou si/sau login) folosind contul tau de pe retele sociale: Facebook, Google. Nu suntem responsabili pentru utilizarea, folosirea necorespunzatoare sau preluarea fara drept a oricaror date cu caracter personal sau alte informatii cu care contribuiti la orice Aplicatie de Social Media.
+
+Putem monitoriza eventualele dispute dintre Utilizatori, in situatia in care exista o obligatie prevazuta de lege in acest sens sau in cazul in care un Utilizator raporteaza un abuz. In cazul in care raportarea abuzului se face prin intermediul serviciului de mesagerie, Utilizatorul isi asuma si intelege ca parte din conversatia raportata va fi verificata de echipa Sentimente.
+
+Iti oferim control asupra datelor pe care le colectam, atat din Aplicatie cat si pe Site. Fiecare Utilizator are posibilitatea de a dezactiva colectarea anumitor date personale legate de calitatea si utilizarea altor aplicatii sau a Aplicatiei Sentimente, in cazul in care folositi Aplicatia, dar si de a dezactiva notificarile.
+
+NOTA: In cazul in care alegeti sa dezactivati notificarile de tip push primite prin Aplicatie, Administratorul Site-ului va avea in continuare posibilitatea de a transmite notificari de tip webpush sau e-mail-uri, daca Utilizatorul nu renunta in mod expres si la aceste optiuni.
+
+Va informam ca oprirea acestor preferinte va avea impact asupra nivelului de personalizare pe care Sentimente vi-l poate oferi.
+
+2.Ce fel de informatii despre Utilizatori sunt publice?
+
+Anumite date cu caracter personal incarcate de catre Utilizatori prin intermediul Sentimente si pot fi accesibile membrilor/vizitatorilor, prin accesarea paginii de profil a fiecarui Utilizator sau prin intermediul listarilor. Utilizatorii au posibilitatea de a edita, oricand, continutul paginii de profil si astfel sa aleaga ce categorii de date cu caracter personal doresc sa fie afisate pe pagina de profil.
+
+Unele dintre informatiile pe care Utilizatorii le furnizeaza la completarea profilului sunt publice, putand fi vazute si de persoane care nu folosesc serviciile Sentimente. Profilul dumneavoastra public include numele, sexul, numele de utilizator fotografia de profil, varsta etc.
+
+In ceea ce priveste prenumele pe care Utilizatorii il completeaza la inregistrare, va aducem la cunostinta faptul ca vom folosi aceasta data cu caracter personal doar in interactiunea dintre dumneavoastra si echipa noastra. Prenumele nu va fi vizibil pentru restul Utilizatorilor.
+
+In ceea ce priveste vizibilitatea profilului public din motoarele de cautare, Administratorul Site-ului nu are control asupra continutului deja indexat si stocat in memoria cache a motoarelor de cautare. Pentru a solicita eliminarea imediata a acestei liste de cautare, va trebui sa contactati echipa de asistenta a motorului de cautare specific. Din pacate, Administratorul Site-ului nu poate trimite in numele Utilizatorilor, cereri de eliminare a continutului deja indexat in memorai acestor motoare de cautare. Ne cerem scuze pentru eventualele neplaceri cauzate de acest lucru. Pentru a veni in sprijinul Utilizatorilor va punem la dispozitie datele de contact ale echipelor de asistenta adecvate: Google, Bing, Yahoo
+
+3. Scopul prelucrarii datelor cu caracter personal
+
+Va informam ca datele personale pe care le furnizati catre Administratorul Site-ului sunt prelucrate in scopul oferirii, furnizarii si functionarii in conditii optime a Site-ului si a Aplicatiei, dar si in scopul dezvoltarii acestora. Astfel, Administratorul Site-ului va prelucra datele dumneavoastra pentru:
+
+oferirea unei platforme de relationare sociala;
+imbunatatirea continutului oferit, bazata pe o intelegere a tiparelor ce descriu utilizarea Site-ului si a Aplicatiei;
+respectarea obligatiilor legale ale Administratorului Site-ului (cum ar fi obligatii de raportare catre autoritatile statului);
+in vederea respectarii hotararilor judecatoresti si in vederea exercitarii si/sau apararii drepturilor si intereselor noastre;
+securizarea serviciului, pentru a proteja utilizatorii impotriva fraudei sau a furtului de identitate;
+utilizarea corecta a serviciului oferit;
+a permite distribuirea continutului serviciului oferit;
+a finaliza servicii solicitate de catre Utilizatori, de exemplu pentru a gestiona participarea la concursuri, jocuri, sondaje, inclusiv pentru a permite si a lua in considerarea transmiterea de feedback de catre Utilizatori;
+crearea de oferte personalizate prin analiza preferintelor, a comportamentelor si a intereselor Utilizatorilor pentru a putea obtine continutul vizat sau oferta de la Sentimente;
+gestionarea problemelor de performanta pentru telefoanele slab performante;
+imbunatatirea performantei Site-ului si/sau a Aplicatie Android si a design-ului acesteia;.
+oferirea de recomandari personalizate;
+informarea Utilizatorilor privind situatia contului lor;
+activitati comerciale, de promovare a produselor si serviciilor, de marketing, de publicitate, de media, administrative, dezvoltare, de cercetare de piata, de statistica, de urmarire si monitorizare a vanzarilor si comportamentul consumatorului.
+4. Temeiurile juridice pentru prelucrarea datelor cu caracter personal
+
+Orice operatiune de prelucrare a datele personale furnizate Administratorul Site-ului va fi efectuata in baza, cu respectarea dispozitiilor legale aplicabile, conform unuia dintre temeiurile de mai jos:
+
+pentru incheierea sau executarea unui contract la care Utilizatorul este parte;
+pentru a respecta o obligatie legala a Administratorului Site-ului;
+in baza consimtamantului Utilizatorilor;
+Prelucrarea este necesara în vederea protejarii intereselor vitale ale dumneavoastra sau ale altei persoane fizice;
+in scopul intereselor legitime ale Administratorului site-ului sau ale unui tert;
+pentru constatarea, exercitarea sau apararea unui drept în instanta;
+5. Dezvaluiri de date cu caracter personal
+
+Deoarece obiectivul nostru este de a va ajuta sa va creati conexiuni semnificative, distribuirea principala a informatiilor utilizatorilor este, desigur, cu alti utilizatori. De asemenea, impartasim informatiile unor utilizatori cu furnizorii de servicii si cu partenerii care ne asista in exploatarea serviciilor si cu autoritatile legale.
+
+Cu alti utilizatori. Partajati informatiile cu alti utilizatori atunci cand divulgati in mod voluntar informatii pe profilul dvs. public. Va rugam sa fiti atenti la informatiile dvs. si sa va asigurati ca continutul pe care il partajati este o chestiune pe care sunteti confortabil sa o vizualizati public, deoarece nici dumnevoastra si nici noi nu putem controla ce fac altii cu informatiile dvs. odata ce le partajati.
+
+Cu furnizorii de servicii si partenerii nostri. Folosim parti terte pentru a ne ajuta sa operam si sa imbunatatim serviciile noastre. Aceste parti terte ne ajuta cu diverse sarcini, inclusiv gazduirea si intretinerea datelor, analiza audientei (Google Analytics), asistenta clientilor (Zendesk), servicii de marketing si publicitate (Google AdWords si Facebook Ads), procesarea platilor si operatiunile de securitate. Urmam un proces de verificare stricta inainte de angajarea oricarui furnizor de servicii sau de colaborarea cu orice partener. Toti furnizorii nostri de servicii si partenerii trebuie sa accepte obligatii stricte de confidentialitate. Acestia vor avea acces la datele dumneavoastra doar in masura in care este necesar, in mod rezonabil, pentru a indeplini anumite sarcini in numele nostru.
+
+Folosim Hotjar pentru a intelege mai bine nevoile utilizatorilor si pentru a optimiza serviciul pe care vi-l oferim precum și pentru a imbunatati experiența dumneavoastra pe site. Hotjar este un serviciu de tehnologie care ne ajuta sa ințelegem mai bine experienta utilizatorilor (de exemplu, cat timp petrec pe anumite pagini, pe ce link-uri aleg sa faca clic etc.) si astfel ne permite sa construim si sa mentinem serviciul nostru conform feedback-ului primit de la utilizatori. Acest serviciu utilizeaza cookie-uri si alte tehnologii similare pentru a colecta date despre comportamentul utilizatorilor si dispozitivele acestora (in special adresa IP a dispozitivului -captata si stocata numai in forma anonima, dimensiunea ecranului dispozitivului, tipul dispozitivului (identificatori unici de dispozitiv), informațiile despre browser, limba preferata pentru afisarea site-ului nostru). Toate aceste informatii sunt stocate intr-un profil de utilizator pseudonimizat. Nu vom folosi niciodata aceste informatii pentru a identifica utilizatorii sau pentru a le interpreta alaturi de alte date suplimentare despre un utilizator identificabil. Pentru mai multe detalii, consultați Politica de confidentialitate Hotjar disponibila la acest link.Puteti sa renuntati la colecta date despre comportamentul si dispozitivele dumneavoastra, precum si la utilizarea de catre Hotjar a cookie-urilor, urmand acest link de renuntare.
+
+Pentru tranzactiile corporate. Putem transfera informatiile dvs. daca suntem implicati, integral sau partial, intr-o fuziune, vanzare, achizitie, cesionare, restructurare, reorganizare, dizolvare, faliment sau alta schimbare de proprietate sau de control.
+
+Atunci cand legea cere. Putem divulga informatiile dvs. daca este necesar: (i) sa se conformeze unui proces juridic, cum ar fi o hotarare judecatoreasca, o citatie sau un mandat de perchezitie, o investigatie guvernamentala/de aplicare a legii sau alte cerinte legale; (ii) sa contribuie la prevenirea sau depistarea infractiunilor (sub rezerva aplicarii in fiecare caz a legislatiei aplicabile); sau (iii) pentru a proteja siguranta oricarei persoane.
+
+Pentru a pune in aplicare drepturile legale.De asemenea, putem impartasi informatii: (i) daca divulgarea ar diminua raspunderea noastra intr-un proces sau potential proces; (ii) dupa cum este necesar pentru a ne proteja drepturile legale și drepturile legale ale utilizatorilor, a partenerilor de afaceri sau ale altor parti interesate; (iii) sa punem in aplicare acordurile noastre cu dvs.; si (iv) sa investigheze, sa previna sau sa ia alte masuri in ceea ce priveste activitatea ilegala, frauda suspectata sau alte greseli.
+
+Cu acordul dvs. sau la cererea dumneavoastra. Va putem solicita consimtamantul de a va distribui informatiile unor parti terte. In orice astfel de caz, vom clarifica motivul pentru care dorim sa impartasim informatiile. Putem folosi si impartsi informatii non-personale (adica informatii care, prin ele insele, nu identifica cine sunteti, cum ar fi informatii despre dispozitive, date demografice generale, date comportamentale generale, localizare geografica, intr-o forma care nu poate fi citita de om, in oricare dintre circumstantele de mai sus. Mai multe informatii despre utilizarea cookie-urilor si a tehnologiilor similare pot fi gasite in: Politica de Cookie.
+
+Datele cu caracter personal ale Utilizatorilor pot fi furnizate si catre Parchete, Politie, instantele judecatoresti si altor organe abilitate ale statului, in baza si in limitele prevederilor legale si ca urmare a unor cereri expres formulate.
+
+6. Drepturile Utilizatorilor cu privire la datele cu caracter personal
+
+Conform legislatiei aplicabile in materia protectiei datelor cu caracter personal, fiecare Utilizator beneficiaza de dreptul la informare, de acces, de interventie asupra datelor, dreptul la restrictionarea prelucrarii, dreptul de opozitie, dreptul de a nu fi supus unui proces individual automatizat, dreptul de a se adresa justitiei si de a cere daune pentru incalcarea drepturilor sale.
+
+Dreptul de a fi informat - in calitate de Utilizator al serviciilor oferite de Administratorul Site-ului dorim sa ne asiguram ca veti primi intotdeauna informatii clare si transparente, usor de inteles si accesibilie cu privire la modul in care folosim datele dumneavoastra si despre drepturile pe care le aveti. Acesta este scopul prezentei Politici de Confidentialitate. Pentru informatii suplimentare legate de datele cu caracter personal ale Utilizatorilor echipa Sentimente va sta la dispozitie.
+Dreptul de acces - in temeiul acestui drept, fiecare Utilizator are posibilitatea de a obtine, in mod gratuit pentru o solicitare pe an, printr-o cerere intocmita in forma scrisa, datata si semnata, transmisa la adresa indicata in prezenta Politica de Confidentialitate, confirmarea faptului ca datele care o privesc sunt sau nu prelucrate de operator. Prima furnizare de informatii se va face fara a percepe niciun fel de taxa. Daca veti mai avea nevoie de copii ale informatiilor deja furnizate, este posibil sa va percepem o taxa rezonabila tinand cont de costurile administrative de furnizarea a informatiilor. Ne rezervam dreptul de a nu raspunde solicitarilor vadit neintemeiate, excesive sau repetate.
+Dreptul de interventie asupra datelor - orice Utilizator are dreptul de a solicita, in mod gratuit, rectificarea, actualizarea, blocarea sau stergerea totala sau partiala a datelor a caror prelucrare nu se poate face conform legii. NOTA: solicitarile privind stergerea datelor se vor realiza in masura in care nu vor genera costuri vadit disproportionale pentru Administratorul Site-ului si doar in cazul in care nu exista dispozitii legale contrare, prin care suntem obligati sa pastram datele dumneavoastra. Utilizatorii inteleg si accepta ca stergerea datelor lor personale va fi urmata de stergerea contului lor din sistem si de imposibilitatea de a accesa serviciul oferit de catre Administratorul Site-ului. Dreptul de a rectifica datele care sunt incorecte, inexacte sau incomplete poate fi exercitat in mod direct prin accesarea contului de Utilizator. In cazul in care intampinati dificultati in exercitarea dreptului de interventie asupra datelor dumneavoastra va rugam sa ne contactati.
+Daca prelucrarea datelor se bazeaza pe consimtamant (de ex. in cazul geolocatiei), va puteti retrage in orice momentul consimtamantul fara ca acest lucru sa afecteze prelucrarile efectuate inainte de retragerea acestuia. In cazul in care unele datele sunt colectate prin intermediul aplicatiilor mobile sau a telefonului (de ex. geolocatie, notificari de tip push), puteti schimba oricand setarile dispozitului dvs. mobil pentru a va opune / consimti la colectarea acestor date sau afisarea notificarilor de tip push.
+Dreptul la restrictionarea prelucrarii - Utilizatorii au dreptul de a solicita restrictionarea prelucrarii datelor cu caracter personal. Acest drept se aplica in circumstantele specific prevazute in Regulamentul general privind protectia datelor si anume: Utilizatorul contesta exactitatea datelor pentru o perioada care sa permita Sentimente, in calitate de operator, sa verifice corectitudinea datelor; prelucrarea este ilegala, iar Utilizatorul se opune stergerii datelor cu caracter personal si solicita restrictionarea utilizarii lor; Administratorul Site-ului, in calitate de operator, nu mai are nevoie de datele cu caracter personal pentru prelucrare, dar acestea sunt solicitate de catre Utilizator pentru stabilirea, exercitarea sau apararea unor pretentii legale; Utilizatorul s-a opus prelucrarii bazate pe motive legitime din partea Sentimente, restrictionarea prelucrarii aplicandu-se pentru intervalul de timp in care se verifica daca drepturile legitime ale Sentimente prevaleaza asupra celor ale Utilizatorului.
+Dreptul de opozitie - Utilizatorii au dreptul de a se opune in orice moment, printr-o cerere intocmita in forma scrisa, datata si semnata, daca exista motive intemeiate si legitime, ca datele care il privesc sa faca obiectul unor prelucrari sau sa fie dezvaluite unor terti.
+Dreptul de a nu fi suspus unui proces individual automatizat.
+Dreptul de a se adresa justitiei - Fara a se aduce atingere posibilitatii de a se adresa cu plangere autoritatii de supraveghere, Utilizatorii au dreptul de a se adresa justitiei pentru apararea oricaror drepturi garantate de lege, care le-au fost incalcate.Utilizatorii care au suferit un prejudiciu in urma unei prelucrari de date cu caracter personal, efectuata ilegal, se poate adresa instantei competente pentru repararea acestuia. Ne puteti contacta in orice moment, folosind datele de contact de mai jos, inainte de a depune o plangere la autoritatea relevanta pentru protectia datelor.
+Pentru exercitarea acestor drepturi fiecare Utilizator poate face o cerere in scris in acest sens, pe care sa o trimita apoi prin posta la adresa Administratorul Site-ului: Machteam Soft S.R.L., Bd. Pierre de Coubertin 3-5, Office Building, et. 4, camera 4I, sector 2, Bucuresti, la adresa de e-mail indicata la "Contact" disponibila la https://www.sentimente.ro/feedback/ sau la webmaster@sentimente.ro email address.
+
+De asemenea, va puteti adresa in scris, responsabilului cu protectia datelor, la adresa de e-mail: dpo@machteamsoft.ro.
+
+Prin citirea prezentei Politici de Confidentialitate, Utilizatorul declara ca a luat la cunostinta faptul ca ii sunt garantate drepturile prevazute de lege.
+
+Administratorul Site-ului poate notifica Utilizatorii privind informatii legate de utlizarea si functionarea Serviciului oferit, prin comunicari prin e-mail. Utilizatorii pot renunta oricand la primirea acestor informatii, urmand optiunile de dezabonare din subsolul fiecarui e-mail.
+
+Informatiile pe care ni le furnizati vor fi utilizate in scopurile expres mentionate in prezenta Politica de Confidentialitate pentru a administra, a sprijini si a evalua serviciile noastre si a preintampina incalcarea securitatii, a legii si a termenilor nostri contractuali.
+
+Utilizatorii au posibilitatea de a edita in orice moment continutul contului din sectiunea "Editeaza Profil"."Sexul" si "Data nasterii" nu sunt editabile, in timp ce campul "nume"nu este vizibil pe site, asigurand astfel confidentialitatea deplina a acestor informatii. Utilizatorii isi pot anula in orice moment contului din sectiunea Setari cont - Anulare cont.
+
+7. Informatii speciale pentru parinti
+
+Serviciile noastre sunt interzise pentru utilizatorii care au varsta de 18 ani sau mai tineri. Nu permitem utilizatorilor cu varsta sub 18 ani pe platforma noastra si nu colectam cu buna stiinta informatii personale de la nimeni sub varsta de 18 ani. Daca banuiti ca un utilizator are mai putin de 18 ani, utilizati mecanismul de raportare disponibil.
+
+Desi serviciile nu vizeaza copii sub varsta de 18 ani, politica noastra este sa respectam legile, atunci cand este necesara permisiunea parinților sau a tutorelui, inainte de colectarea, utilizarea sau dezvaluirea informatiilor despre copii.
+
+Administratorul Site-ului recomanda ferm ca parintii sa isi asume un rol activ de supraveghere a activitatilor online ale copiilor lor. In cazul in care consideri ca am colectat date personale de la persoane sub varsta de 18 ani, contacteaza-ne la adresa: dpo@machteamsoft.ro.
+
+8. Cum protejam noi informatia
+
+Administratorul Site-ului se supune masurilor tehnice si de siguranta impuse de legislatia in vigoare pentru a asigura confidentialitatea si protectia datele personale ale Utilizatorilor impotriva accesului neautorizat. Administratorul Site-ului se asigura in permanenta, prin implementarea si aplicarea masurilor tehnice optime, ca datele personale ale Utilizatorilor sunt folosite exact asa cum este descris in Politica de Confidentialitate si ca alegerile fiecarui Utilizator cu privire la prelucrarea datelor sale sunt respectate.
+
+Aceste masuri includ, dar fara sa se limiteze la: (i) stocarea informatiilor dumneavoastra personale in medii de operare sigure, care nu sunt disponibile pentru public si care sunt accesibile numai persoanelor autorizate; (ii) utilizarea tehnicilor de criptare pentru a proteja securitatea anumitor informatii personale sensibile, (iii) verificarea identitatii Utilizatorilor inregistrati inainte de a putea accesa informatiile lor personale.
+
+Administratorul Site-ului va putea furniza datele cu caracter personal oferite de Utilizatori, catre alte companii cu care se afla in relatii de parteneriat, doar in temeiul unor contracte si in baza unor angajamente de confidentialitate prin care acestia din urma garanteaza ca datele cu caracter personal sunt pastrate in siguranta si ca prelucrarea si furnizarea acestora se face conform legislatiei in vigoare. Astfel, Sentimente poate furniza datele cu caracter personal in vederea contractarii de servicii de marketing, in vederea facilitarii serviciilor de plata.
+
+Aceasta restrictie de confidentialitate nu se aplica in cazul in care informatiile privind datele cu caracter personal al Utilizatorilor sunt solicitate de catre autoritatea judiciara in timpul unei proceduri judiciare, conforme cu legea si dezvaluirea este autorizata de conducerea Administratorului Site-ului, daca Utilizatorul cere in scris Administratorului Site-ului sa dezvaluie informatiile referitoare la persoana sa sau in oricare alte cazuri prevazute de lege.
+
+9. Perioada de prelucrare si stocare a datelor Utilizatorilor
+
+Administratorul Site-ului poate retine informatiile cu caracter personal pe care Utilizatorii ni le furnizeaza prin intermediul Site-ului si/sau Aplicatiei, intr-o baza de date, cum ar fi baza de date cu clienti. Datele dumneavoastra personale vor fi pastrate de catre Administratorul Site-ului doar pe perioada cat acestea sunt folosite pentru a va putea oferi acces la toate facilitatile Site-ului/Aplicatiei, pentru a va putea raspunde intrebarilor, in vederea rezolvarii anumitor situatii sau pentru a aduce imbunatatiri si servicii noi, supunandu-ne cerintelor legale si legislatiei in vigoare.
+
+Avand in vedere ca prin intermediul site-ului Sentimente va sunt oferite servicii de relationare sociala si platforma de “dating” si ca scopul serviciului este tocmai de a oferi Utilizatorilor o modalitate de a se cunoaste, de a initia si de a mentine relatii sociale, este necesara stocarea si prelucrarea datelor cu caracter personal oferite de catre fiecare Utilizator, pe intreaga durata de furnizare a serviciului.
+
+Datele cu caracter personal pot fi retinute pentru o anumita perioada de timp chiar si dupa ce dumneavoastra incetati sa folositi serviciile oferite de prezentul Site si/sau Aplicatie prin revocarea acordului dat initial. In acest caz, anumite date cu caracter personal vor fi pastrate pe o perioada de maxim 3 ani de la momentul anularii contului, cu exceptia situatiilor in care legea ne obliga sa stocam aceste date pentru o perioada mai mare. Dupa expirarea acestor perioade datele cu caracter personal vor fi distruse prin stergere automatizata sau, in cazul in care lege prevede un termen de stocare mai mare decat cel prevazut de prezenta Politica de Confidentialitate, datele cu caracter personal sunt securizate prin metode automatizate de criptare si anonimizare.
+
+In aceasta perioada, informatiile despre cont vor fi pastrate, desi contul, desigur, nu va mai fi vizibil.
+
+In practica, stergem sau anonimizam informatiile dvs. dupa stergerea contului dvs. cu exceptia cazului in care:
+
+trebuie sa le pastram pentru a demonstra conformitatea cu legislatia aplicabila (de exemplu, inregistrarile consimtamantului dvs. privind Termenii si conditiile, Politica de Confidentialitate si alte consimtaminte similare sunt pastrate timp de 3 ani);
+exista o problema, o afirmatie sau o disputa care ne obliga sa pastram informatiile relevante pana cand acestea sunt rezolvate; sau
+informatiile trebuie pastrate pentru interesele noastre legitime de afaceri, cum ar fi prevenirea fraudei si sporirea sigurantei si securitatii utilizatorilor. De exemplu, este posibil ca informatiile sa fie pastrate pentru a impiedica un utilizator care a fost banat pentru comportamente nesigure sa-si deschida un nou cont.
+Retineti ca, desi sistemele noastre sunt concepute sa efectueze procese de stergere a datelor in conformitate cu instructiunile de mai sus, nu putem promite ca toate datele vor fi sterse intr-un anumit interval de timp din cauza constrangerilor tehnice.
+
+Administratorul Site-ului poate pastra rapoarte statistice generate prin utilizarea informatiilor colectate din Site si/sau Aplicatie o perioada indelungata, dar astfel de rapoarte nu identifica Utilizatorul si nu vor fi folosite in niciun alt mod care ar putea sa afecteze protectia datelor cu caracter personal sau intimitatea Utilizatorilor.
