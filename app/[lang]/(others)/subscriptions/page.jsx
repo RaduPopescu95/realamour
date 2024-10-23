@@ -52,7 +52,7 @@ export default async function Page({ params }) {
   const translatedLinks = {
     home: await fetchTranslation("Acasa", targetLanguage),
     realAmor: await fetchTranslation("RealAmor", targetLanguage),
-    pricing: await fetchTranslation("Pricing", targetLanguage),
+    pricing: await fetchTranslation("Subscriptions", targetLanguage),
     lang: targetLanguage,
     bookingText: await fetchTranslation(
       "Pricing for booking system",
@@ -98,7 +98,7 @@ export default async function Page({ params }) {
       />
       <div className="content-wrapper js-content-wrapper overflow-hidden">
         {/* Transmitem datele traduse și limba către componenta PageLinks */}
-        <PageLinks translatedLinks={translatedLinks} />
+        <PageLinks translatedLinks={translatedLinks} link2={"subscriptions"} />
         <Subscriptions
           bookingText={translatedLinks.bookingText}
           paymentOneTimeText={translatedLinks.paymentOneTimeText}

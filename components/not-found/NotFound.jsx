@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+
 export default function NotFound() {
   return (
     <section className="no-page layout-pt-lg layout-pb-lg bg-beige-1">
@@ -22,15 +24,19 @@ export default function NotFound() {
                 40<span className="text-purple-1">4</span>
               </h1>
               <h2 className="text-35 lh-12 mt-5">
-                Oops! It looks like you're lost.
+                Oups ! On dirait que vous êtes perdu.
               </h2>
               <div className="mt-10">
-                The page you're looking for isn't available. Try to search again
-                <br /> or use the go to.
+                La page que vous cherchez n'est pas disponible. Essayez de
+                rechercher à nouveau
+                <br /> ou utilisez le bouton pour y aller.
               </div>
-              <button className="button -md -purple-1 text-white mt-20">
-                Go Back To Homepage
-              </button>
+              <Link
+                href="/signup"
+                className="button -md -purple-1 text-white mt-20"
+              >
+                Retourner à la page d'accueil
+              </Link>
             </div>
           </div>
         </div>

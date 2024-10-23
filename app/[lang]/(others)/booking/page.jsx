@@ -51,7 +51,7 @@ export default async function page({ params }) {
   const translatedLinks = {
     home: await fetchTranslation("Acasă", targetLanguage),
     realAmor: await fetchTranslation("RealAmor", targetLanguage),
-    pricing: await fetchTranslation("Pricing", targetLanguage),
+    pricing: await fetchTranslation("Booking", targetLanguage),
     tarifsText: await fetchTranslation("Tarifs", targetLanguage),
     methodeText: await fetchTranslation("Methode", targetLanguage),
     paymentTitle: await fetchTranslation("Plată Finalizată", targetLanguage),
@@ -93,7 +93,7 @@ export default async function page({ params }) {
         methodeText={translatedLinks.methodeText}
       />
       <div className="content-wrapper js-content-wrapper overflow-hidden">
-        <PageLinks translatedLinks={translatedLinks} />
+        <PageLinks translatedLinks={translatedLinks} link2={"booking"} />
         <Calendar targetLanguage={targetLanguage} />
         {/* <Brands/> */}
         {/* <FooterOne/> */}

@@ -17,7 +17,7 @@ export default function DashboardOne() {
       <div className="dashboard__content bg-light-4">
         <div className="row pb-50 mb-10">
           <div className="col-auto">
-            <h1 className="text-30 lh-12 fw-700">Cont Client</h1>
+            <h1 className="text-30 lh-12 fw-700">Cont Admin</h1>
             {/* <div className="mt-10">
               Lorem ipsum dolor sit amet, consectetur.
             </div> */}
@@ -31,11 +31,11 @@ export default function DashboardOne() {
                 <div>
                   <div className="lh-1 fw-500">{elm.title}</div>
                   <div className="text-24 lh-1 fw-700 text-dark-1 mt-20">
-                    ${elm.value}
+                    {elm.value}
                   </div>
-                  <div className="lh-1 mt-25">
+                  {/* <div className="lh-1 mt-25">
                     <span className="text-purple-1">${elm.new}</span> New Sales
-                  </div>
+                  </div> */}
                 </div>
 
                 <i className={`text-40 ${elm.iconClass} text-purple-1`}></i>
@@ -44,7 +44,7 @@ export default function DashboardOne() {
           ))}
         </div>
 
-        <div className="row y-gap-30 pt-30">
+        {/* <div className="row y-gap-30 pt-30">
           <div className="col-xl-8 col-md-6">
             <div className="rounded-16 bg-white -dark-bg-dark-1 shadow-4 h-100">
               <div className="d-flex justify-between items-center py-20 px-30 border-bottom-light">
@@ -284,7 +284,7 @@ export default function DashboardOne() {
                           <div className="d-flex items-center">
                             <i className="icon-clock-2 text-16 mr-8"></i>
                             <div className="text-14 lh-1">{`${Math.floor(
-                              elm.duration / 60,
+                              elm.duration / 60
                             )}h ${Math.floor(elm.duration % 60)}m`}</div>
                           </div>
                         </div>
@@ -330,7 +330,7 @@ export default function DashboardOne() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <FooterNine />

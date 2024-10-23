@@ -84,6 +84,30 @@ export default async function Page({ params }) {
     tarifsText: await fetchTranslation("Tarifs", targetLanguage),
     methodeText: await fetchTranslation("Methode", targetLanguage),
     lang: targetLanguage,
+    userNameRequired: await fetchTranslation(
+      "Username is required",
+      targetLanguage
+    ),
+    passLength: await fetchTranslation(
+      "Password must be at least 6 characters long",
+      targetLanguage
+    ),
+    phoneRequired: await fetchTranslation(
+      "Phone number is required",
+      targetLanguage
+    ),
+    addressRequired: await fetchTranslation(
+      "Address is required",
+      targetLanguage
+    ),
+    completeazaCampuri: await fetchTranslation(
+      "Te rugăm să completezi toate câmpurile corect.",
+      targetLanguage
+    ),
+    utilizatorInregistrat: await fetchTranslation(
+      "Utilizator înregistrat cu succes!",
+      targetLanguage
+    ),
   };
 
   return (
@@ -118,6 +142,7 @@ export default async function Page({ params }) {
                 aboutMePlaceholder={translatedLinks.aboutMePlaceholder}
                 videoPlaceholder={translatedLinks.videoPlaceholder}
                 pozePlaceholder={translatedLinks.pozePlaceholder}
+                translatedLinks={translatedLinks}
               />
             </section>
           </section>

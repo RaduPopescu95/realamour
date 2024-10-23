@@ -51,13 +51,21 @@ export default async function Page({ params }) {
 
   const translatedLinks = {
     emailText: await fetchTranslation("Email", targetLanguage),
-    parolaText: await fetchTranslation("Parola", targetLanguage),
+    parolaText: await fetchTranslation("Password", targetLanguage),
     autentificareText: await fetchTranslation("Autentificare", targetLanguage),
     aiContText: await fetchTranslation("Nu ai un cont încă?", targetLanguage),
     inscrieText: await fetchTranslation("Înscrie-te gratuit", targetLanguage),
     tarifsText: await fetchTranslation("Tarifs", targetLanguage),
     methodeText: await fetchTranslation("Methode", targetLanguage),
     lang: targetLanguage,
+    autentificareReusita: await fetchTranslation(
+      "Autentificare reușită!",
+      targetLanguage
+    ),
+    autentificareEsuata: await fetchTranslation(
+      "Autentificare eșuată:",
+      targetLanguage
+    ),
   };
 
   return (
@@ -77,6 +85,7 @@ export default async function Page({ params }) {
             autentificareText={translatedLinks.autentificareText}
             aiContText={translatedLinks.aiContText}
             inscrieText={translatedLinks.inscrieText}
+            translatedLinks={translatedLinks}
           />
         </section>
       </div>

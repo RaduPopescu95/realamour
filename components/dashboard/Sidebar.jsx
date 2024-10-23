@@ -1,19 +1,28 @@
 "use client";
 
-import { sidebarItems } from "@/data/dashBoardSidebar";
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-export default function Sidebar() {
+import { sidebarItems } from "@/data/dashBoardSidebar";
+
+export default function Sidebar({ adminText, usersText, disconnectText }) {
   const pathname = usePathname();
+
+  // Înlocuim textele din sidebarItems cu cele traduse
+  const translatedSidebar = [
+    // { ...translatedSidebarItems[0], text: adminText },
+    { ...sidebarItems[1], text: usersText },
+    { ...sidebarItems[2], text: disconnectText },
+  ];
+
   return (
     <div className="sidebar -dashboard">
-      {sidebarItems.map((elm, i) => (
+      {translatedSidebar.map((elm, i) => (
         <div
           key={i}
-          className={`sidebar__item   ${
+          className={`sidebar__item ${
             pathname == elm.href ? "-is-active" : ""
-          } `}
+          }`}
         >
           <Link
             key={i}

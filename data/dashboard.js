@@ -1,32 +1,32 @@
 export const states = [
   {
     id: 1,
-    title: "Total Compatibilitati",
+    title: "Total Utilizatori",
     value: 101,
     new: 50,
-    iconClass: "icon-coupon",
+    iconClass: "icon-person-2",
   },
-  {
-    id: 2,
-    title: "Total Courses",
-    value: 3759,
-    new: 40,
-    iconClass: "icon-play-button",
-  },
-  {
-    id: 3,
-    title: "Total Students",
-    value: 129786,
-    new: 90,
-    iconClass: "icon-graduate-cap",
-  },
-  {
-    id: 4,
-    title: "Total Instructors",
-    value: 22786,
-    new: 290,
-    iconClass: "icon-online-learning",
-  },
+  // {
+  //   id: 2,
+  //   title: "Total Compatibilitati",
+  //   value: 3759,
+  //   new: 40,
+  //   iconClass: "icon-play-button",
+  // },
+  // {
+  //   id: 3,
+  //   title: "Total Students",
+  //   value: 129786,
+  //   new: 90,
+  //   iconClass: "icon-graduate-cap",
+  // },
+  // {
+  //   id: 4,
+  //   title: "Total Instructors",
+  //   value: 22786,
+  //   new: 290,
+  //   iconClass: "icon-online-learning",
+  // },
 ];
 
 export const coursesData = [
@@ -72,7 +72,7 @@ export const coursesData = [
     difficulty: "Easy",
     status: "Finished",
   },
-  
+
   {
     id: 3,
     imageSrc: "/assets/img/coursesCards/1.png",
@@ -178,7 +178,6 @@ export const coursesData = [
     difficulty: "Easy",
     status: "Finished",
   },
-  
 ];
 
 export const mediaUpload = [

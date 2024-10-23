@@ -33,6 +33,7 @@ const SignUpForm = ({
   aboutMePlaceholder,
   videoPlaceholder,
   pozePlaceholder,
+  translatedLinks,
 }) => {
   const [formData, setFormData] = useState({
     email: "",
@@ -52,6 +53,8 @@ const SignUpForm = ({
     content: "",
     showAlert: false,
   });
+  const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
 
   const validateForm = () => {
@@ -64,7 +67,7 @@ const SignUpForm = ({
     }
 
     if (!formData.username) {
-      errors.username = "Username is required";
+      errors.username = translatedLinks.userNameRequired;
       isValid = false;
     }
 
@@ -74,17 +77,17 @@ const SignUpForm = ({
     }
 
     if (formData.password !== formData.confirmPassword) {
-      errors.confirmPassword = "Passwords do not match";
+      errors.confirmPassword = translatedLinks.passLength;
       isValid = false;
     }
 
     if (!formData.phone) {
-      errors.phone = "Phone number is required";
+      errors.phone = translatedLinks.phoneRequired;
       isValid = false;
     }
 
     if (!formData.address) {
-      errors.address = "Address is required";
+      errors.address = translatedLinks.addressRequired;
       isValid = false;
     }
 
@@ -107,11 +110,11 @@ const SignUpForm = ({
         isMain: tempImages.length === 0, // Setăm isMain la true doar pentru prima imagine
       };
       setTempImages((prev) => [...prev, tempImage]);
-      setAlertMessage({
-        type: "success",
-        content: "Imagine adăugată cu succes!",
-        showAlert: true,
-      });
+      // setAlertMessage({
+      //   type: "success",
+      //   content: "Imagine adăugată cu succes!",
+      //   showAlert: true,
+      // });
 
       if (tempImages.length === 0) {
         setMainImageId(imageId); // Setăm imaginea ca principală dacă este prima adăugată
@@ -124,11 +127,11 @@ const SignUpForm = ({
     if (mainImageId === imageId) {
       setMainImageId(null); // Resetăm imaginea principală dacă a fost ștearsă
     }
-    setAlertMessage({
-      type: "success",
-      content: "Imagine ștearsă cu succes!",
-      showAlert: true,
-    });
+    // setAlertMessage({
+    //   type: "success",
+    //   content: "Imagine ștearsă cu succes!",
+    //   showAlert: true,
+    // });
   };
 
   const handleMainImageSelect = (imageId) => {
@@ -159,21 +162,21 @@ const SignUpForm = ({
         previewUrl: URL.createObjectURL(file), // URL pentru previzualizare locală
       };
       setTempVideo(tempVid);
-      setAlertMessage({
-        type: "success",
-        content: "Videoclip adăugat cu succes!",
-        showAlert: true,
-      });
+      // setAlertMessage({
+      //   type: "success",
+      //   content: "Videoclip adăugat cu succes!",
+      //   showAlert: true,
+      // });
     }
   };
 
   const handleVideoDelete = () => {
     setTempVideo(null);
-    setAlertMessage({
-      type: "success",
-      content: "Videoclip șters cu succes!",
-      showAlert: true,
-    });
+    // setAlertMessage({
+    //   type: "success",
+    //   content: "Videoclip șters cu succes!",
+    //   showAlert: true,
+    // });
   };
 
   const handleSubmit = async (e) => {
@@ -182,11 +185,13 @@ const SignUpForm = ({
     if (!validateForm()) {
       setAlertMessage({
         type: "danger",
-        content: "Te rugăm să completezi toate câmpurile corect.",
+        content: translatedLinks.completeazaCampuri,
         showAlert: true,
       });
       return;
     }
+
+    setIsLoading(true); // Setează isLoading pe true la începutul procesului
 
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -245,7 +250,7 @@ const SignUpForm = ({
 
       setAlertMessage({
         type: "success",
-        content: "Utilizator înregistrat cu succes!",
+        content: translatedLinks.utilizatorInregistrat,
         showAlert: true,
       });
       router.push("/login");
@@ -255,6 +260,8 @@ const SignUpForm = ({
         content: err.message,
         showAlert: true,
       });
+    } finally {
+      setIsLoading(false); // Setează isLoading pe false la finalul procesului
     }
   };
 
@@ -576,12 +583,20 @@ const SignUpForm = ({
                 </div>
 
                 <div className="col-12">
-                  <button
-                    type="submit"
-                    className="button -md -purple-1 fw-500 w-1/1"
-                  >
-                    {registerText}
-                  </button>
+                  {isLoading ? (
+                    <div className="spinner">
+                      {" "}
+                      {/* Spinner component */}
+                      <span>Loading...</span>
+                    </div>
+                  ) : (
+                    <button
+                      type="submit"
+                      className="button -md -purple-1 fw-500 w-1/1"
+                    >
+                      {registerText}
+                    </button>
+                  )}
                 </div>
               </form>
 

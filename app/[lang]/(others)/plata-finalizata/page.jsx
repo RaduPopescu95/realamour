@@ -42,7 +42,7 @@ export default async function Page({ params }) {
   const translatedLinks = {
     home: await fetchTranslation("Acasă", targetLanguage),
     realAmor: await fetchTranslation("RealAmor", targetLanguage),
-    pricing: await fetchTranslation("Pricing", targetLanguage),
+    pricing: await fetchTranslation("Plata finalizata", targetLanguage),
     tarifsText: await fetchTranslation("Tarifs", targetLanguage),
     methodeText: await fetchTranslation("Methode", targetLanguage),
     paymentTitle: await fetchTranslation("Plată Finalizată", targetLanguage),
@@ -85,7 +85,10 @@ export default async function Page({ params }) {
         methodeText={translatedLinks.methodeText}
       />
       <div className="content-wrapper js-content-wrapper overflow-hidden">
-        <PageLinks translatedLinks={translatedLinks} />
+        <PageLinks
+          translatedLinks={translatedLinks}
+          link2={"plata-finalizata"}
+        />
         <PaymentSuccessPage
           paymentTitle={translatedLinks.paymentTitle}
           paymentText={translatedLinks.paymentText}

@@ -8,7 +8,7 @@ import Pagination from "../common/Pagination";
 // import CoursesCardDashboard from "./DashBoardCards/CoursesCardDashboard";
 // import Pagination from "./common/Pagination"; // Import corect al componentei Pagination
 
-export default function MyCourses() {
+export default function MyCourses({ translatedTexts }) {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(10); // Numărul de utilizatori pe pagină
@@ -45,7 +45,9 @@ export default function MyCourses() {
       <div className="dashboard__content bg-light-4">
         <div className="row pb-50 mb-10">
           <div className="col-auto">
-            <h1 className="text-30 lh-12 fw-700">Lista Utilizatori</h1>
+            <h1 className="text-30 lh-12 fw-700">
+              {translatedTexts.listaUtilizatoriText}
+            </h1>
           </div>
         </div>
 

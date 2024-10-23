@@ -17,9 +17,9 @@ export default function SidebarClient({
 
   // Înlocuim textele statice din `sidebarItemsClient` cu textele traduse primite prin props
   const translatedSidebarItems = [
-    { ...sidebarItemsClient[0], text: contText },
-    { ...sidebarItemsClient[1], text: listaCompatibilitatiText },
-    { ...sidebarItemsClient[2], text: chatText },
+    // { ...sidebarItemsClient[0], text: contText },
+    // { ...sidebarItemsClient[1], text: listaCompatibilitatiText },
+    // { ...sidebarItemsClient[2], text: chatText },
     { ...sidebarItemsClient[3], text: profileText },
     { ...sidebarItemsClient[4], text: deconectareText },
   ];

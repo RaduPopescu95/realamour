@@ -106,6 +106,125 @@ export default async function page({ params }) {
     editProfileText: await fetchTranslation("Edit Profile", targetLanguage),
     passwordText: await fetchTranslation("Password", targetLanguage),
     closeAccountText: await fetchTranslation("Close Account", targetLanguage),
+    profileSettingsText: await fetchTranslation(
+      "Profile Settings",
+      targetLanguage
+    ),
+
+    currentPasswordText: await fetchTranslation(
+      "Current password",
+      targetLanguage
+    ),
+    newPasswordText: await fetchTranslation("New password", targetLanguage),
+    confirmNewPasswordText: await fetchTranslation(
+      "Confirm New Password",
+      targetLanguage
+    ),
+    enterEmailText: await fetchTranslation(
+      "Enter email to reset password",
+      targetLanguage
+    ),
+    emailForResetText: await fetchTranslation(
+      "Email for password reset",
+      targetLanguage
+    ),
+    savePasswordText: await fetchTranslation("Save Password", targetLanguage),
+    sendResetEmailText: await fetchTranslation(
+      "Send Reset Email",
+      targetLanguage
+    ),
+    newPasswordMismatchError: await fetchTranslation(
+      "New password and confirm password do not match",
+      targetLanguage
+    ),
+    noUserSignedInError: await fetchTranslation(
+      "No user is currently signed in",
+      targetLanguage
+    ),
+    passwordUpdateSuccess: await fetchTranslation(
+      "Password updated successfully",
+      targetLanguage
+    ),
+    passwordUpdateError: await fetchTranslation(
+      "An error occurred while updating the password",
+      targetLanguage
+    ),
+    resetEmailSuccess: await fetchTranslation(
+      "Password reset email sent successfully",
+      targetLanguage
+    ),
+    resetEmailError: await fetchTranslation(
+      "An error occurred while sending the reset email",
+      targetLanguage
+    ),
+
+    closeAccountText: await fetchTranslation("Close account", targetLanguage),
+    accountCloseWarning: await fetchTranslation(
+      "Warning: If you close your account, all your data will be deleted permanently, and you will lose access to all associated services.",
+      targetLanguage
+    ),
+    enterPasswordText: await fetchTranslation("Enter Password", targetLanguage),
+    closeAccountButtonText: await fetchTranslation(
+      "Close Account",
+      targetLanguage
+    ),
+    accountClosedSuccess: await fetchTranslation(
+      "Account closed and data deleted successfully",
+      targetLanguage
+    ),
+    accountCloseError: await fetchTranslation(
+      "An error occurred while closing the account",
+      targetLanguage
+    ),
+    noUserSignedInError: await fetchTranslation(
+      "No user is currently signed in",
+      targetLanguage
+    ),
+
+    manageSubscriptionText: await fetchTranslation(
+      "Manage Subscription",
+      targetLanguage
+    ),
+    loadingText: await fetchTranslation("Loading...", targetLanguage),
+    subscriptionDetailsText: await fetchTranslation(
+      "Subscription Details",
+      targetLanguage
+    ),
+    subscriptionIdText: await fetchTranslation(
+      "Subscription ID",
+      targetLanguage
+    ),
+    planText: await fetchTranslation("Plan", targetLanguage),
+    expiryDateText: await fetchTranslation("Expiry Date", targetLanguage),
+    cancelSubscriptionText: await fetchTranslation(
+      "Cancel Subscription",
+      targetLanguage
+    ),
+    cancelingText: await fetchTranslation("Canceling...", targetLanguage),
+    noSubscriptionText: await fetchTranslation(
+      "You don't have an active subscription.",
+      targetLanguage
+    ),
+    buySubscriptionText: await fetchTranslation(
+      "Buy a subscription here",
+      targetLanguage
+    ),
+    accountNotActivatedText: await fetchTranslation(
+      "Your account is not yet activated, please check again later to buy a subscription",
+      targetLanguage
+    ),
+    subscriptionCanceledSuccess: await fetchTranslation(
+      "Subscription canceled successfully",
+      targetLanguage
+    ),
+    subscriptionCanceledError: await fetchTranslation(
+      "Error canceling subscription",
+      targetLanguage
+    ),
+    subscriptionDetailsError: await fetchTranslation(
+      "Error fetching subscription details",
+      targetLanguage
+    ),
   };
 
   return (
@@ -152,6 +271,7 @@ export default async function page({ params }) {
               closeAccountText={translatedTexts.closeAccountText}
               addressLabel={translatedTexts.addressLabel}
               addressRequired={translatedTexts.addressRequired}
+              translatedTexts={translatedTexts}
             />
           </div>
         </div>

@@ -8,15 +8,19 @@ import {
 } from "firebase/auth";
 import { useAuth } from "@/context/AuthContext";
 import { db, storage, authentication } from "@/firebase"; // Importăm corect Firebase Firestore și Storage
-import { Router } from "next/router";
-import { handleLogout } from "@/utils/authUtils";
 import { useRouter } from "next/navigation";
 
-export default function CloseAccount({ activeTab }) {
+import { handleLogout } from "@/utils/authUtils";
+import AlertBox from "@/components/uiElements/AlertBox";
+
+export default function CloseAccount({ activeTab, translatedTexts }) {
   const { userData } = useAuth(); // Obținem datele utilizatorului curent
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const [alertMessage, setAlertMessage] = useState({
+    type: "",
+    content: "",
+    showAlert: false,
+  });
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -25,7 +29,11 @@ export default function CloseAccount({ activeTab }) {
     const user = authentication.currentUser;
 
     if (!user) {
-      setErrorMessage("No user is currently signed in");
+      setAlertMessage({
+        type: "danger",
+        content: translatedTexts.noUserSignedInError,
+        showAlert: true,
+      });
       return;
     }
 
@@ -58,14 +66,18 @@ export default function CloseAccount({ activeTab }) {
       await deleteUser(user);
       router.push("/signup");
       handleLogout();
-      setSuccessMessage("Account closed and data deleted successfully");
-      setErrorMessage("");
+      setAlertMessage({
+        type: "success",
+        content: translatedTexts.accountClosedSuccess,
+        showAlert: true,
+      });
     } catch (error) {
       console.error("Error closing account:", error);
-      setErrorMessage(
-        error.message || "An error occurred while closing the account"
-      );
-      setSuccessMessage("");
+      setAlertMessage({
+        type: "danger",
+        content: error.message || translatedTexts.accountCloseError,
+        showAlert: true,
+      });
     }
   };
 
@@ -75,40 +87,40 @@ export default function CloseAccount({ activeTab }) {
     >
       <form onSubmit={handleSubmit} className="contact-form row y-gap-30">
         <div className="col-12">
-          <div className="text-16 fw-500 text-dark-1">Close account</div>
-          <p className="mt-10">
-            Warning: If you close your account, all your data will be deleted
-            permanently, and you will lose access to all associated services.
-          </p>
+          <div className="text-16 fw-500 text-dark-1">
+            {translatedTexts.closeAccountText}
+          </div>
+          <p className="mt-10">{translatedTexts.accountCloseWarning}</p>
         </div>
 
         <div className="col-md-7">
           <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
-            Enter Password
+            {translatedTexts.enterPasswordText}
           </label>
           <input
             required
             type="password"
-            placeholder="Enter Password"
+            placeholder={translatedTexts.enterPasswordText}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
-        {errorMessage && (
-          <div className="col-12">
-            <p style={{ color: "red" }}>{errorMessage}</p>
-          </div>
-        )}
-        {successMessage && (
-          <div className="col-12">
-            <p style={{ color: "green" }}>{successMessage}</p>
-          </div>
+        {/* Afișare mesaje de succes sau eroare */}
+        {alertMessage.showAlert && (
+          <AlertBox
+            type={alertMessage.type}
+            message={alertMessage.content}
+            showAlert={alertMessage.showAlert}
+            onClose={() =>
+              setAlertMessage({ ...alertMessage, showAlert: false })
+            }
+          />
         )}
 
         <div className="col-12">
           <button className="button -md -purple-1 text-white">
-            Close Account
+            {translatedTexts.closeAccountButtonText}
           </button>
         </div>
       </form>

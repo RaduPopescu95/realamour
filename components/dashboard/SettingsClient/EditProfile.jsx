@@ -28,6 +28,7 @@ const EditProfile = ({
   completeFieldsError,
   addressLabel,
   addressRequired,
+  translatedTexts,
 }) => {
   const { userData } = useAuth();
   const [formData, setFormData] = useState({

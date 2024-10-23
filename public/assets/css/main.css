@@ -15933,3 +15933,13 @@ table.table td {
 }
 
 /* checkbox */
+
+/* SPINNER */
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  font-size: 16px;
+}
+/* SPINNER */

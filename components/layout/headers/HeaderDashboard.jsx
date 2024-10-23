@@ -9,6 +9,7 @@ import Messages from "../component/Messages";
 import MyCourses from "../component/MyCourses";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
+import LanguageSwitch from "@/components/common/LanguageSwitch";
 
 export default function HeaderDashboard({
   realAmorText,
@@ -137,7 +138,7 @@ export default function HeaderDashboard({
                   <div className="dropdown bg-transparent px-0 py-0">
                     <div className="d-flex items-center text-14 text-dark-1">
                       <Link href="/" className="d-block text-dark-1">
-                        {realAmorText}
+                        RealAmor
                       </Link>
                     </div>
                     <div className="d-flex items-center text-14 text-dark-1 ml-20">
@@ -149,6 +150,9 @@ export default function HeaderDashboard({
                       <Link href="/" className="d-block text-dark-1">
                         {tarifsText}
                       </Link>
+                    </div>
+                    <div className="d-flex items-center text-14 text-dark-1 ml-20">
+                      <LanguageSwitch />
                     </div>
                   </div>
                 </div>

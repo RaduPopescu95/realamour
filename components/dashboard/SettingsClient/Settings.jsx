@@ -29,6 +29,7 @@ export default function Settings({
   closeAccountText, // traducere pentru "Close Account"
   addressRequired,
   addressLabel,
+  translatedTexts,
 }) {
   const [activeTab, setActiveTab] = useState(1);
 
@@ -44,7 +45,9 @@ export default function Settings({
       <div className="dashboard__content bg-light-4">
         <div className="row pb-50 mb-10">
           <div className="col-auto">
-            <h1 className="text-30 lh-12 fw-700">Profile Settings</h1>
+            <h1 className="text-30 lh-12 fw-700">
+              {translatedTexts.profileSettingsText}
+            </h1>
           </div>
         </div>
 
@@ -84,10 +87,20 @@ export default function Settings({
                     completeFieldsError={completeFieldsError}
                     addressRequired={addressRequired}
                     addressLabel={addressLabel}
+                    translatedTexts={translatedTexts}
                   />
-                  <Password activeTab={activeTab} />
-                  <CloseAccount activeTab={activeTab} />
-                  <SubscriptionsProfile activeTab={activeTab} />
+                  <Password
+                    activeTab={activeTab}
+                    translatedTexts={translatedTexts}
+                  />
+                  <CloseAccount
+                    activeTab={activeTab}
+                    translatedTexts={translatedTexts}
+                  />
+                  <SubscriptionsProfile
+                    activeTab={activeTab}
+                    translatedTexts={translatedTexts}
+                  />
                   {/* <Notification activeTab={activeTab} /> */}
                 </div>
               </div>

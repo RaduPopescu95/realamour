@@ -7,6 +7,7 @@ import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation"; // Pentru a redirecționa după autentificare
 import { useAuth } from "@/context/AuthContext";
 import { useTranslate } from "@/hooks/useTranslate";
+import AlertBox from "../uiElements/AlertBox";
 
 export default function LoginForm({
   emailText,
@@ -14,11 +15,17 @@ export default function LoginForm({
   autentificareText,
   aiContText,
   inscrieText,
+  translatedLinks,
 }) {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const router = useRouter(); // Instanța routerului pentru navigare
+  const [alertMessage, setAlertMessage] = useState({
+    type: "",
+    content: "",
+    showAlert: false,
+  });
 
   // Funcție pentru actualizarea câmpurilor din formular
   const handleChange = (e) => {
@@ -28,8 +35,7 @@ export default function LoginForm({
   // Funcție pentru autentificarea cu email și parolă
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-    setSuccess("");
+    setAlertMessage({ type: "", content: "", showAlert: false });
 
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -37,11 +43,18 @@ export default function LoginForm({
         formData.email,
         formData.password
       );
-      setSuccess("Autentificare reușită!");
-      router.push("/pricing"); // Navighează către o pagină (ex: /dashboard) după autentificare
+      setAlertMessage({
+        type: "success",
+        content: translatedLinks.autentificareReusita,
+        showAlert: true,
+      });
+      router.push("/pricing");
     } catch (err) {
-      console.log("error at login...", err);
-      setError("Autentificare eșuată: " + err.message);
+      setAlertMessage({
+        type: "danger",
+        content: translatedLinks.autentificareEsuata + err.message,
+        showAlert: true,
+      });
     }
   };
 
@@ -55,7 +68,7 @@ export default function LoginForm({
       setSuccess("Autentificare cu Google reușită!");
       router.push("/dashboard"); // Navighează către o pagină (ex: /dashboard) după autentificare
     } catch (err) {
-      setError("Autentificare cu Google eșuată: " + err.message);
+      // setError("Autentificare cu Google eșuată: " + err.message);
     }
   };
 
@@ -156,6 +169,13 @@ export default function LoginForm({
           </div>
         </div>
       </div>
+      {/* Afișare componentă AlertBox */}
+      <AlertBox
+        type={alertMessage.type}
+        message={alertMessage.content}
+        showAlert={alertMessage.showAlert}
+        onClose={() => setAlertMessage({ ...alertMessage, showAlert: false })}
+      />
     </div>
   );
 }
