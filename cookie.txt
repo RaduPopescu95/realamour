@@ -1,0 +1,102 @@
+Politica de Cookie-uri
+Sentimente se angajeaza sa iti protejeze confidentialitatea si sa iti asigure securitatea pe site. scopul nostru este de a-ti furniza produse si servicii de top din industrie, astfel incat, tu sa te poti concentra pe formarea unor conexiuni semnificative.
+
+Informatiile prezentate in continuare au scopul de a aduce la cunostinta utilizatorului mai multe detalii despre plasarea, folosirea si administrarea cookie-urilor utilizate de site-urile sentimente.ro, sentimente.com, dating.acasa.ro, aman2.ro, matrimoniale.com.ro, senti.ro, feelings.ro ("site-urile grupului Sentimente/platforma Sentimente").
+
+Te rugam sa citesti cu atentie informatiile care urmeaza:
+
+Sentimente foloseste cookie-uri pentru a furniza vizitatorilor o experienta mult mai buna de navigare si servicii adaptate nevoilor si interesului fiecaruia. Cookie-urile au rolul de a facilita accesul si livrarea serviciilor folosite de utilizator de internet, cum ar fi personalizarea anumitor setari (limba, tara, preturi afisate in moneda nationala). Cookie-urile, pe baza informatiilor pe care le aduna despre utilizatori, ii ajuta pe detinatorii de site-uri sa isi eficientizeze produsul/serviciul astfel incat acesta sa fie cat mai usor accesat de catre utilizatori.
+
+Important: Cookie-urile nu solicita informatii cu caracter personal si nu identifica personal utilizatorii de internet.
+
+Ce este un cookie?
+Cookie ("browser cookie" sau "HttP cookie") este un fisier de mici dimensiuni, format din litere si numere, care este stocat pe orice dispozitiv cu acces la internet (computer, telefon mobil, tableta etc.) si este instalat prin solicitarea emisa de catre un webserver unui browser (ex: Chrome, Firefox, safari, etc.).
+
+De retinut: Cookie-urile nu contin programe software, virusi sau spyware si nu poate accesa informatiile de pe hard drive-ul utilizatorului.
+
+Un cookie este format din nume si continut, durata de existenta a acestuia fiind determinata, putand fi accesat din nou de webserver in momentul in care un utilizator se intoarce pe site-ul asociat webserverului respectiv.
+
+Care sunt avantajele cookie-urilor?
+Cookie-urile ne ajuta sa furnizam, sa protejam si sa imbunatatim serviciile sentimente, cum ar fi personalizarea continutului si oferirea unei experiente mai sigure. In timp ce modulele cookie pe care le folosim se pot schimba din cand in cand pe masura ce imbunatatim si actualizam serviciile sentimente, le folosim în urmatoarele scopuri: autentificarea pe site; securitatea, integritatea si performanta site-ului, recomandari, functionarea corespunzatoare a serviciilor si dezvoltarea conform nevoilor utilizatorilor.
+
+Un cookie contine informatii care fac legatura intre utilizatori si un anume site. Daca un browser acceseaza acel webserver din nou, acesta poate citi informatia deja stocata si reactiona in consecinta.
+
+Exista mai multe feluri de cookie-uri?
+Cookie-uri care ne apartin si cookie-urile partilor terte.
+Cookie-urile care ne apartin sunt plasate pe dispozitivele tale direct de noi. Le folosim pentru a adapta site-ul la preferintele de limba ale browserului tau si pentru a intelege mai bine cum sa utilizezi site-ul nostru.
+Cookie-urile tertelor parti ("third party cookies") sunt plasate pe dispozitivul tau de catre partenerii si furnizorii de servicii. Le folosim pentru a masura numarul de utilizatori de pe site sau pentru a-ti permite sa apreciezi paginile site-ului de pe platformele sociale. Ele se numesc "cookie-uri ale tertelor parti" pentru ca nu sunt plasate de proprietarul site-ului respectiv, iar furnizorii terti se supun legilor in vigoare si politicilor de confidentialitate ale detinatorului site-ului.
+Care este durata de viata a unui cookie?
+Cookie-uri de sesiune - acestea sunt stocate temporat in istoricul browser-ului care le memoreaza pana cand utilizatorul iese de pe site-ul respectiv sau inchide fereastra browserului.
+
+Cookie-uri de sesiune - acestea sunt stocate temporat in istoricul browser-ului care le memoreaza pana cand utilizatorul iese de pe site-ul respectiv sau inchide fereastra browserului.
+Cookie-uri persistente - acestea sunt stocate, in functie de durata prestabilita, pe hard-drive-ul dispozitivului. Cookie-urile persistente le includ si pe cele plasate de un alt site decat cel pe care il viziteaza utilizatorul la momentul respectiv, iar acestea pot fi folosite in mod anonim pentru a memora interesele unui utilizator, astfel incat sa ii fie livrat continut cat mai relevant.
+Ce tip de informatii sunt stocate si accesate prin intermediul cookie-urilor?
+Cookie-urile pastreaza informatii intr-un fisier text de mici dimensiuni care permit unui site sa recunoasca un browser. Webserverul va recunoaste browserul pana cand cookie-ul expira sau este sters. Cookie-ul stocheaza informatii importante care imbunatatesc experienta de navigare pe Internet (ex: setarile limbii in care se doreste accesarea unui site; pastrarea unui utilizator logat in contul de e-mail; securitatea online banking; pastrarea produselor in cosul de cumparaturi).
+
+Cookie-uri de statistica si masurare a audientei
+De fiecare data cand un utilizator viziteaza acest site softul de analytics furnizat de o terta parte genereaza un cookie de analiza a utilizatorului. Acest cookie ne spune daca ati mai vizitat acest site pana acum. Browserul ne va spune daca aveti acest cookie, iar daca nu, vom genera unul. Acesta permite monitorizarea utilizatorilor unici care ne viziteaza si cat de des o fac. Atat timp cat nu sunteti inregistrat pe acest site, acest cookie nu poate fi folosit pentru a identifica persoanele fizice, ele sunt folosite doar in scop statistic. Toate informatiile sunt supuse prevederilor din Termeni si Conditii, Politica de confidentialitate precum si prevederilor legislatiei in vigoare cu privire la protejarea datelor cu caracter personal.
+
+Utilizam Google Analytics, un serviciu Google care foloseste cookie-uri si alte tehnologii de colectare a datelor pentru a colecta informatii despre utilizarea site-ului web si a serviciilor pentru a raporta tendintele site-ului web.
+
+Puteti renunta la Google analytics accesand google.com/settings/ads sau descarcand modulul de dezactivare Google Analytics din browser-ul tau la adresa tools.google.com/dlpage/gaoptout.
+
+Pentru mai multe informatii, acceseaza https://www.google.com/policies/technologies/cookies/.
+
+Cookie-uri pentru recomandari de continut targetat
+Putem folosi, de asemenea, cookie-uri apartinand unei terte parti, pentru o mai buna targetare a publicitatii, pentru a arata de exemplu reclame despre vacante, daca utilizatorul a vizitat recent un articol pe site despre vacante. aceste cookie-uri sunt anonime, ele stocheaza informatii despre contentul vizualizat, nu despre utilizatori. Unele dintre aceste parti folosesc propriile cookie-uri anonime pentru a analiza cat de multe persoane au fost expuse unui mesaj publicitar sau pentru a vedea cate persoane au fost expuse de mai multe ori la aceeasi reclama. Companiile care genereaza aceste cookie-uri au propriile politici de confidentialitate, iar acest site nu are acces pentru a citi sau scrie aceste cookie-uri.
+
+Felul cookie-ului	Numele cookie-ului	Descriere	Expirare
+Cookie-urile care ne apartin sunt plasate pe dispozitivele tale direct de noi. Le folosim pentru a adapta site-ul la preferintele de limba ale browserului tau si pentru a intelege mai bine cum sa utilizezi site-ul nostru.	PHPSESSID	Seteaza sesiunea de php a utilizatorului.	Setat pe sesiune
+Cookie-urile care ne apartin sunt plasate pe dispozitivele tale direct de noi. Le folosim pentru a adapta site-ul la preferintele de limba ale browserului tau si pentru a intelege mai bine cum sa utilizezi site-ul nostru.	DYNSRV	Reprezinta webserverul pe care este utilizatorul. Aleatoriu prima data pe sesiune se atribuie un server web utilizatorlui de catre serverul haproxy.	1 an
+Cookie-urile care ne apartin sunt plasate pe dispozitivele tale direct de noi. Le folosim pentru a adapta site-ul la preferintele de limba ale browserului tau si pentru a intelege mai bine cum sa utilizezi site-ul nostru.	__uid	Este folosit in aplicatii si haproxy. Se sterge la logout.	Setat pe sesiune
+Cookie-urile care ne apartin sunt plasate pe dispozitivele tale direct de noi. Le folosim pentru a adapta site-ul la preferintele de limba ale browserului tau si pentru a intelege mai bine cum sa utilizezi site-ul nostru.	__uname	Este folosit in aplicatii. Se sterge la logout.	Setat pe sesiune
+Cookie-urile care ne apartin sunt plasate pe dispozitivele tale direct de noi. Le folosim pentru a adapta site-ul la preferintele de limba ale browserului tau si pentru a intelege mai bine cum sa utilizezi site-ul nostru.	hRef	Se salveaza referinta utilizatorului	2 ani
+Cookie-urile care ne apartin sunt plasate pe dispozitivele tale direct de noi. Le folosim pentru a adapta site-ul la preferintele de limba ale browserului tau si pentru a intelege mai bine cum sa utilizezi site-ul nostru.	notifs	Contine notificarile afisate in contul utilizatorului.	Setat pe sesiune
+Cookie-urile care ne apartin sunt plasate pe dispozitivele tale direct de noi. Le folosim pentru a adapta site-ul la preferintele de limba ale browserului tau si pentru a intelege mai bine cum sa utilizezi site-ul nostru.	__locale_change_shown	Este folosit pentru modalul de schimbare limba de afisare a site-ului.	30 zile
+Cookie-urile care ne apartin sunt plasate pe dispozitivele tale direct de noi. Le folosim pentru a adapta site-ul la preferintele de limba ale browserului tau si pentru a intelege mai bine cum sa utilizezi site-ul nostru.	cookiesPrefs	Contine preferintele utilizatorului pentru tipurile de cookies folosite	1 an
+Cookie-urile tertelor parti	_ga	Apartine Google Analytics	2 ani
+Cookie-urile tertelor parti	trafic_h	Apartine Trafic.ro.	20 ani
+De ce sunt cookie-urile importante pentru Internet?
+Cookie-urile reprezinta punctul central al functionarii eficiente a Internetului, ajutand la generarea unei experiente de navigare prietenoase si adaptata preferintelor si intereselor fiecarui utilizator. Refuzarea sau dezactivarea cookie-urilor poate face unele site-uri imposibil de folosit.
+
+Exemple de intrebuintari importante ale cookie-urilor (care nu necesita autentificarea unui utilizator prin intermediul unui cont):
+
+Continut si servicii adaptate preferintelor utilizatorului - categorii de stiri, vreme, sport, harti, servicii publice si guvernamentale, site-uri de entertainment si servicii de turism.
+Offers adapted to the user's interests - retaining passwords, language preferences (displaying Romanian search results).
+Retinerea filtrelor de protectie a copiilor privind continutul pe Internet (optiuni family mode, functii de safe search).
+Limitarea frecventei de difuzare a reclamelor - limitarea numarului de afisari a unei reclame pentru un anumit utilizator pe un site.
+Furnizarea de publicitate mai relevanta pentru utilizator.
+Masurarea, optimizare si caracteristicile de analytics - cum ar fi confirmarea unui anumit nivel de trafic pe un site, ce tip de continut este vizualizat si modul cum un utilizator ajunge pe un site (prin motoare de cautare, direct, din alte site-uri etc). site-urile deruleaza aceste analize a utilizarii lor pentru a imbunatati site-urile in beneficiul utilizatorilor.
+Cum pot opri cookie-urile?
+Dezactivarea si refuzul de a primi cookie-uri pot face site-ul impracticabil sau dificil de vizitat si folosit. Refuzarea sau dezactivarea cookie-urilor nu inseamna ca nu veti mai primi publicitate online - ci doar ca aceasta nu va mai putea tine cont de preferintele si interesele dvs, evidentiate prin comportamentul de navigare.
+
+Este posibila setarea din browser pentru ca aceste cookie-uri sa nu mai fie acceptate sau poti seta browserul sa accepte cookie-uri de la un site anume. Toate browserele moderne ofera posibilitatea de a schimba setarile cookie-urilor. Aceste setari se gasesc de regula in “optiuni” sau in meniul de “preferinte” al browserului.
+
+Pentru setarile cookie-urilor generate de terti si pentru mai multe informatii privind confidentialitatea legata de publicitatea online, IAB Romania pune la dispozitie urmatorul site: youronlinechoices.com/ro. Pentru setarile cookie-urilor generate de terti, poti consulta si Ghidul Cookie Microsoft.
+
+Pentru a întelege aceste setari, urmatoarele linkuri pot fi folositoare, altfel poti folosi optiunea “ajutor” a browserului pentru mai multe detalii.
+
+Cookie settings in Chrome
+Cookie settings in Firefox
+Cookie settings in Safari
+Cookie settings in Internet Explorer
+Securitate si probleme legate de confidentialitate
+Cookie-urile NU sunt virusi! Ele folosesc formate tip plain text. Nu sunt alcatuite din bucati de cod asa ca nu pot fi executate nici nu pot auto-rula. In consecinta, nu se pot duplica sau replica pe alte retele pentru a se rula sau replica din nou. Deoarece nu pot indeplini aceste functii, nu pot fi considerate virusi.
+
+Cookie-urile pot fi totusi folosite pentru scopuri negative. Deoarece stocheaza informatii despre preferintele si istoricul de navigare al utilizatorilor, atat pe un anume site cat si pe mai multe alte siteuri, cookieurile pot fi folosite ca o forma de spyware. Multe produse anti-spyware sunt constiente de acest fapt si in mod constant marcheaza cookie-urile pentru a fi sterse in cadrul procedurilor de stergere/scanare anti-virus/anti-spyware.
+
+In general browserele au integrate setari de confidentialitate care furnizeaza diferite nivele de acceptare a cookie-urilor, perioada de valabilitate si stergere automata dupa ce utilizatorul a vizitat un anumit site.
+
+Alte aspecte de securitate legate de cookie-uri
+Deoarece protectia identitatii este foarte valoroasa si reprezinta dreptul fiecarui utilizator de internet, este indicat sa se stie ce eventuale probleme pot crea cookie-urile. Pentru ca prin intermediul lor se transmit in mod constant in ambele sensuri informatii intre browser si site, daca un atacator sau persoana neautorizata intervine in parcursul de transmitere a datelor, informatiile continute de cookie pot fi interceptate. Desi foarte rar, acest lucru se poate intampla daca browserul se conecteaza la server folosind o retea necriptata (o retea WiFi nesecurizata).
+
+Alte atacuri bazate pe cookie implica setari gresite ale cookie-urilor pe servere. Daca un site nu solicita browserului sa foloseasca doar canale criptate, atacatorii pot folosi aceasta vulnerabilitate pentru a pacali browserele in a trimite informatii prin intermediul canalelor nesecurizate. Atacatorii utilizeaza apoi informatiile in scopuri de a accesa neautorizat anumite site-uri. Este foarte important sa fiti atenti in alegerea metodei celei mai potrivite de protectie a informatiilor personale.
+
+Sfaturi pentru o navigare sigura si responsabila, bazata pe cookies
+Datorita flexibilitatii lor si a faptului ca majoritatea dintre cele mai mari si mai vizitate site-uri folosesc cookie-uri, acestea sunt aproape inevitabile. Dezactivarea cookie-urilor poate duce la imposibilitatea ca utilizatorul sa acceseze site-ul.
+
+Iata cateva sfaturi care va pot asigura ca navigati fara griji insa cu ajutorul cookie-urilor:
+
+Particularizati-va setarile browserului in ceea ce priveste cookie-urile pentru a reflecta un nivel confortabil pentru voi al securitatii utilizarii cookie-urilor. Daca nu va deranjeaza cookie-urile si sunteti singura persoana care utilizeaza computerul, puteti seta termene lungi de expirare pentru stocarea istoricului de navigare si al datelor personale de acces. Daca impartiti accesul la calculator, puteti lua in considerare setarea browserului pentru a sterge datele individuale de navigare de fiecare data cand inchideti browserul. aceasta este o varianta de a accesa site-urile care plaseaza cookie-uri si de a sterge orice informatie de vizitare la inchiderea sesiunii navigare.
+nstalati-va si updatati-va constant aplicatii antispyware. Multe dintre aplicatiile de detectare si prevenire a spyware-ului includ detectarea atacurilor pe site-uri. Astfel, impiedica browserul de la a accesa site-uri care ar putea sa exploateze vulnerabilitatile browserului sau sa descarce software periculos. asigurati-va ca aveti browserul mereu updatat. Multe dintre atacurile bazate pe cookie-uri se realizeaza exploatand punctele slabe ale versiunilor vechi ale browserelor.
+Cookie-urile sunt pretutindeni si nu pot fi evitate daca doriti sa va bucurati de acces pe cele mai bune si cele mai mari site-uri de pe Internet - locale sau internationale. Cu o intelegere clara a modului lor de operare si a beneficiilor pe care le aduc, puteti lua masurile necesare de securitate astel incat sa puteti naviga cu incredere pe internet.
