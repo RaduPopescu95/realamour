@@ -19,7 +19,7 @@ const buttons = [
   "Close Account",
 ];
 
-export default function Settings() {
+export default function Settings({ translatedTexts }) {
   const [currentCategory, setCurrentCategory] = useState("All Categories");
   const [pageItems, setPageItems] = useState([]);
   const [activeTab, setActiveTab] = useState(1);
@@ -50,15 +50,6 @@ export default function Settings() {
   return (
     <div className="dashboard__main">
       <div className="dashboard__content bg-light-4">
-        <div className="row pb-50 mb-10">
-          <div className="col-auto">
-            <h1 className="text-30 lh-12 fw-700">Alexandrescu Andrei</h1>
-            {/* <div className="mt-10">
-              Lorem ipsum dolor sit amet, consectetur.
-            </div> */}
-          </div>
-        </div>
-
         <div className="row y-gap-30">
           <div className="col-12">
             <div className="rounded-16 bg-white -dark-bg-dark-1 shadow-4 h-100">
@@ -79,7 +70,10 @@ export default function Settings() {
                 </div> */}
 
                 <div className="tabs__content py-30 px-30 js-tabs-content">
-                  <EditProfile activeTab={activeTab} />
+                  <EditProfile
+                    activeTab={activeTab}
+                    translatedTexts={translatedTexts}
+                  />
                 </div>
                 {/* <div className="tabs__content py-30 px-30 js-tabs-content mt-5">
                   <div className="tabs__pane -tab-item-1 is-active">

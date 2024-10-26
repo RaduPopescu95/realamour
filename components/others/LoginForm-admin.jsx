@@ -11,7 +11,7 @@ import AlertBox from "../uiElements/AlertBox";
 import { query } from "firebase/database";
 import { collection, getDocs, where } from "firebase/firestore";
 
-export default function LoginForm({
+export default function LoginFormAdmin({
   emailText,
   parolaText,
   autentificareText,
@@ -28,7 +28,7 @@ export default function LoginForm({
     content: "",
     showAlert: false,
   });
-  const { userData, setUserData } = useAuth();
+  const { userData, setUserData, setCurrentUser } = useAuth();
 
   // Funcție pentru actualizarea câmpurilor din formular
   const handleChange = (e) => {
@@ -48,23 +48,13 @@ export default function LoginForm({
       );
       // Preluăm datele utilizatorului din Firestore
       console.log("userCredential...", userCredential.user.uid);
-      const q = query(
-        collection(db, "Users"),
-        where("uid", "==", userCredential.user.uid)
-      );
-      let userD;
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        userD = doc.data();
-      });
-
-      setUserData(userD);
+      setCurrentUser(userCredential);
       setAlertMessage({
         type: "success",
         content: translatedLinks.autentificareReusita,
         showAlert: true,
       });
-      router.push("/pricing");
+      router.push("/admin");
     } catch (err) {
       setAlertMessage({
         type: "danger",
@@ -95,13 +85,6 @@ export default function LoginForm({
           <div className="col-xl-6 col-lg-8">
             <div className="px-50 py-50 md:px-25 md:py-25 bg-white shadow-1 rounded-16">
               <h3 className="text-30 lh-13">{autentificareText}</h3>
-              <p className="mt-10">
-                {aiContText}
-                <Link href="/signup" className="text-purple-1">
-                  {" "}
-                  {inscrieText}
-                </Link>
-              </p>
 
               {/* Formular de autentificare */}
               <form
@@ -164,13 +147,7 @@ export default function LoginForm({
                   {success}
                 </div>
               )}
-              <p className="mt-10">
-                {translatedLinks.aiUitatParolText}
-                <Link href="/reset-password" className="text-purple-1">
-                  {" "}
-                  {translatedLinks.resetPassText}
-                </Link>
-              </p>
+
               {/* Opțiuni de autentificare alternativă */}
               {/* <div className="lh-12 text-dark-1 fw-500 text-center mt-20">
                 Sau conectează-te folosind

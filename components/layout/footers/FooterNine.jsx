@@ -8,17 +8,17 @@ export default function FooterNine() {
         <div className="py-30 border-top-light">
           <div className="row items-center justify-between">
             <div className="col-auto">
-              <div className="text-13 lh-1">
+              {/* <div className="text-13 lh-1">
                 © {new Date().getFullYear()} Real Amour. Toate drepturile
                 rezervate.
-              </div>
+              </div> */}
             </div>
 
             <div className="col-auto">
               <div className="d-flex items-center">
-                <div className="d-flex items-center flex-wrap x-gap-20">
+                {/* <div className="d-flex items-center flex-wrap x-gap-20">
                   <Links />
-                </div>
+                </div> */}
 
                 {/* <button className="button -md -rounded bg-light-4 text-light-1 ml-30">
                   English

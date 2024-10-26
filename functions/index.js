@@ -16,15 +16,15 @@ const transporter = nodemailer.createTransport({
 
 // Funcție pentru a trimite un email
 exports.sendWelcomeEmail = functions.firestore
-    .document("Users/{userId}")
-    .onCreate((snap, context) => {
-      const newUser = snap.data();
+  .document("Users/{userId}")
+  .onCreate((snap, context) => {
+    const newUser = snap.data();
 
-      const email = newUser.email;
-      const username = newUser.username;
+    const email = newUser.email;
+    const username = newUser.username;
 
-      // Mesajul emailului de bun venit în franceză
-      const emailMessage =
+    // Mesajul emailului de bun venit în franceză
+    const emailMessage =
       `Bonjour ${username},\n\n` +
       `Nous vous souhaitons la bienvenue sur Real Amor !\n\n` +
       `Nous sommes ravis de vous avoir parmi nous.\n` +
@@ -34,23 +34,23 @@ exports.sendWelcomeEmail = functions.firestore
       `Cordialement,\n` +
       `L'équipe Real Amor`;
 
+    // Configurarea opțiunilor de email
+    const mailOptions = {
+      from: "webdynamicx@gmail.com", // Emailul tău
+      to: email, // Emailul utilizatorului
+      subject: "Bienvenue sur Real Amor!",
+      text: emailMessage,
+    };
 
-      // Configurarea opțiunilor de email
-      const mailOptions = {
-        from: "webdynamicx@gmail.com", // Emailul tău
-        to: email, // Emailul utilizatorului
-        subject: "Bienvenue sur Real Amor!",
-        text: emailMessage,
-      };
+    console.log("Trimiterea emailului de bun venit către:", email);
 
-      console.log("Trimiterea emailului de bun venit către:", email);
-
-      // Trimiterea emailului
-      return transporter.sendMail(mailOptions)
-          .then(() => {
-            console.log("Email de bun venit trimis cu succes:", email);
-          })
-          .catch((error) => {
-            console.error("Eroare la trimiterea emailului:", error);
-          });
-    });
+    // Trimiterea emailului
+    return transporter
+      .sendMail(mailOptions)
+      .then(() => {
+        console.log("Email de bun venit trimis cu succes:", email);
+      })
+      .catch((error) => {
+        console.error("Eroare la trimiterea emailului:", error);
+      });
+  });

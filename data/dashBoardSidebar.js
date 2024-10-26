@@ -111,7 +111,7 @@ export const sidebarItems = [
   // },
   {
     id: 8,
-    href: "/",
+    href: "/login-admin",
     iconClass: "text-20 icon-power",
     text: "Deconectare",
   },

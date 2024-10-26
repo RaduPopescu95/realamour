@@ -48,7 +48,7 @@ export default async function Page({ params }) {
     methodeText: await fetchTranslation("Methode", targetLanguage),
     paymentTitle: await fetchTranslation("Plată Finalizată", targetLanguage),
     paymentText: await fetchTranslation(
-      "Vă mulțumim pentru plata efectuată! Vă rugăm să continuați cu rezervarea dumneavoastră.",
+      "Vă mulțumim pentru plata efectuată! Vă rugăm să continuați catre contul dumneavoastră.",
       targetLanguage
     ),
     paymentConfirmation: await fetchTranslation(
@@ -64,11 +64,11 @@ export default async function Page({ params }) {
       targetLanguage
     ),
     continueBookingText: await fetchTranslation(
-      "Continuă cu Rezervarea",
+      "Continuă catre cont",
       targetLanguage
     ),
     detaliiRezervareText: await fetchTranslation(
-      "Detalii rezervare:",
+      "Detalii abonament:",
       targetLanguage
     ),
     nameText: await fetchTranslation("Nume", targetLanguage),

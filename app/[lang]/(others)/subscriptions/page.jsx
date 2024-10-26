@@ -54,28 +54,53 @@ export default async function Page({ params }) {
     realAmor: await fetchTranslation("RealAmor", targetLanguage),
     pricing: await fetchTranslation("Subscriptions", targetLanguage),
     lang: targetLanguage,
+    bookingTextPrim: await fetchTranslation("Tarifs RealAmor", targetLanguage),
     bookingText: await fetchTranslation(
-      "Pricing for booking system",
+      "Inscription et accès au compte personnel : gratuit",
+      targetLanguage
+    ),
+    bookingText2: await fetchTranslation(
+      "Ouverture de dossier et premier Rendez-vous en présentiel : 159,00€ TVAC",
       targetLanguage
     ),
     paymentOneTimeText: await fetchTranslation(
       "One-time payment for reservations",
       targetLanguage
     ),
+    threeMonthsText: await fetchTranslation(
+      "Abonnement 3 mois",
+      targetLanguage
+    ),
     oneTimeFeature1: await fetchTranslation(
-      "Access to all reservation features",
+      "Création d'un compte personnalisé",
       targetLanguage
     ),
     oneTimeFeature2: await fetchTranslation(
-      "No subscription required",
+      "Questions et Test de Personnalité",
       targetLanguage
     ),
     oneTimeFeature3: await fetchTranslation(
-      "Active for 30 days",
+      "Rendez-vous en présentiel",
       targetLanguage
     ),
     oneTimeFeature4: await fetchTranslation(
-      "Unlimited access to customer support",
+      "Accès à la communauté RealAmor",
+      targetLanguage
+    ),
+    oneTimeFeature5: await fetchTranslation(
+      "Réunion pluridisciplinaire RealAmor pour discuter de votre profil",
+      targetLanguage
+    ),
+    oneTimeFeature6: await fetchTranslation(
+      "Contact avec les profils compatibles via votre compte",
+      targetLanguage
+    ),
+    oneTimeFeature7: await fetchTranslation(
+      "Présentation de chaque profil compatible par un de nos conseillers (téléphone)",
+      targetLanguage
+    ),
+    oneTimeFeature8: await fetchTranslation(
+      "Conseils des l'équipe de RealAmor pour améliorer vos chances de réussite",
       targetLanguage
     ),
     getStarted: await fetchTranslation("Get Started Now", targetLanguage),
@@ -108,6 +133,7 @@ export default async function Page({ params }) {
           oneTimeFeature4={translatedLinks.oneTimeFeature4}
           getStarted={translatedLinks.getStarted}
           acceptTermsText={translatedLinks.acceptTermsText}
+          translatedLinks={translatedLinks}
         />
 
         {/* <Brands/> */}

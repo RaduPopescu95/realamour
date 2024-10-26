@@ -21,8 +21,8 @@ const Calendar = ({ targetLanguage }) => {
       <InlineWidget
         url={
           targetLanguage === "fr"
-            ? "https://calendly.com/webdynamicx/30-minute-meeting-clone"
-            : "https://calendly.com/webdynamicx/30-minute-meeting-clone"
+            ? "https://calendly.com/realamor-adm/30min"
+            : "https://calendly.com/realamor-adm/reunion-de-30-minutes-clone"
         }
         styles={{
           height: "100%",

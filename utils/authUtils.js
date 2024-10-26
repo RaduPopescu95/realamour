@@ -77,7 +77,7 @@ export const handleChangePassword = async (currentPassword, newPassword) => {
 };
 
 export const handleLogout = async () => {
-  console.log("Start....");
+  console.log("Start....log out");
   try {
     await signOut(authentication);
   } catch (error) {
@@ -142,13 +142,15 @@ export const handleFirebaseAuthError = (error) => {
       message = "Parola gresita";
       break;
     case "auth/too-many-requests":
-      message = "Prea multe cereri de autentificare esuate. Va rugam sa resetati parola.";
+      message =
+        "Prea multe cereri de autentificare esuate. Va rugam sa resetati parola.";
       break;
     case "auth/operation-not-allowed":
       message = "Operatiunea nu este permisa, contactati echipa jobsMD!";
       break;
     case "auth/network-request-failed":
-      message = "Cererea de rețea a eșuat. Verificați conexiunea la rețea și încercați din nou.";
+      message =
+        "Cererea de rețea a eșuat. Verificați conexiunea la rețea și încercați din nou.";
       break;
     case "auth/invalid-credential":
       message = "Credentiale invalide";

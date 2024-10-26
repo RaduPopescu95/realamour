@@ -4,14 +4,39 @@ import { resentCourses } from "@/data/courses";
 import { states } from "@/data/dashboard";
 import { teamMembers } from "@/data/instractors";
 import { notifications } from "@/data/notifications";
-import React from "react";
+import React, { useEffect } from "react";
 import FooterNine from "../layout/footers/FooterNine";
 import Charts from "./Charts";
 import PieChartComponent from "./PieCharts";
 import Image from "next/image";
 import Link from "next/link";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 export default function DashboardOne() {
+  const { userData, currentUser, loading } = useAuth();
+  const router = useRouter();
+  useEffect(() => {
+    console.log("current user...", currentUser);
+    if (!loading && currentUser?.user?.uid !== "oQzVdA6ORHc3XNZFeLhB6Asnb7a2") {
+      router.push("/login-admin");
+    }
+  }, [loading, currentUser]);
+  if (loading && currentUser?.user?.uid !== "oQzVdA6ORHc3XNZFeLhB6Asnb7a2") {
+    return null;
+  }
+  if (!currentUser.user) {
+    return (
+      <div className="row pb-50 mb-10">
+        <div className="col-auto">
+          <h1 className="text-30 lh-12 fw-700">Loading...</h1>
+          {/* <div className="mt-10">
+        Lorem ipsum dolor sit amet, consectetur.
+      </div> */}
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="dashboard__main">
       <div className="dashboard__content bg-light-4">

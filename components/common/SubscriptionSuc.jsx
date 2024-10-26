@@ -151,7 +151,7 @@ export default function SubscriptionSuc({
     <section className="layout-pt-lg pt-10 layout-pb-md">
       <div className="container">
         <div className="row justify-center text-center">
-          <div className="col-lg-6 col-md-8 col-sm-10">
+          <div className="col-lg-6 col-md-8 col-sm-10 mt-20">
             <div className="sectionTitle">
               <h2 className="sectionTitle__title">{paymentTitle}</h2>
               <p className="sectionTitle__text">{paymentText}</p>
@@ -202,7 +202,7 @@ export default function SubscriptionSuc({
                     <div className="col-auto">
                       <Link href="#">
                         <button
-                          onClick={() => console.log("userData...", userData)}
+                          onClick={() => router.push("/profil-client")}
                           className="button px-40 py-20 fw-500 -purple-1 text-white"
                         >
                           {continueBookingText}

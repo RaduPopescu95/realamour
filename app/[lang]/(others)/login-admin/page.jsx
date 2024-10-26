@@ -5,6 +5,7 @@ import Header from "@/components/layout/headers/Header";
 import HeaderAuth from "@/components/layout/headers/HeaderAuth";
 import AuthImageMove from "@/components/others/AuthImageMove";
 import LoginForm from "@/components/others/LoginForm";
+import LoginFormAdmin from "@/components/others/LoginForm-admin";
 import Terms from "@/components/terms/Terms";
 import React from "react";
 
@@ -52,7 +53,10 @@ export default async function Page({ params }) {
   const translatedLinks = {
     emailText: await fetchTranslation("Email", targetLanguage),
     parolaText: await fetchTranslation("Password", targetLanguage),
-    autentificareText: await fetchTranslation("Autentificare", targetLanguage),
+    autentificareText: await fetchTranslation(
+      "Autentificare ADMIN",
+      targetLanguage
+    ),
     aiContText: await fetchTranslation("Nu ai un cont încă?", targetLanguage),
     inscrieText: await fetchTranslation("Înscrie-te gratuit", targetLanguage),
     tarifsText: await fetchTranslation("Tarifs", targetLanguage),
@@ -66,11 +70,6 @@ export default async function Page({ params }) {
       "Autentificare eșuată: ",
       targetLanguage
     ),
-    aiUitatParolText: await fetchTranslation(
-      "Ai uitat parola? ",
-      targetLanguage
-    ),
-    resetPassText: await fetchTranslation("Reseteaza parola ", targetLanguage),
   };
 
   return (
@@ -83,8 +82,7 @@ export default async function Page({ params }) {
       />
       <div className="content-wrapper js-content-wrapper overflow-hidden">
         <section className="form-page js-mouse-move-container">
-          <AuthImageMove />
-          <LoginForm
+          <LoginFormAdmin
             emailText={translatedLinks.emailText}
             parolaText={translatedLinks.parolaText}
             autentificareText={translatedLinks.autentificareText}

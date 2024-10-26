@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { deleteDoc, doc } from "firebase/firestore";
 import { ref, deleteObject } from "firebase/storage";
 import {
@@ -14,8 +14,10 @@ import { handleLogout } from "@/utils/authUtils";
 import AlertBox from "@/components/uiElements/AlertBox";
 
 export default function CloseAccount({ activeTab, translatedTexts }) {
-  const { userData } = useAuth(); // Obținem datele utilizatorului curent
+  const { userData, setUserData } = useAuth(); // Obținem datele utilizatorului curent
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [subscription, setSubscription] = useState(null); // Stare pentru a stoca detaliile abonamentului
   const [alertMessage, setAlertMessage] = useState({
     type: "",
     content: "",
@@ -23,9 +25,58 @@ export default function CloseAccount({ activeTab, translatedTexts }) {
   });
   const router = useRouter();
 
+  useEffect(() => {
+    if (userData && userData?.subscriptionId) {
+      fetchSubscriptionDetails(userData?.subscriptionId);
+    } else {
+      setLoading(false); // Dacă nu există abonament, nu se face nimic
+    }
+  }, [userData]);
+
+  // Funcție pentru obținerea detaliilor abonamentului din Stripe
+  const fetchSubscriptionDetails = async (subscriptionId) => {
+    try {
+      const response = await fetch(
+        `/api/get-subscription?subscription_id=${subscriptionId}`
+      );
+      const data = await response.json();
+      console.log("data....", data);
+      setSubscription(data);
+      setLoading(false); // Oprim starea de încărcare odată ce avem datele
+    } catch (error) {
+      console.error(translatedTexts.subscriptionDetailsError, error);
+      setLoading(false);
+    }
+  };
+
+  // Funcție pentru anularea abonamentului
+  const cancelSubscription = async () => {
+    try {
+      const response = await fetch("/api/cancel-subscription", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ subscriptionId: subscription.id }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        console.log(
+          translatedTexts.subscriptionCanceledSuccess,
+          data.subscription
+        );
+      } else {
+        console.error(translatedTexts.subscriptionCanceledError, data.error);
+      }
+    } catch (error) {
+      console.error(translatedTexts.subscriptionCanceledError, error);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     const user = authentication.currentUser;
 
     if (!user) {
@@ -34,6 +85,7 @@ export default function CloseAccount({ activeTab, translatedTexts }) {
         content: translatedTexts.noUserSignedInError,
         showAlert: true,
       });
+      setLoading(false);
       return;
     }
 
@@ -42,6 +94,11 @@ export default function CloseAccount({ activeTab, translatedTexts }) {
     try {
       // Re-autentificarea utilizatorului
       await reauthenticateWithCredential(user, credentials);
+
+      // Anulează abonamentul înainte de a continua ștergerea contului
+      if (subscription && subscription.id) {
+        await cancelSubscription();
+      }
 
       // Ștergerea imaginilor asociate utilizatorului din Firebase Storage
       const imageDeletePromises = userData.images.map((image) => {
@@ -64,14 +121,18 @@ export default function CloseAccount({ activeTab, translatedTexts }) {
 
       // Ștergerea contului utilizatorului din Firebase Authentication
       await deleteUser(user);
-      router.push("/signup");
+
+      // Redirecționează utilizatorul după ștergere și oprește sesiunea
       handleLogout();
+      setLoading(false);
       setAlertMessage({
         type: "success",
         content: translatedTexts.accountClosedSuccess,
         showAlert: true,
       });
+      router.push("/signup");
     } catch (error) {
+      setLoading(false);
       console.error("Error closing account:", error);
       setAlertMessage({
         type: "danger",
@@ -119,9 +180,16 @@ export default function CloseAccount({ activeTab, translatedTexts }) {
         )}
 
         <div className="col-12">
-          <button className="button -md -purple-1 text-white">
-            {translatedTexts.closeAccountButtonText}
-          </button>
+          {loading ? (
+            <button className="button -md -purple-1 text-white">
+              {translatedTexts.closeAccountButtonText}
+            </button>
+          ) : (
+            <div className="spinner-container">
+              <div className="spinner"></div>
+              <p>{translatedTexts.loadingText}</p>
+            </div>
+          )}
         </div>
       </form>
     </div>

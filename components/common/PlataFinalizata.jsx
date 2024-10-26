@@ -3,8 +3,10 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation"; // Importăm pentru a prelua parametrii din URL
+import { useSearchParams } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "@/firebase";
 
 export default function PaymentSuccessPage({
   paymentTitle,
@@ -21,10 +23,14 @@ export default function PaymentSuccessPage({
 }) {
   const [loading, setLoading] = useState(true);
   const [reservationData, setReservationData] = useState(null);
-  const searchParams = useSearchParams(); // Utilizăm useSearchParams pentru a obține parametrii URL
-  const session_id = searchParams?.get("session_id"); // Obținem session_id din URL
-  const { currentUser, loading: loadingContext, userData } = useAuth();
-  const router = useRouter();
+  const searchParams = useSearchParams();
+  const session_id = searchParams?.get("session_id");
+  const {
+    currentUser,
+    loading: loadingContext,
+    userData,
+    setUserData,
+  } = useAuth();
 
   const fetchSessionData = async () => {
     setLoading(true);
@@ -38,10 +44,11 @@ export default function PaymentSuccessPage({
       const response = await fetch(`/api/get-session?session_id=${session_id}`);
       const sessionData = await response.json();
 
-      if (sessionData && sessionData.id) {
+      if (sessionData && sessionData.payment_status === "paid") {
         setReservationData(sessionData);
+        await updateReservationStatus(sessionData);
       } else {
-        console.error("Sesiunea nu a fost găsită în Stripe.");
+        console.error("Plata nu a fost finalizată.");
       }
     } catch (error) {
       console.error("Eroare la preluarea datelor sesiunii:", error);
@@ -50,16 +57,36 @@ export default function PaymentSuccessPage({
     }
   };
 
-  useEffect(() => {
-    fetchSessionData(); // Apelează funcția pentru a prelua și salva datele sesiunii
-  }, [session_id]);
+  const updateReservationStatus = async (sessionData) => {
+    try {
+      const userRef = doc(db, "Users", sessionData.metadata.uid);
+      let rez = {
+        hasReserved: false,
+        status: "paid",
+        sessionId: sessionData.id,
+        createdAt: new Date().toISOString(),
+        cost: sessionData.amount_total / 100, // în RON
+      };
+      await setDoc(
+        userRef,
+        {
+          reservation: rez,
+        },
+        { merge: true }
+      ).then(() => {
+        setUserData((prevUserData) => ({
+          ...prevUserData,
+          reservation: rez,
+        }));
+      });
+    } catch (error) {
+      console.error("Eroare la actualizarea rezervării în Firestore:", error);
+    }
+  };
 
   useEffect(() => {
-    if (!loadingContext && !userData?.username) {
-      console.log("no userData...", userData?.username);
-      // router.push("/signup");
-    }
-  }, [loadingContext]);
+    fetchSessionData();
+  }, [session_id]);
 
   return (
     <section className="layout-pt-lg pt-10 layout-pb-md">
@@ -71,7 +98,6 @@ export default function PaymentSuccessPage({
               <p className="sectionTitle__text">{paymentText}</p>
             </div>
 
-            {/* Cardul de confirmare a plății */}
             <div className="priceCard -type-1 rounded-16 bg-white shadow-2 mt-40">
               <div className="priceCard__content py-45 px-60 xl:px-40 text-center">
                 <div className="priceCard__type text-18 lh-11 fw-500 text-dark-1">
@@ -81,39 +107,35 @@ export default function PaymentSuccessPage({
                   width={150}
                   height={150}
                   className="mt-30"
-                  src="/assets/img/confirmare-plata.png" // Imagine simbolică pentru confirmare de succes
+                  src="/assets/img/confirmare-plata.png"
                   alt="success-icon"
                 />
                 <div className="priceCard__text text-center pr-15 mt-40">
                   {loading ? (
                     loadingText
-                  ) : (
+                  ) : reservationData ? (
                     <>
                       {successText}
-                      {reservationData && (
-                        <>
-                          <p>
-                            {detaliiRezervareText}
-                            <br />
-                            <strong>{nameText}:</strong> {userData?.username}
-                            <br />
-                            <strong>{emailText}:</strong> {userData?.email}
-                            <br />
-                            <strong>{phoneText}:</strong> {userData?.phone}
-                            <br />
-                            <strong>{amountPaidText}:</strong>{" "}
-                            {reservationData.amount_total / 100} RON
-                          </p>
-                        </>
-                      )}
+                      <p>
+                        {detaliiRezervareText}
+                        <br />
+                        <strong>{nameText}:</strong> {userData?.username}
+                        <br />
+                        <strong>{emailText}:</strong> {userData?.email}
+                        <br />
+                        <strong>{phoneText}:</strong> {userData?.phone}
+                        <br />
+                        <strong>{amountPaidText}:</strong>{" "}
+                        {reservationData.amount_total / 100} RON
+                      </p>
                     </>
+                  ) : (
+                    <p>Plata nu a fost finalizată.</p>
                   )}
                 </div>
 
-                {/* Butoane pentru navigare */}
                 <div className="col-auto mt-40">
                   <div className="row x-gap-10 y-gap-10 justify-center">
-                    {/* Buton pentru a continua cu rezervarea */}
                     <div className="col-auto">
                       <Link href="/booking">
                         <button className="button px-40 py-20 fw-500 -purple-1 text-white">

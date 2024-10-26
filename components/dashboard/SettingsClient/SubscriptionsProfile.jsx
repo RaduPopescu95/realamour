@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { doc, updateDoc } from "firebase/firestore";
-import { db } from "@/firebase"; // Import către Firebase
-import { useRouter } from "next/navigation"; // Router pentru navigare
-import Link from "next/link"; // Pentru a folosi link-ul de abonamente
+import { db } from "@/firebase";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function SubscriptionsProfile({ activeTab, translatedTexts }) {
-  const { userData, setUserData } = useAuth(); // Obținem datele utilizatorului autentificat
-  const [subscription, setSubscription] = useState(null); // Stare pentru a stoca detaliile abonamentului
-  const [loading, setLoading] = useState(true); // Stare pentru încărcare
+  const { userData, setUserData } = useAuth();
+  const [subscription, setSubscription] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [canceling, setCanceling] = useState(false); // Stare pentru spinner-ul de anulare
   const router = useRouter();
 
   useEffect(() => {
-    if (userData && userData.subscriptionId) {
-      fetchSubscriptionDetails(userData.subscriptionId);
+    if (userData && userData?.subscriptionId) {
+      fetchSubscriptionDetails(userData?.subscriptionId);
     } else {
-      setLoading(false); // Dacă nu există abonament, nu se face nimic
+      setLoading(false);
     }
   }, [userData]);
 
-  // Funcție pentru obținerea detaliilor abonamentului din Stripe
   const fetchSubscriptionDetails = async (subscriptionId) => {
     try {
       const response = await fetch(
@@ -27,15 +27,15 @@ export default function SubscriptionsProfile({ activeTab, translatedTexts }) {
       );
       const data = await response.json();
       setSubscription(data);
-      setLoading(false); // Oprim starea de încărcare odată ce avem datele
+      setLoading(false);
     } catch (error) {
       console.error(translatedTexts.subscriptionDetailsError, error);
       setLoading(false);
     }
   };
 
-  // Funcție pentru anularea abonamentului
   const cancelSubscription = async () => {
+    setCanceling(true); // Începem spinner-ul de anulare
     try {
       const response = await fetch("/api/cancel-subscription", {
         method: "POST",
@@ -51,20 +51,20 @@ export default function SubscriptionsProfile({ activeTab, translatedTexts }) {
           translatedTexts.subscriptionCanceledSuccess,
           data.subscription
         );
-        // Actualizează Firestore după anulare
         await updateSubscriptionInFirestore();
       } else {
         console.error(translatedTexts.subscriptionCanceledError, data.error);
       }
     } catch (error) {
       console.error(translatedTexts.subscriptionCanceledError, error);
+    } finally {
+      setCanceling(false); // Oprim spinner-ul de anulare
     }
   };
 
-  // Funcție pentru actualizarea Firestore după anulare
   const updateSubscriptionInFirestore = async () => {
-    if (!userData || !userData.uid) return;
-    const userDocRef = doc(db, "Users", userData.uid);
+    if (!userData || !userData?.uid) return;
+    const userDocRef = doc(db, "Users", userData?.uid);
     await updateDoc(userDocRef, {
       subscriptionActive: false,
       subscriptionId: null,
@@ -76,7 +76,6 @@ export default function SubscriptionsProfile({ activeTab, translatedTexts }) {
 
     setUserData({
       ...userData,
-
       subscriptionActive: false,
       subscriptionId: null,
       subscriptionEndDate: null,
@@ -100,8 +99,8 @@ export default function SubscriptionsProfile({ activeTab, translatedTexts }) {
 
             {loading ? (
               <p>{translatedTexts.loadingText}</p>
-            ) : userData.isActivated ? (
-              userData.subscriptionActive ? (
+            ) : userData?.isActivated ? (
+              userData?.subscriptionActive ? (
                 <>
                   <p className="text-14 lh-13 mt-5">
                     {translatedTexts.subscriptionDetailsText}:
@@ -113,7 +112,7 @@ export default function SubscriptionsProfile({ activeTab, translatedTexts }) {
                     </li>
                     <li>
                       <strong>{translatedTexts.planText}:</strong>{" "}
-                      {subscription?.plan?.nickname}
+                      {subscription?.plan?.metadata?.tipAbonament}
                     </li>
                     <li>
                       <strong>{translatedTexts.expiryDateText}:</strong>{" "}
@@ -122,16 +121,24 @@ export default function SubscriptionsProfile({ activeTab, translatedTexts }) {
                       ).toLocaleDateString()}
                     </li>
                   </ul>
-                  <button
-                    type="button"
-                    className="button -md -red-1 text-white"
-                    onClick={cancelSubscription}
-                    disabled={loading}
-                  >
-                    {loading
-                      ? translatedTexts.cancelingText
-                      : translatedTexts.cancelSubscriptionText}
-                  </button>
+
+                  {/* Afișează spinner-ul în loc de text în timpul anulării */}
+                  <div className="col-12">
+                    {canceling ? (
+                      <div className="spinner-container">
+                        <div className="spinner"></div>
+                        <p>{translatedTexts.cancelingText}</p>
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        className="button -md -red-1 text-white"
+                        onClick={cancelSubscription}
+                      >
+                        {translatedTexts.cancelSubscriptionText}
+                      </button>
+                    )}
+                  </div>
                 </>
               ) : (
                 <p>

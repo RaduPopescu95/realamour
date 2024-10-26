@@ -46,6 +46,7 @@ const EditProfile = ({
     content: "",
     showAlert: false,
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (userData) {
@@ -80,7 +81,7 @@ const EditProfile = ({
     if (file) {
       const imageId = uuidv4(); // Generăm un ID unic pentru imagine
       const tempImage = {
-        id: imageId,
+        fileName: imageId,
         file,
         previewUrl: URL.createObjectURL(file),
         isMain: tempImages.length === 0, // Setăm isMain la true doar pentru prima imagine
@@ -128,7 +129,7 @@ const EditProfile = ({
     const file = e.target.files[0];
     if (file) {
       const tempVid = {
-        id: uuidv4(),
+        videoName: uuidv4(),
         file,
         previewUrl: URL.createObjectURL(file),
       };
@@ -169,6 +170,7 @@ const EditProfile = ({
   };
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
 
     if (!validateForm()) {
@@ -189,17 +191,14 @@ const EditProfile = ({
       const updatedImages = await Promise.all(
         tempImages.map(async (image) => {
           if (image.file) {
-            const storageRef = ref(
-              storage,
-              `images/${image.fileName || image.id}`
-            );
+            const storageRef = ref(storage, `images/${image.fileName}`);
             const uploadTask = await uploadBytesResumable(
               storageRef,
               image.file
             );
             const fileUrl = await getDownloadURL(uploadTask.ref);
             return {
-              fileName: image.fileName || image.id,
+              fileName: image.fileName,
               fileUri: fileUrl,
               isMain: image.fileName === mainImageId,
             };
@@ -211,7 +210,7 @@ const EditProfile = ({
       // Încarcă videoclipul dacă este nou
       let uploadedVideoUrl = null;
       if (tempVideo && tempVideo.file) {
-        const storageRef = ref(storage, `videos/${tempVideo.id}`);
+        const storageRef = ref(storage, `videos/${tempVideo.videoName}`);
         const uploadTask = await uploadBytesResumable(
           storageRef,
           tempVideo.file
@@ -219,7 +218,7 @@ const EditProfile = ({
         const videoUrl = await getDownloadURL(uploadTask.ref);
 
         uploadedVideoUrl = {
-          videoName: tempVideo.id,
+          videoName: tempVideo.videoName,
           videoUri: videoUrl,
         };
       }
@@ -271,6 +270,8 @@ const EditProfile = ({
         content: errorMessage,
         showAlert: true,
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -490,12 +491,18 @@ const EditProfile = ({
               </div>
 
               <div className="col-12">
-                <button
-                  type="submit"
-                  className="button -md -purple-1 text-white"
-                >
-                  {updateProfileText}
-                </button>
+                {isLoading ? (
+                  <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                ) : (
+                  <button
+                    type="submit"
+                    className="button -md -purple-1 text-white"
+                  >
+                    {updateProfileText}
+                  </button>
+                )}
               </div>
             </form>
           </div>

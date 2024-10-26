@@ -21,6 +21,7 @@ export default function Subscriptions({
   oneTimeFeature4,
   getStarted,
   acceptTermsText,
+  translatedLinks,
 }) {
   // Un array care va reține starea pentru fiecare checkbox de pe card
   const [isAccepted, setIsAccepted] = useState([false, false, false]);
@@ -95,7 +96,11 @@ export default function Subscriptions({
         <div className="row justify-center text-center">
           <div className="col-auto">
             <div className="sectionTitle ">
-              <h2 className="sectionTitle__title ">{bookingText}</h2>
+              <h2 className="sectionTitle__title mb-10">
+                {translatedLinks.bookingTextPrim}
+              </h2>
+              <h3>{bookingText}</h3>
+              <h3>{translatedLinks.bookingText2}</h3>
             </div>
           </div>
         </div>
@@ -107,10 +112,10 @@ export default function Subscriptions({
             <div className="priceCard -type-1 rounded-16 bg-white shadow-2">
               <div className="priceCard__content py-45 px-60 xl:px-40 text-center">
                 <div className="priceCard__type text-18 lh-11 fw-500 text-dark-1">
-                  Basic Plan
+                  {translatedLinks.threeMonthsText}
                 </div>
                 <div className="priceCard__price text-45 lh-11 fw-700 text-dark-1 mt-15">
-                  5 euro / month
+                  139 euro / month
                 </div>
 
                 <Image
@@ -123,11 +128,27 @@ export default function Subscriptions({
                 <div className="text-left y-gap-15 mt-35">
                   <div>
                     <i className="text-purple-1 fa fa-check pr-8"></i>
-                    {oneTimeFeature1}
+                    {translatedLinks.oneTimeFeature1}
                   </div>
                   <div>
                     <i className="text-purple-1 fa fa-check pr-8"></i>
-                    {oneTimeFeature2}
+                    {translatedLinks.oneTimeFeature2}
+                  </div>
+                  <div>
+                    <i className="text-purple-1 fa fa-check pr-8"></i>
+                    {translatedLinks.oneTimeFeature3}
+                  </div>
+                  <div>
+                    <i className="text-purple-1 fa fa-check pr-8"></i>
+                    {translatedLinks.oneTimeFeature4}
+                  </div>
+                  <div>
+                    <i className="text-purple-1 fa fa-check pr-8"></i>
+                    {translatedLinks.oneTimeFeature5}
+                  </div>
+                  <div>
+                    <i className="text-purple-1 fa fa-check pr-8"></i>
+                    {translatedLinks.oneTimeFeature6}
                   </div>
                 </div>
 
@@ -158,7 +179,7 @@ export default function Subscriptions({
                     <button
                       className="button px-40 py-20 fw-500 -purple-1"
                       onClick={() =>
-                        initiateCheckout("price_1QD2TFClBW08h64j34gJYL7y", 0)
+                        initiateCheckout("price_1QDsKCKKcy7exYrbpY77bnqC", 0)
                       }
                     >
                       {getStarted}
@@ -174,10 +195,10 @@ export default function Subscriptions({
             <div className="priceCard -type-1 rounded-16 bg-white shadow-2">
               <div className="priceCard__content py-45 px-60 xl:px-40 text-center">
                 <div className="priceCard__type text-18 lh-11 fw-500 text-dark-1">
-                  Pro Plan
+                  Abonnement 6 mois
                 </div>
                 <div className="priceCard__price text-45 lh-11 fw-700 text-dark-1 mt-15">
-                  10 euro / month
+                  109 euro / month
                 </div>
 
                 <Image
@@ -190,15 +211,31 @@ export default function Subscriptions({
                 <div className="text-left y-gap-15 mt-35">
                   <div>
                     <i className="text-purple-1 fa fa-check pr-8"></i>
-                    {oneTimeFeature1}
+                    {translatedLinks.oneTimeFeature1}
                   </div>
                   <div>
                     <i className="text-purple-1 fa fa-check pr-8"></i>
-                    {oneTimeFeature2}
+                    {translatedLinks.oneTimeFeature2}
                   </div>
                   <div>
                     <i className="text-purple-1 fa fa-check pr-8"></i>
-                    {oneTimeFeature3}
+                    {translatedLinks.oneTimeFeature3}
+                  </div>
+                  <div>
+                    <i className="text-purple-1 fa fa-check pr-8"></i>
+                    {translatedLinks.oneTimeFeature4}
+                  </div>
+                  <div>
+                    <i className="text-purple-1 fa fa-check pr-8"></i>
+                    {translatedLinks.oneTimeFeature5}
+                  </div>
+                  <div>
+                    <i className="text-purple-1 fa fa-check pr-8"></i>
+                    {translatedLinks.oneTimeFeature6}
+                  </div>
+                  <div>
+                    <i className="text-purple-1 fa fa-check pr-8"></i>
+                    {translatedLinks.oneTimeFeature7}
                   </div>
                 </div>
 
@@ -226,7 +263,94 @@ export default function Subscriptions({
                     <button
                       className="button px-40 py-20 fw-500 -purple-1"
                       onClick={() =>
-                        initiateCheckout("price_1QD2fzClBW08h64j81fZSAOU", 1)
+                        initiateCheckout("price_1QDsKaKKcy7exYrbS3Z9ciVa", 1)
+                      }
+                    >
+                      {getStarted}
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Card 3 - Pro Plan */}
+          <div className="col-lg-4 col-md-6">
+            <div className="priceCard -type-1 rounded-16 bg-white shadow-2">
+              <div className="priceCard__content py-45 px-60 xl:px-40 text-center">
+                <div className="priceCard__type text-18 lh-11 fw-500 text-dark-1">
+                  Abonnement 12 mois
+                </div>
+                <div className="priceCard__price text-45 lh-11 fw-700 text-dark-1 mt-15">
+                  89 euro / month
+                </div>
+
+                <Image
+                  width={90}
+                  height={90}
+                  className="mt-30"
+                  src="/assets/img/pricing/2.svg"
+                  alt="icon"
+                />
+                <div className="text-left y-gap-15 mt-35">
+                  <div>
+                    <i className="text-purple-1 fa fa-check pr-8"></i>
+                    {translatedLinks.oneTimeFeature1}
+                  </div>
+                  <div>
+                    <i className="text-purple-1 fa fa-check pr-8"></i>
+                    {translatedLinks.oneTimeFeature2}
+                  </div>
+                  <div>
+                    <i className="text-purple-1 fa fa-check pr-8"></i>
+                    {translatedLinks.oneTimeFeature3}
+                  </div>
+                  <div>
+                    <i className="text-purple-1 fa fa-check pr-8"></i>
+                    {translatedLinks.oneTimeFeature4}
+                  </div>
+                  <div>
+                    <i className="text-purple-1 fa fa-check pr-8"></i>
+                    {translatedLinks.oneTimeFeature5}
+                  </div>
+                  <div>
+                    <i className="text-purple-1 fa fa-check pr-8"></i>
+                    {translatedLinks.oneTimeFeature6}
+                  </div>
+                  <div>
+                    <i className="text-purple-1 fa fa-check pr-8"></i>
+                    {translatedLinks.oneTimeFeature7}
+                  </div>
+                  <div>
+                    <i className="text-purple-1 fa fa-check pr-8"></i>
+                    {translatedLinks.oneTimeFeature8}
+                  </div>
+                </div>
+
+                <div className="terms-acceptance mt-20">
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={isAccepted[1]}
+                      onChange={() => handleCheckboxChange(1)}
+                    />{" "}
+                    {acceptTermsText}
+                  </label>
+                </div>
+
+                <div className="d-inline-block mt-30">
+                  {!isAccepted[1] && (
+                    <button
+                      className="button px-40 py-20 fw-500 disabled-button"
+                      disabled
+                    >
+                      {getStarted}
+                    </button>
+                  )}
+                  {isAccepted[1] && (
+                    <button
+                      className="button px-40 py-20 fw-500 -purple-1"
+                      onClick={() =>
+                        initiateCheckout("price_1QDsKxKKcy7exYrbfHd8wuqF", 1)
                       }
                     >
                       {getStarted}

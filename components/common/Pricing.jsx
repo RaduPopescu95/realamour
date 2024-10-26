@@ -21,6 +21,7 @@ export default function Pricing({
   oneTimeFeature4,
   getStarted,
   acceptTermsText,
+  translatedLinks,
 }) {
   const [isYearly, setIsYearly] = useState(false);
   const [loading, setLoading] = useState(false); // Starea pentru a controla butonul de încărcare
@@ -83,7 +84,18 @@ export default function Pricing({
   useEffect(() => {
     if (!loadingContext && !userData?.username) {
       console.log("no userData...", userData?.username);
-      // router.push("/signup");
+      router.push("/signup");
+    }
+
+    if (
+      !loadingContext &&
+      userData?.reservation?.status === "paid" &&
+      !userData?.reservation?.hasReserved
+    ) {
+      router.push("/booking"); // Redirecționăm către profil-client dacă rezervarea este completă
+    }
+    if (!loadingContext && userData?.reservation?.hasReserved) {
+      router.push("/profil-client"); // Redirecționăm către profil-client dacă rezervarea este completă
     }
   }, [loadingContext]);
 
@@ -124,7 +136,7 @@ export default function Pricing({
                   {paymentOneTimeText}
                 </div>
                 <div className="priceCard__price text-45 lh-11 fw-700 text-dark-1 mt-15">
-                  {isYearly ? (5 * 12 * 0.7).toFixed(2) : 5} euro
+                  {isYearly ? (5 * 12 * 0.7).toFixed(2) : 159} euro
                 </div>
 
                 <Image
@@ -135,10 +147,10 @@ export default function Pricing({
                   alt="icon"
                 />
                 <div className="priceCard__text text-left pr-15 mt-40">
-                  {oneTimeFeature1}
+                  {translatedLinks.bookingText}
                 </div>
 
-                <div className="text-left y-gap-15 mt-35">
+                {/* <div className="text-left y-gap-15 mt-35">
                   <div>
                     <i
                       className="text-purple-1 fa fa-check pr-8"
@@ -171,7 +183,7 @@ export default function Pricing({
                     ></i>
                     {oneTimeFeature4}
                   </div>
-                </div>
+                </div> */}
 
                 {/* Casetă pentru acceptarea termenilor și condițiilor */}
                 <div className="terms-acceptance mt-20">
@@ -201,7 +213,7 @@ export default function Pricing({
                   {isAccepted && (
                     <button
                       className="button px-40 py-20 fw-500 -purple-1"
-                      onClick={() => initiateCheckout(pricingData[2].price)}
+                      onClick={() => initiateCheckout(159)}
                     >
                       {getStarted}
                     </button>

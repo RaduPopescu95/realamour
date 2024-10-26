@@ -4,7 +4,7 @@ import FooterOne from "@/components/layout/footers/FooterOne";
 import Header from "@/components/layout/headers/Header";
 import HeaderAuth from "@/components/layout/headers/HeaderAuth";
 import AuthImageMove from "@/components/others/AuthImageMove";
-import LoginForm from "@/components/others/LoginForm";
+import ResetPasswordForm from "@/components/others/ResetPasswordForm";
 import Terms from "@/components/terms/Terms";
 import React from "react";
 
@@ -47,30 +47,33 @@ async function fetchTranslation(text, targetLanguage) {
 }
 
 export default async function Page({ params }) {
-  const targetLanguage = params.lang || "en";
+  const targetLanguage = params.lang || "fr";
 
+  // Obține traducerile necesare
   const translatedLinks = {
-    emailText: await fetchTranslation("Email", targetLanguage),
-    parolaText: await fetchTranslation("Password", targetLanguage),
-    autentificareText: await fetchTranslation("Autentificare", targetLanguage),
-    aiContText: await fetchTranslation("Nu ai un cont încă?", targetLanguage),
-    inscrieText: await fetchTranslation("Înscrie-te gratuit", targetLanguage),
     tarifsText: await fetchTranslation("Tarifs", targetLanguage),
     methodeText: await fetchTranslation("Methode", targetLanguage),
-    lang: targetLanguage,
-    autentificareReusita: await fetchTranslation(
-      "Autentificare reușită!",
+    emailText: await fetchTranslation("Email", targetLanguage),
+    resetPasswordHeader: await fetchTranslation(
+      "Resetare Parolă",
       targetLanguage
     ),
-    autentificareEsuata: await fetchTranslation(
-      "Autentificare eșuată: ",
+    sendResetText: await fetchTranslation(
+      "Trimite email de resetare",
       targetLanguage
     ),
-    aiUitatParolText: await fetchTranslation(
-      "Ai uitat parola? ",
+    successMessage: await fetchTranslation(
+      "Un email de resetare a parolei a fost trimis!",
       targetLanguage
     ),
-    resetPassText: await fetchTranslation("Reseteaza parola ", targetLanguage),
+    errorMessage: await fetchTranslation(
+      "Eroare la resetarea parolei: ",
+      targetLanguage
+    ),
+    loginRedirectText: await fetchTranslation(
+      "Înapoi la autentificare",
+      targetLanguage
+    ),
   };
 
   return (
@@ -84,16 +87,18 @@ export default async function Page({ params }) {
       <div className="content-wrapper js-content-wrapper overflow-hidden">
         <section className="form-page js-mouse-move-container">
           <AuthImageMove />
-          <LoginForm
+          <ResetPasswordForm
             emailText={translatedLinks.emailText}
-            parolaText={translatedLinks.parolaText}
-            autentificareText={translatedLinks.autentificareText}
-            aiContText={translatedLinks.aiContText}
-            inscrieText={translatedLinks.inscrieText}
-            translatedLinks={translatedLinks}
+            resetPasswordHeader={translatedLinks.resetPasswordHeader}
+            sendResetText={translatedLinks.sendResetText}
+            successMessage={translatedLinks.successMessage}
+            errorMessage={translatedLinks.errorMessage}
+            loginRedirectText={translatedLinks.loginRedirectText} // Transmitere link login
           />
         </section>
       </div>
+
+      <FooterOne />
     </div>
   );
 }

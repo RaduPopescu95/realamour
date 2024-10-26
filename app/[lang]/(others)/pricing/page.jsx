@@ -82,6 +82,10 @@ export default async function Page({ params }) {
     tarifsText: await fetchTranslation("Tarifs", targetLanguage),
     methodeText: await fetchTranslation("Methode", targetLanguage),
 
+    bookingText: await fetchTranslation(
+      "Ouverture de dossier et premier Rendez-vous en présentiel",
+      targetLanguage
+    ),
     // Traducerea textului pentru bifa termenilor și condițiilor
     acceptTermsText: await fetchTranslation(
       "Accept Terms and Conditions, Privacy Policy, and Cookies",
@@ -108,6 +112,7 @@ export default async function Page({ params }) {
           oneTimeFeature4={translatedLinks.oneTimeFeature4}
           getStarted={translatedLinks.getStarted}
           acceptTermsText={translatedLinks.acceptTermsText}
+          translatedLinks={translatedLinks}
         />
 
         {/* <Brands/> */}

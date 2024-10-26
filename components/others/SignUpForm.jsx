@@ -104,7 +104,7 @@ const SignUpForm = ({
     if (file) {
       const imageId = uuidv4(); // Generăm un ID unic pentru imagine
       const tempImage = {
-        id: imageId,
+        fileName: imageId,
         file,
         previewUrl: URL.createObjectURL(file), // URL pentru previzualizare locală
         isMain: tempImages.length === 0, // Setăm isMain la true doar pentru prima imagine
@@ -123,7 +123,7 @@ const SignUpForm = ({
   };
 
   const handleImageDelete = (imageId) => {
-    setTempImages((prev) => prev.filter((image) => image.id !== imageId));
+    setTempImages((prev) => prev.filter((image) => image.fileName !== imageId));
     if (mainImageId === imageId) {
       setMainImageId(null); // Resetăm imaginea principală dacă a fost ștearsă
     }
@@ -137,7 +137,7 @@ const SignUpForm = ({
   const handleMainImageSelect = (imageId) => {
     setTempImages((prevImages) => {
       const updatedImages = prevImages.map((image) =>
-        image.id === imageId
+        image.fileName === imageId
           ? { ...image, isMain: true }
           : { ...image, isMain: false }
       );
@@ -157,7 +157,7 @@ const SignUpForm = ({
     if (file) {
       const videoId = uuidv4(); // Generăm un ID unic pentru videoclip
       const tempVid = {
-        id: videoId,
+        videoName: videoId,
         file,
         previewUrl: URL.createObjectURL(file), // URL pentru previzualizare locală
       };
@@ -203,12 +203,12 @@ const SignUpForm = ({
 
       const uploadedImages = await Promise.all(
         tempImages.map(async (image) => {
-          const storageRef = ref(storage, `images/${image.id}`);
+          const storageRef = ref(storage, `images/${image.fileName}`);
           const uploadTask = await uploadBytesResumable(storageRef, image.file);
           const fileUrl = await getDownloadURL(uploadTask.ref);
 
           return {
-            fileName: image.id,
+            fileName: image.fileName,
             fileUri: fileUrl,
             isMain: image.isMain,
           };
@@ -217,7 +217,7 @@ const SignUpForm = ({
 
       let uploadedVideo = null;
       if (tempVideo) {
-        const storageRef = ref(storage, `videos/${tempVideo.id}`);
+        const storageRef = ref(storage, `videos/${tempVideo.videoName}`);
         const uploadTask = await uploadBytesResumable(
           storageRef,
           tempVideo.file
@@ -225,7 +225,7 @@ const SignUpForm = ({
         const videoUrl = await getDownloadURL(uploadTask.ref);
 
         uploadedVideo = {
-          videoName: tempVideo.id,
+          videoName: tempVideo.videoName,
           videoUri: videoUrl,
         };
       }
@@ -246,6 +246,7 @@ const SignUpForm = ({
         video: uploadedVideo,
         address: formData.address,
         isActivated: false,
+        reservation: { hasReserved: false },
       });
 
       setAlertMessage({
@@ -333,7 +334,7 @@ const SignUpForm = ({
                   </label>
                   {tempImages.map((image, index) => (
                     <div
-                      key={image.id}
+                      key={image.fileName}
                       className="position-relative"
                       style={{
                         backgroundColor: "#f2f3f4",
@@ -351,7 +352,7 @@ const SignUpForm = ({
                         marginTop: tempImages.length >= 4 ? 10 : 0, // Adaugă margin-top pentru imaginile de pe al doilea rând
                         position: "relative", // Poziționare relativă pentru iconul bin
                       }}
-                      onClick={() => handleMainImageSelect(image.id)}
+                      onClick={() => handleMainImageSelect(image.fileName)}
                     >
                       <Image
                         width={100}
@@ -376,7 +377,7 @@ const SignUpForm = ({
                         }}
                         onClick={(e) => {
                           e.stopPropagation(); // Prevenim selectarea imaginii principale la ștergere
-                          handleImageDelete(image.id);
+                          handleImageDelete(image.fileName);
                         }}
                       ></i>
                     </div>

@@ -68,6 +68,23 @@ export default async function page({ params }) {
       "Lista utilizatori",
       targetLanguage
     ),
+    userNameText: await fetchTranslation("User Name", targetLanguage),
+    phoneNumberText: await fetchTranslation("Phone number", targetLanguage),
+    emailText: await fetchTranslation("Email", targetLanguage),
+    aboutMeText: await fetchTranslation("About me", targetLanguage),
+    AddressText: await fetchTranslation("Address", targetLanguage),
+    paidForReservationText: await fetchTranslation(
+      "User has paid for a reservation",
+      targetLanguage
+    ),
+    hasNotPaidForReservationText: await fetchTranslation(
+      "User has not paid for a reservation",
+      targetLanguage
+    ),
+    activateContText: await fetchTranslation(
+      "Activate Account",
+      targetLanguage
+    ),
   };
 
   return (
@@ -90,7 +107,7 @@ export default async function page({ params }) {
                 disconnectText={translatedTexts.disconnectText}
               />
             </div>
-            <Settings />
+            <Settings translatedTexts={translatedTexts} />
           </div>
         </div>
       </main>

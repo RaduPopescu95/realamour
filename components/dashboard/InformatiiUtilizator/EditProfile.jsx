@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { doc, getDoc, updateDoc } from "firebase/firestore"; // Adăugăm updateDoc pentru a actualiza Firestore
 import { db } from "@/firebase"; // Asigură-te că ai importat corect db-ul configurat pentru Firebase
 
-export default function EditProfile({ activeTab }) {
+export default function EditProfile({ activeTab, translatedTexts }) {
   const searchParams = useSearchParams(); // Obține parametrii query din URL
   const uid = searchParams.get("uid"); // Extragem UID-ul din query-ul URL-ului
   const [userData, setUserData] = useState(null);
@@ -21,8 +21,9 @@ export default function EditProfile({ activeTab }) {
 
       if (userSnapshot.exists()) {
         const userData = userSnapshot.data();
+        console.log("user data....informatiii", userData);
         setUserData(userData); // Setăm datele utilizatorului
-        setIsActivated(userData.isActivated || false); // Setăm isActivated
+        setIsActivated(userData?.isActivated || false); // Setăm isActivated
       } else {
         console.error("User not found!");
       }
@@ -66,12 +67,20 @@ export default function EditProfile({ activeTab }) {
     <div
       className={`tabs__pane -tab-item-1 ${activeTab == 1 ? "is-active" : ""} `}
     >
+      <div className="row pb-50 mb-10">
+        <div className="col-auto">
+          <h1 className="text-30 lh-12 fw-700">{userData.username}</h1>
+          {/* <div className="mt-10">
+              Lorem ipsum dolor sit amet, consectetur.
+            </div> */}
+        </div>
+      </div>
       <div className="row y-gap-20 x-gap-20 items-center">
         {/* Afișăm toate imaginile utilizatorului */}
-        {userData.images && userData.images.length > 0 ? (
+        {userData?.images?.length > 0 ? (
           userData.images.map((image, index) => (
             <div
-              key={index}
+              key={image.fileUri || index} // Folosește fie fileUri (dacă există), fie index ca și cheie
               style={{ width: 300, height: 300, overflow: "hidden" }}
             >
               <Image
@@ -81,9 +90,9 @@ export default function EditProfile({ activeTab }) {
                 src={image.fileUri}
                 alt={`User image ${index + 1}`}
                 style={{
-                  objectFit: "cover", // Imaginea va umple complet zona de 300x300px
-                  width: "100%", // Asigură că imaginea se întinde pe întreaga lățime
-                  height: "100%", // Asigură că imaginea se întinde pe întreaga înălțime
+                  objectFit: "cover", // Asigură că imaginea se întinde corect
+                  width: "100%",
+                  height: "100%",
                 }}
               />
             </div>
@@ -107,43 +116,96 @@ export default function EditProfile({ activeTab }) {
       <div className="border-top-light pt-30 mt-30">
         <form className="contact-form row y-gap-30">
           <div className="col-md-6">
+            <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
+              {translatedTexts.userNameText}
+            </label>
             <input
               readOnly
               required
               type="text"
               placeholder="Nume Utilizator"
-              value={userData.username || ""}
+              value={userData?.username || ""}
             />
           </div>
 
           <div className="col-md-6">
+            <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
+              {translatedTexts.phoneNumberText}
+            </label>
             <input
               readOnly
               required
               type="text"
               placeholder="Telefon"
-              value={userData.phone || ""}
+              value={userData?.phone || ""}
             />
           </div>
 
           <div className="col-md-6">
+            <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
+              {translatedTexts.emailText}
+            </label>
             <input
               readOnly
               required
               type="text"
               placeholder="Email"
-              value={userData.email || ""}
+              value={userData?.email || ""}
             />
           </div>
 
           <div className="col-12">
+            <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
+              {translatedTexts.aboutMeText}
+            </label>
             <textarea
               readOnly
               required
               placeholder="Despre mine"
               rows="7"
-              value={userData.aboutMe || ""}
+              value={userData?.aboutMe || ""}
             ></textarea>
+          </div>
+          <div className="col-12">
+            <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
+              {translatedTexts.AddressText}
+            </label>
+            <textarea
+              readOnly
+              required
+              placeholder="Despre mine"
+              rows="7"
+              value={userData?.address || ""}
+            ></textarea>
+          </div>
+
+          <div
+            className="col-12"
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            {userData?.reservation?.status === "paid" ? (
+              <span
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  color: "green",
+                }}
+              >
+                {translatedTexts.paidForReservationText}
+              </span>
+            ) : (
+              <span
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  color: "red",
+                }}
+              >
+                {translatedTexts.hasNotPaidForReservationText}
+              </span>
+            )}
           </div>
 
           <div
@@ -169,7 +231,7 @@ export default function EditProfile({ activeTab }) {
                 textAlign: "center",
               }}
             >
-              Activate Account
+              {translatedTexts.activateContText}
             </span>
           </div>
 

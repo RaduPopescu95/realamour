@@ -4,7 +4,21 @@ export const states = [
     title: "Total Utilizatori",
     value: 101,
     new: 50,
+    iconClass: "icon-person-3",
+  },
+  {
+    id: 2,
+    title: "Total Conturi Activate",
+    value: 101,
+    new: 50,
     iconClass: "icon-person-2",
+  },
+  {
+    id: 3,
+    title: "Total Conturi Neactivate",
+    value: 101,
+    new: 50,
+    iconClass: "icon-person-3",
   },
   // {
   //   id: 2,
