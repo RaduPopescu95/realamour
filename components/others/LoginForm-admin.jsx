@@ -79,7 +79,7 @@ export default function LoginFormAdmin({
   // };
 
   return (
-    <div className="form-page__content lg:py-50">
+    <div className="form-page__content_admin lg:py-50">
       <div className="container">
         <div className="row justify-center items-center">
           <div className="col-xl-6 col-lg-8">

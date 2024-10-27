@@ -1,10 +1,13 @@
 "use client";
 
 import { sidebarItems, sidebarItemsClient } from "@/data/dashBoardSidebar";
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { handleLogout } from "@/utils/authUtils";
+import { useAuth } from "@/context/AuthContext";
+import { onAuthStateChanged } from "firebase/auth";
+import { authentication } from "@/firebase";
 
 export default function SidebarClient({
   contText,
@@ -14,6 +17,15 @@ export default function SidebarClient({
   deconectareText,
 }) {
   const pathname = usePathname();
+  const {
+    currentUser,
+    userData,
+    loading,
+    setLoading,
+    setCurrentUser,
+    setUserData,
+  } = useAuth();
+  const router = useRouter();
 
   // Înlocuim textele statice din `sidebarItemsClient` cu textele traduse primite prin props
   const translatedSidebarItems = [
@@ -23,6 +35,27 @@ export default function SidebarClient({
     { ...sidebarItemsClient[3], text: profileText },
     { ...sidebarItemsClient[4], text: deconectareText },
   ];
+
+  useEffect(() => {
+    setLoading(true);
+    const authenticated = authentication;
+    onAuthStateChanged(authenticated, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const uid = user.uid;
+        console.log("is user.......");
+        setLoading(false);
+        // ...
+      } else {
+        console.log("is user......no.");
+        router.push("/login");
+        setLoading(false);
+        // User is signed out
+        // ...
+      }
+    });
+  }, []);
 
   return (
     <div className="sidebar -dashboard">

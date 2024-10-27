@@ -25,7 +25,7 @@ export default function DashboardOne() {
   if (loading && currentUser?.user?.uid !== "oQzVdA6ORHc3XNZFeLhB6Asnb7a2") {
     return null;
   }
-  if (!currentUser.user) {
+  if (!currentUser?.user) {
     return (
       <div className="row pb-50 mb-10">
         <div className="col-auto">

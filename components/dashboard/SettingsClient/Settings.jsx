@@ -9,6 +9,7 @@ import FooterNine from "@/components/layout/footers/FooterNine";
 import Notification from "./Notifications";
 import Subscriptions from "@/components/common/Subscriptions";
 import SubscriptionsProfile from "./SubscriptionsProfile";
+import { useAuth } from "@/context/AuthContext";
 
 // Am eliminat array-ul static `buttons` și îl vom primi ca props
 export default function Settings({
@@ -32,6 +33,7 @@ export default function Settings({
   translatedTexts,
 }) {
   const [activeTab, setActiveTab] = useState(1);
+  const { loading } = useAuth();
 
   const buttons = [
     editProfileText,
@@ -39,6 +41,10 @@ export default function Settings({
     closeAccountText,
     "Active subscription",
   ]; // folosește traducerile primite ca props
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <div className="dashboard__main">

@@ -180,7 +180,7 @@ export default function CloseAccount({ activeTab, translatedTexts }) {
         )}
 
         <div className="col-12">
-          {loading ? (
+          {!loading ? (
             <button className="button -md -purple-1 text-white">
               {translatedTexts.closeAccountButtonText}
             </button>
