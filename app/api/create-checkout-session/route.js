@@ -15,6 +15,9 @@ export async function POST(request) {
   } = body;
 
   try {
+    console.log("Body:", body);
+    console.log("Stripe Secret Key:", process.env.STRIPE_SECRET_KEY_TEST);
+
     // Creează sesiunea de checkout cu opțiunea de creare factură
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -22,7 +25,7 @@ export async function POST(request) {
       line_items: [
         {
           price_data: {
-            currency: "ron",
+            currency: "eur",
             product_data: {
               name: `Rezervare pentru ${nume}`,
             },

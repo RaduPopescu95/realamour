@@ -119,12 +119,12 @@ export default function PaymentSuccessPage({
                       <p>
                         {detaliiRezervareText}
                         <br />
-                        <strong>{nameText}:</strong> {userData?.username}
+                        {/* <strong>{nameText}:</strong> {userData?.username}
                         <br />
                         <strong>{emailText}:</strong> {userData?.email}
                         <br />
                         <strong>{phoneText}:</strong> {userData?.phone}
-                        <br />
+                        <br /> */}
                         <strong>{amountPaidText}:</strong>{" "}
                         {reservationData.amount_total / 100} RON
                       </p>

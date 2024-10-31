@@ -14,11 +14,11 @@ export default function page() {
     <div className="main-content  ">
       <Preloader />
 
-      <Header />
+      {/* <Header /> */}
       <div className="content-wrapper js-content-wrapper overflow-hidden">
-        <PageLinks />
+        {/* <PageLinks /> */}
         <NotFound />
-        <FooterOne />
+        {/* <FooterOne /> */}
       </div>
     </div>
   );

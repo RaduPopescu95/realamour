@@ -45,7 +45,7 @@ async function fetchTranslation(text, targetLanguage) {
 }
 
 export default async function Page({ params }) {
-  const targetLanguage = params.lang || "en";
+  const targetLanguage = params.lang || "fr";
 
   console.log("targe lagn..", targetLanguage);
 
@@ -143,6 +143,7 @@ export default async function Page({ params }) {
                 videoPlaceholder={translatedLinks.videoPlaceholder}
                 pozePlaceholder={translatedLinks.pozePlaceholder}
                 translatedLinks={translatedLinks}
+                targetLanguage={targetLanguage}
               />
             </section>
           </section>

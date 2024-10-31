@@ -78,13 +78,23 @@ export const AuthProvider = ({ children }) => {
     const storedCurrentUser = localStorage.getItem("currentUser");
     const storedUserData = localStorage.getItem("userData");
 
-    // Dacă există date stocate în localStorage, le folosim pentru a inițializa starea
+    // Verificăm dacă datele din localStorage sunt valide înainte de a le parsa
     if (storedCurrentUser) {
-      setCurrentUser(JSON.parse(storedCurrentUser));
+      try {
+        setCurrentUser(JSON.parse(storedCurrentUser));
+      } catch (e) {
+        console.error("Datele currentUser nu sunt JSON valid:", e);
+        localStorage.removeItem("currentUser");
+      }
     }
 
     if (storedUserData) {
-      setUserData(JSON.parse(storedUserData));
+      try {
+        setUserData(JSON.parse(storedUserData));
+      } catch (e) {
+        console.error("Datele userData nu sunt JSON valid:", e);
+        localStorage.removeItem("userData");
+      }
     }
   }, []);
 

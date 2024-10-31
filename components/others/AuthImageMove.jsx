@@ -59,10 +59,10 @@ export default function AuthImageMove() {
             height={1000}
             // style={{ width: "100%" }}
             data-move="20"
-            className="js-mouse-move"
+            className="js-mouse-move mobile-logo-img"
             src="/assets/img/realamorlogo.png"
             alt="image"
-            />
+          />
         </div>
         {/* <div className="-el-2">
           <Image

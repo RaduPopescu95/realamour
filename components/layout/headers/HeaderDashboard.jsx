@@ -137,17 +137,26 @@ export default function HeaderDashboard({
                 <div className="text-white d-flex items-center lg:d-none mr-15">
                   <div className="dropdown bg-transparent px-0 py-0">
                     <div className="d-flex items-center text-14 text-dark-1">
-                      <Link href="/" className="d-block text-dark-1">
+                      <Link
+                        href="https://real-amor.com/"
+                        className="d-block text-dark-1"
+                      >
                         RealAmor
                       </Link>
                     </div>
                     <div className="d-flex items-center text-14 text-dark-1 ml-20">
-                      <Link href="/" className="d-block text-dark-1">
+                      <Link
+                        href="https://real-amor.com/"
+                        className="d-block text-dark-1"
+                      >
                         {methodeText}
                       </Link>
                     </div>
                     <div className="d-flex items-center text-14 text-dark-1 ml-20">
-                      <Link href="/" className="d-block text-dark-1">
+                      <Link
+                        href="https://real-amor.com/"
+                        className="d-block text-dark-1"
+                      >
                         {tarifsText}
                       </Link>
                     </div>

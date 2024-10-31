@@ -34,6 +34,7 @@ const SignUpForm = ({
   videoPlaceholder,
   pozePlaceholder,
   translatedLinks,
+  targetLanguage,
 }) => {
   const [formData, setFormData] = useState({
     email: "",
@@ -247,6 +248,7 @@ const SignUpForm = ({
         address: formData.address,
         isActivated: false,
         reservation: { hasReserved: false },
+        targetLanguage,
       });
 
       setAlertMessage({
@@ -300,7 +302,7 @@ const SignUpForm = ({
   // };
 
   return (
-    <div className="form-page__content lg:py-50 relative">
+    <div className="form-page__content lg:py-50 sm:py-25 relative">
       <div className="container">
         <div className="row justify-center items-center">
           <div className="col-xl-10 col-lg-10">

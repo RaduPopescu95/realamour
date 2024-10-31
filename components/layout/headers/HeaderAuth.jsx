@@ -36,6 +36,8 @@ export default function HeaderAuth({ tarifsText, methodeText }) {
               <MobileMenu
                 activeMobileMenu={activeMobileMenu}
                 setActiveMobileMenu={setActiveMobileMenu}
+                methodeText={methodeText}
+                tarifsText={tarifsText}
               />
 
               <div className="mr-30">

@@ -350,7 +350,7 @@ export default function Subscriptions({
                     <button
                       className="button px-40 py-20 fw-500 -purple-1"
                       onClick={() =>
-                        initiateCheckout("price_1QDsKxKKcy7exYrbfHd8wuqF", 1)
+                        initiateCheckout("price_1QDsKaKKcy7exYrbS3Z9ciVa", 2)
                       }
                     >
                       {getStarted}

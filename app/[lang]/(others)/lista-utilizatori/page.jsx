@@ -66,6 +66,7 @@ export default async function page({ params }) {
       "Lista utilizatori",
       targetLanguage
     ),
+    searchText: await fetchTranslation("Search by username", targetLanguage),
   };
 
   return (

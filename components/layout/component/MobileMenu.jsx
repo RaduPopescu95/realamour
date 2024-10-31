@@ -8,12 +8,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import LanguageSwitch from "@/components/common/LanguageSwitch";
+import { useAuth } from "@/context/AuthContext";
 
-export default function MobileMenu({ setActiveMobileMenu, activeMobileMenu }) {
+export default function MobileMenu({
+  setActiveMobileMenu,
+  activeMobileMenu,
+  tarifsText,
+  methodeText,
+}) {
   const [showMenu, setShowMenu] = useState(false);
   const [menuNesting, setMenuNesting] = useState([]);
   const [menuItem, setMenuItem] = useState("");
   const [submenu, setSubmenu] = useState("");
+  const { userData, currentUser } = useAuth();
 
   useEffect(() => {
     menuList.forEach((elm) => {
@@ -45,139 +53,81 @@ export default function MobileMenu({ setActiveMobileMenu, activeMobileMenu }) {
         <div className="mobile-bg js-mobile-bg"></div>
 
         <div className="d-none xl:d-flex items-center px-20 py-20 border-bottom-light">
-          <Link
-            href="/login"
-            className={`text-dark-1 ${
-              pathname == "/login" ? "activeMenu" : "inActiveMenu"
-            } `}
-          >
-            Log in
-          </Link>
-          <Link
-            href="/signup"
-            className={`text-dark-1 ml-30 ${
-              pathname == "/signup" ? "activeMenu" : "inActiveMenu"
-            } `}
-          >
-            Sign Up
-          </Link>
+          {!currentUser ? (
+            <>
+              <Link
+                href="/login"
+                className={`text-dark-1 ${
+                  pathname == "/login" ? "activeMenu" : "inActiveMenu"
+                } `}
+              >
+                Log in
+              </Link>
+              <Link
+                href="/signup"
+                className={`text-dark-1 ml-30 ${
+                  pathname == "/signup" ? "activeMenu" : "inActiveMenu"
+                } `}
+              >
+                Sign Up
+              </Link>
+            </>
+          ) : (
+            <Link
+              href="/profil-client"
+              className={`text-dark-1 ml-30 ${
+                pathname == "/signup" ? "activeMenu" : "inActiveMenu"
+              } `}
+            >
+              Cont
+            </Link>
+          )}
+
+          <div className="ml-30">
+            <LanguageSwitch />
+          </div>
         </div>
 
-        {/* {showMenu && activeMobileMenu && (
+        {showMenu && activeMobileMenu && (
           <div className="mobileMenu text-dark-1">
-            {menuList.map((elm, i) => {
-              if (elm.title) {
-                return (
-                  <div key={i} className="submenuOne">
-                    <div
-                      className="title"
-                      onClick={() =>
-                        setMenuNesting((pre) =>
-                          pre[0] == elm.title ? [] : [elm.title],
-                        )
-                      }
-                    >
-                      <span
-                        className={
-                          elm.title == menuItem ? "activeMenu" : "inActiveMenu"
-                        }
-                      >
-                        {elm.title}
-                      </span>
-                      <i
-                        className={
-                          menuNesting[0] == elm.title
-                            ? "icon-chevron-right text-13 ml-10 active"
-                            : "icon-chevron-right text-13 ml-10"
-                        }
-                      ></i>
-                    </div>
-
-                    {elm.links &&
-                      elm.links.map((itm, index) => (
-                        <div
-                          key={index}
-                          className={
-                            menuNesting[0] == elm.title
-                              ? "toggle active"
-                              : "toggle"
-                          }
-                        >
-                          {itm.href && (
-                            <Link
-                              key={i}
-                              className={
-                                pathname?.split('/')[1] == itm.href?.split('/')[1]
-                                  ? "activeMenu link"
-                                  : "link inActiveMenu"
-                              }
-                              href={itm.href}
-                            >
-                              {itm.label}
-                            </Link>
-                          )}
-
-                          {itm.links && (
-                            <div className="submenuTwo">
-                              <div
-                                className="title"
-                                onClick={() =>
-                                  setMenuNesting((pre) =>
-                                    pre[1] == itm.title
-                                      ? [pre[0]]
-                                      : [pre[0], itm.title],
-                                  )
-                                }
-                              >
-                                <span
-                                  className={
-                                    itm.title == submenu
-                                      ? "activeMenu"
-                                      : "inActiveMenu"
-                                  }
-                                >
-                                  {itm.title && itm.title}
-                                </span>
-                                <i
-                                  className={
-                                    menuNesting[1] == itm.title
-                                      ? "icon-chevron-right text-13 ml-10 active"
-                                      : "icon-chevron-right text-13 ml-10"
-                                  }
-                                ></i>
-                              </div>
-                              <div
-                                className={
-                                  menuNesting[1] == itm.title
-                                    ? "toggle active"
-                                    : "toggle"
-                                }
-                              >
-                                {itm.links &&
-                                  itm.links.map((itm2, index3) => (
-                                    <Link
-                                      key={index3}
-                                      className={
-                                        pathname?.split('/')[1] == itm2.href?.split('/')[1]
-                                          ? "activeMenu link"
-                                          : "link inActiveMenu"
-                                      }
-                                      href={itm2.href}
-                                    >
-                                      {itm2.label}
-                                    </Link>
-                                  ))}
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                  </div>
-                );
-              }
-            })}
+            <div className="submenuOne">
+              <div className="title">
+                <Link
+                  className={
+                    menuItem == "Real Amor" ? "activeMenu" : "inActiveMenu"
+                  }
+                  href="https://real-amor.com/"
+                >
+                  Real Amor
+                </Link>
+              </div>
+            </div>
+            <div className="submenuOne">
+              <div className="title">
+                <Link
+                  className={
+                    menuItem == "tarifsText" ? "activeMenu" : "inActiveMenu"
+                  }
+                  href="https://real-amor.com/"
+                >
+                  {tarifsText}
+                </Link>
+              </div>
+            </div>
+            <div className="submenuOne">
+              <div className="title">
+                <Link
+                  className={
+                    menuItem == "Real Amor" ? "activeMenu" : "inActiveMenu"
+                  }
+                  href="https://real-amor.com/"
+                >
+                  {methodeText}
+                </Link>
+              </div>
+            </div>
           </div>
-        )} */}
+        )}
 
         {/* mobile footer start */}
         {/* <MobileFooter /> */}

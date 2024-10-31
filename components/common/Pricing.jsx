@@ -43,7 +43,13 @@ export default function Pricing({
           "Stripe is not initialized. Please check your API key."
         );
       }
-
+      console.log(".....", {
+        costRezervare: price * 100, // Convertim în bani (de exemplu, 10000 pentru 100 RON)
+        nume: userData.username,
+        email: userData.email, // Aici poți adăuga un email dintr-o stare sau context al utilizatorului
+        phone: userData.phone,
+        uid: userData.uid, // UID-ul utilizatorului, dacă este disponibil
+      });
       const stripe = await stripePromise;
       setLoading(true); // Setează loading la true înainte de a face cererea
 

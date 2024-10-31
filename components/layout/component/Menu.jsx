@@ -71,7 +71,7 @@ export default function Menu({
             <li className="menu-item-has-children">
               <Link
                 data-barba
-                href="#"
+                href="https://real-amor.com/"
                 className={menuItem == "Home" ? "activeMenu" : ""}
               >
                 Real Amor
@@ -80,7 +80,7 @@ export default function Menu({
             <li className="menu-item-has-children">
               <Link
                 data-barba
-                href="#"
+                href="https://real-amor.com/"
                 className={menuItem == "Home" ? "activeMenu" : ""}
               >
                 {methodeText}
@@ -89,7 +89,7 @@ export default function Menu({
             <li className="menu-item-has-children">
               <Link
                 data-barba
-                href="#"
+                href="https://real-amor.com/"
                 className={menuItem == "Home" ? "activeMenu" : ""}
               >
                 {tarifsText}

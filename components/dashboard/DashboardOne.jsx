@@ -12,19 +12,40 @@ import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import { onAuthStateChanged } from "firebase/auth";
+import { authentication } from "@/firebase";
 
 export default function DashboardOne() {
   const { userData, currentUser, loading } = useAuth();
   const router = useRouter();
+  // useEffect(() => {
+  //   console.log("current user...", currentUser);
+  //   if (!loading && currentUser?.user?.uid !== "oQzVdA6ORHc3XNZFeLhB6Asnb7a2") {
+  //     router.push("/login-admin");
+  //   }
+  // }, [loading, currentUser]);
+
   useEffect(() => {
-    console.log("current user...", currentUser);
-    if (!loading && currentUser?.user?.uid !== "oQzVdA6ORHc3XNZFeLhB6Asnb7a2") {
-      router.push("/login-admin");
-    }
-  }, [loading, currentUser]);
-  if (loading && currentUser?.user?.uid !== "oQzVdA6ORHc3XNZFeLhB6Asnb7a2") {
-    return null;
-  }
+    const authenticated = authentication;
+    onAuthStateChanged(authenticated, (user) => {
+      if (user && user.uid === "oQzVdA6ORHc3XNZFeLhB6Asnb7a2") {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const uid = user.uid;
+        console.log("is user.......");
+        router.push("/lista-utilizatori");
+
+        // ...
+      } else {
+        console.log("is user......no.");
+        router.push("/login-admin");
+
+        // User is signed out
+        // ...
+      }
+    });
+  }, []);
+
   if (!currentUser?.user) {
     return (
       <div className="row pb-50 mb-10">

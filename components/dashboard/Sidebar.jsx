@@ -29,7 +29,7 @@ export default function Sidebar({ adminText, usersText, disconnectText }) {
             key={i}
             href={elm.href}
             onClick={() =>
-              elm.text === "Deconectare"
+              elm.text === disconnectText
                 ? handleLogout()
                 : console.log("pressed...")
             }

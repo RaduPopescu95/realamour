@@ -51,6 +51,8 @@ export default function Header({ methodeText, tarifsText }) {
             <MobileMenu
               setActiveMobileMenu={setActiveMobileMenu}
               activeMobileMenu={activeMobileMenu}
+              tarifsText={tarifsText}
+              methodeText={methodeText}
             />
 
             <div className="col-auto">
