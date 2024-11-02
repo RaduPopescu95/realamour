@@ -15,6 +15,7 @@ export default function HeaderDashboard({
   realAmorText,
   methodeText,
   tarifsText,
+  translatedTexts,
 }) {
   const [messageOpen, setMessageOpen] = useState(false);
   const { userData } = useAuth();
@@ -136,7 +137,7 @@ export default function HeaderDashboard({
               <div className="d-flex items-center">
                 <div className="text-white d-flex items-center lg:d-none mr-15">
                   <div className="dropdown bg-transparent px-0 py-0">
-                    <div className="d-flex items-center text-14 text-dark-1">
+                    {/* <div className="d-flex items-center text-14 text-dark-1">
                       <Link
                         href="https://real-amor.com/"
                         className="d-block text-dark-1"
@@ -159,7 +160,7 @@ export default function HeaderDashboard({
                       >
                         {tarifsText}
                       </Link>
-                    </div>
+                    </div> */}
                     <div className="d-flex items-center text-14 text-dark-1 ml-20">
                       <LanguageSwitch />
                     </div>

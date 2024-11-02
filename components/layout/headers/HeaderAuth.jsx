@@ -5,7 +5,11 @@ import Menu from "../component/Menu";
 import MobileMenu from "../component/MobileMenu";
 import Link from "next/link";
 
-export default function HeaderAuth({ tarifsText, methodeText }) {
+export default function HeaderAuth({
+  tarifsText,
+  methodeText,
+  translatedLinks,
+}) {
   const [activeMobileMenu, setActiveMobileMenu] = useState(false);
   return (
     <header className="header -base js-header">
@@ -32,8 +36,10 @@ export default function HeaderAuth({ tarifsText, methodeText }) {
                 allClasses={"menu__nav text-dark-1 -is-active"}
                 methodeText={methodeText}
                 tarifsText={tarifsText}
+                translatedLinks={translatedLinks}
               />
               <MobileMenu
+                translatedLinks={translatedLinks}
                 activeMobileMenu={activeMobileMenu}
                 setActiveMobileMenu={setActiveMobileMenu}
                 methodeText={methodeText}

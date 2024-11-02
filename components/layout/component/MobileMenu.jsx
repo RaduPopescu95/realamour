@@ -16,6 +16,7 @@ export default function MobileMenu({
   activeMobileMenu,
   tarifsText,
   methodeText,
+  translatedLinks,
 }) {
   const [showMenu, setShowMenu] = useState(false);
   const [menuNesting, setMenuNesting] = useState([]);
@@ -61,7 +62,7 @@ export default function MobileMenu({
                   pathname == "/login" ? "activeMenu" : "inActiveMenu"
                 } `}
               >
-                Log in
+                {translatedLinks.logInText}
               </Link>
               <Link
                 href="/signup"
@@ -69,7 +70,7 @@ export default function MobileMenu({
                   pathname == "/signup" ? "activeMenu" : "inActiveMenu"
                 } `}
               >
-                Sign Up
+                {translatedLinks.signUpText}
               </Link>
             </>
           ) : (
@@ -79,7 +80,7 @@ export default function MobileMenu({
                 pathname == "/signup" ? "activeMenu" : "inActiveMenu"
               } `}
             >
-              Cont
+              {translatedLinks.contText}
             </Link>
           )}
 
@@ -88,7 +89,7 @@ export default function MobileMenu({
           </div>
         </div>
 
-        {showMenu && activeMobileMenu && (
+        {/* {showMenu && activeMobileMenu && (
           <div className="mobileMenu text-dark-1">
             <div className="submenuOne">
               <div className="title">
@@ -127,7 +128,7 @@ export default function MobileMenu({
               </div>
             </div>
           </div>
-        )}
+        )} */}
 
         {/* mobile footer start */}
         {/* <MobileFooter /> */}

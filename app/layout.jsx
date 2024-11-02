@@ -12,6 +12,7 @@ import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 import Context from "@/context/Context";
 import { AuthProvider } from "@/context/AuthContext";
+import { LanguageProvider } from "@/context/LanguageContext";
 import Cookies from "js-cookie";
 
 export default function RootLayout({ children }) {

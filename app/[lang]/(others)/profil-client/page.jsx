@@ -46,6 +46,23 @@ export default async function page({ params }) {
 
   // Obținem traducerile pentru textele din sidebar și restul componentelor
   const translatedTexts = {
+    activeStatusText: await fetchTranslation("Active", targetLanguage),
+    subscriptionCanceledUntilText: await fetchTranslation(
+      "Subscription canceled, valid until",
+      targetLanguage
+    ),
+    subscriptionCanceledImmediatelyText: await fetchTranslation(
+      "Subscription canceled immediately",
+      targetLanguage
+    ),
+    subscriptionExpiredText: await fetchTranslation(
+      "Subscription expired",
+      targetLanguage
+    ),
+    subscriptionStatusText: await fetchTranslation(
+      "Subscription Status",
+      targetLanguage
+    ),
     realAmorText: await fetchTranslation("Real Amor", targetLanguage),
     methodeText: await fetchTranslation("Methode", targetLanguage),
     tarifsText: await fetchTranslation("Tarifs", targetLanguage),
@@ -229,6 +246,19 @@ export default async function page({ params }) {
       "Subscription canceled, valid until ",
       targetLanguage
     ),
+    signUpText: await fetchTranslation("Sign up", targetLanguage),
+    logInText: await fetchTranslation("Log in", targetLanguage),
+    contText: await fetchTranslation("Cont", targetLanguage),
+    newSubText: await fetchTranslation(
+      "Reînnoiește abonamentul",
+      targetLanguage
+    ),
+    confirmationCancelSubText: await fetchTranslation(
+      "Sigur dorești să anulezi abonamentul?",
+      targetLanguage
+    ),
+    cancelSub: await fetchTranslation("Anulează abonamentul", targetLanguage),
+    nuAnulaText: await fetchTranslation("Nu anula", targetLanguage),
   };
 
   return (
@@ -239,6 +269,7 @@ export default async function page({ params }) {
           realAmorText={translatedTexts.realAmorText}
           methodeText={translatedTexts.methodeText}
           tarifsText={translatedTexts.tarifsText}
+          translatedTexts={translatedTexts}
         />
         <div className="content-wrapper js-content-wrapper overflow-hidden">
           <div

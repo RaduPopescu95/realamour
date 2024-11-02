@@ -19,14 +19,19 @@ export default function CoursesCardDashboard({ data }) {
       <div className="relative">
         {data.images && data.images[0]?.fileUri ? (
           <>
-            <Image
-              width={700}
-              height={400}
-              className="rounded-8 w-1/1"
-              src={data.images[0].fileUri}
-              alt={data.username}
-              style={{ objectFit: "cover" }}
-            />
+            <div
+              className="relative"
+              style={{ width: "100%", height: "300px" }}
+            >
+              <Image
+                src={data.images[0].fileUri}
+                alt={data.username}
+                fill
+                className="rounded-8"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+
             {/* Overlay pentru nume */}
             <div
               style={{

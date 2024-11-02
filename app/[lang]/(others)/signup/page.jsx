@@ -108,6 +108,9 @@ export default async function Page({ params }) {
       "Utilizator înregistrat cu succes!",
       targetLanguage
     ),
+    signUpText: await fetchTranslation("Sign up", targetLanguage),
+    logInText: await fetchTranslation("Log in", targetLanguage),
+    contText: await fetchTranslation("Cont", targetLanguage),
   };
 
   return (
@@ -117,6 +120,7 @@ export default async function Page({ params }) {
         <HeaderAuth
           tarifsText={translatedLinks.tarifsText}
           methodeText={translatedLinks.methodeText}
+          translatedLinks={translatedLinks}
         />
         <div className="content-wrapper js-content-wrapper">
           <section className="form-page js-mouse-move-container">

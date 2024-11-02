@@ -15,6 +15,7 @@ export default function Menu({
   headerPosition,
   methodeText,
   tarifsText,
+  translatedLinks,
 }) {
   const [menuItem, setMenuItem] = useState("");
   const [submenu, setSubmenu] = useState("");
@@ -68,7 +69,7 @@ export default function Menu({
 
     
             </li> */}
-            <li className="menu-item-has-children">
+            {/* <li className="menu-item-has-children">
               <Link
                 data-barba
                 href="https://real-amor.com/"
@@ -94,7 +95,7 @@ export default function Menu({
               >
                 {tarifsText}
               </Link>
-            </li>
+            </li> */}
 
             <li className="menu-item-has-children">
               <LanguageSwitch />

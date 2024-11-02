@@ -71,6 +71,9 @@ export default async function Page({ params }) {
       targetLanguage
     ),
     resetPassText: await fetchTranslation("Reseteaza parola ", targetLanguage),
+    signUpText: await fetchTranslation("Sign up", targetLanguage),
+    logInText: await fetchTranslation("Log in", targetLanguage),
+    contText: await fetchTranslation("Cont", targetLanguage),
   };
 
   return (
@@ -80,6 +83,7 @@ export default async function Page({ params }) {
       <HeaderAuth
         tarifsText={translatedLinks.tarifsText}
         methodeText={translatedLinks.methodeText}
+        translatedLinks={translatedLinks}
       />
       <div className="content-wrapper js-content-wrapper overflow-hidden">
         <section className="form-page js-mouse-move-container">

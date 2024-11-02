@@ -142,7 +142,7 @@ export default function Pricing({
                   {paymentOneTimeText}
                 </div>
                 <div className="priceCard__price text-45 lh-11 fw-700 text-dark-1 mt-15">
-                  {isYearly ? (5 * 12 * 0.7).toFixed(2) : 159} euro
+                  {isYearly ? (5 * 12 * 0.7).toFixed(2) : 159} Euro
                 </div>
 
                 <Image

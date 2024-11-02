@@ -67,6 +67,9 @@ export default async function page({ params }) {
       "Lista utilizatori",
       targetLanguage
     ),
+    signUpText: await fetchTranslation("Sign up", targetLanguage),
+    logInText: await fetchTranslation("Log in", targetLanguage),
+    contText: await fetchTranslation("Cont", targetLanguage),
   };
 
   return (
@@ -76,6 +79,7 @@ export default async function page({ params }) {
         <HeaderDashboard
           methodeText={translatedTexts.methodeText}
           tarifsText={translatedTexts.tarifsText}
+          translatedTexts={translatedTexts}
         />
         <div className="content-wrapper js-content-wrapper overflow-hidden">
           <div

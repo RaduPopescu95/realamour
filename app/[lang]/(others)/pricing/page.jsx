@@ -91,6 +91,9 @@ export default async function Page({ params }) {
       "Accept Terms and Conditions, Privacy Policy, and Cookies",
       targetLanguage
     ),
+    signUpText: await fetchTranslation("Sign up", targetLanguage),
+    logInText: await fetchTranslation("Log in", targetLanguage),
+    contText: await fetchTranslation("Cont", targetLanguage),
   };
 
   return (
@@ -99,6 +102,7 @@ export default async function Page({ params }) {
       <Header
         tarifsText={translatedLinks.tarifsText}
         methodeText={translatedLinks.methodeText}
+        translatedLinks={translatedLinks}
       />
       <div className="content-wrapper js-content-wrapper overflow-hidden">
         {/* Transmitem datele traduse și limba către componenta PageLinks */}

@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import { usePathname, useRouter } from "next/navigation"; // Folosim useRouter din next/navigation
+import { usePathname, useRouter } from "next/navigation";
 import PropTypes from "prop-types";
-import { useAuth } from "@/context/AuthContext"; // Folosim contextul Auth pentru limbă
-import Cookies from "js-cookie"; // Importăm biblioteca js-cookie
+import { useAuth } from "@/context/AuthContext";
+import Cookies from "js-cookie";
 
 const LanguageSwitch = ({ closePopup }) => {
   const [open, setOpen] = useState(false);
@@ -30,11 +30,14 @@ const LanguageSwitch = ({ closePopup }) => {
     Cookies.set("NEXT_LOCALE", newLocale, { expires: 365 }); // Limba e salvată pentru 1 an
     changeLanguage(newLocale); // Schimbăm limba în context
 
-    // Obținem calea curentă fără prefixul de limbă
+    // Eliminăm prefixul de limbă din calea curentă
     const currentPath = pathname.replace(/^\/(en|ro|fr|nl)(\/|$)/, "/");
 
-    // Navigăm către noul URL cu limba selectată
-    router.push(`/${newLocale}${currentPath}`);
+    // Navigăm către noul URL cu limba selectată, dar fără adăugarea duplicată a limbii
+    const newPath = `/${newLocale}${currentPath}`.replace(/\/\//g, "/");
+
+    // Folosim router.push pentru a redirecționa către noua cale
+    router.push(newPath);
     setOpen(false); // Închidem dropdown-ul
   };
 

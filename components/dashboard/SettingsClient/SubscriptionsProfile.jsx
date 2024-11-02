@@ -17,28 +17,9 @@ export default function SubscriptionsProfile({ activeTab, translatedTexts }) {
     content: "",
     showAlert: false,
   });
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false); // Stare pentru dialogul de confirmare
 
-  useEffect(() => {
-    if (userData && userData?.subscriptionId) {
-      fetchSubscriptionDetails(userData?.subscriptionId);
-    } else {
-      setLoading(false);
-    }
-  }, [userData]);
-
-  const fetchSubscriptionDetails = async (subscriptionId) => {
-    try {
-      const response = await fetch(
-        `/api/get-subscription?subscription_id=${subscriptionId}`
-      );
-      const data = await response.json();
-      setSubscription(data);
-      setLoading(false);
-    } catch (error) {
-      console.error(translatedTexts.subscriptionDetailsError, error);
-      setLoading(false);
-    }
-  };
+  const confirmCancelSubscription = () => setShowConfirmDialog(true); // Afișează dialogul
 
   const cancelSubscription = async () => {
     setCanceling(true);
@@ -57,7 +38,13 @@ export default function SubscriptionsProfile({ activeTab, translatedTexts }) {
           translatedTexts.subscriptionCanceledSuccess,
           data.subscription
         );
-        await updateSubscriptionInFirestore();
+
+        // Actualizăm detaliile în Firestore
+        await updateSubscriptionInFirestore({
+          status: "canceledUntilEnd",
+          subscriptionEndDate: new Date(subscription.current_period_end * 1000),
+          cancelAtPeriodEnd: true,
+        });
 
         // Afișează mesajul de alertă cu data expirării
         setAlertMessage({
@@ -79,27 +66,73 @@ export default function SubscriptionsProfile({ activeTab, translatedTexts }) {
     }
   };
 
-  const updateSubscriptionInFirestore = async () => {
-    if (!userData || !userData?.uid) return;
-    const userDocRef = doc(db, "Users", userData?.uid);
-    await updateDoc(userDocRef, {
-      subscriptionActive: false,
-      subscriptionId: null,
-      subscriptionEndDate: null,
-      priceId: null,
-      subscriptionStartDate: null,
-      subscriptionAmount: null,
-    });
+  const handleCancelConfirmation = async () => {
+    setCanceling(true);
+    // Aici, codul de anulare a abonamentului rămâne la fel
+    await cancelSubscription();
+    setCanceling(false);
+    setShowConfirmDialog(false); // Închide dialogul după anulare
+  };
 
-    setUserData({
-      ...userData,
-      subscriptionActive: false,
-      subscriptionId: null,
-      subscriptionEndDate: null,
-      priceId: null,
-      subscriptionStartDate: null,
-      subscriptionAmount: null,
+  const closeConfirmDialog = () => setShowConfirmDialog(false); // Închide dialogul fără anulare
+
+  useEffect(() => {
+    if (userData && userData?.subscriptionId) {
+      fetchSubscriptionDetails(userData?.subscriptionId);
+    } else {
+      setLoading(false);
+    }
+  }, [userData]);
+
+  const fetchSubscriptionDetails = async (subscriptionId) => {
+    try {
+      const response = await fetch(
+        `/api/get-subscription?subscription_id=${subscriptionId}`
+      );
+      const data = await response.json();
+      const isCanceled = data.cancel_at_period_end; // Adevărat dacă e programat să se anuleze la finalul perioadei curente
+      const isExpired = data.status === "canceled" && !data.current_period_end; // True dacă e anulat fără perioadă activă
+      const isActive = data.status === "active";
+      const isImmediatelyCanceled =
+        data.status === "canceled" && data.current_period_end === null;
+
+      setSubscription({
+        ...data,
+        status: isActive
+          ? "active"
+          : isImmediatelyCanceled
+          ? "canceledImmediately"
+          : isCanceled
+          ? "canceledUntilEnd"
+          : "expired",
+      });
+      setLoading(false);
+    } catch (error) {
+      console.error(translatedTexts.subscriptionDetailsError, error);
+      setLoading(false);
+    }
+  };
+
+  // Funcția de actualizare în Firestore pentru anulare
+  const updateSubscriptionInFirestore = async (updateData) => {
+    if (!userData || !userData?.uid) return;
+    const userDocRef = doc(db, "Users", userData.uid);
+
+    await updateDoc(userDocRef, {
+      subscriptionActive: updateData.status === "active",
+      subscriptionStatus: updateData.status,
+      subscriptionEndDate: updateData.subscriptionEndDate,
+      cancelAtPeriodEnd: updateData.cancelAtPeriodEnd,
     });
+    router.push("/profil-client");
+    // Actualizăm și datele locale din context pentru UI
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      subscriptionActive: updateData.status === "active",
+      subscriptionStatus: updateData.status,
+      subscriptionEndDate: updateData.subscriptionEndDate,
+      cancelAtPeriodEnd: updateData.cancelAtPeriodEnd,
+    }));
     router.refresh();
   };
 
@@ -117,7 +150,8 @@ export default function SubscriptionsProfile({ activeTab, translatedTexts }) {
             {loading ? (
               <p>{translatedTexts.loadingText}</p>
             ) : userData?.isActivated ? (
-              userData?.subscriptionActive ? (
+              userData?.subscriptionActive ||
+              userData?.subscriptionStatus === "canceledUntilEnd" ? (
                 <>
                   <p className="text-14 lh-13 mt-5">
                     {translatedTexts.subscriptionDetailsText}:
@@ -129,7 +163,7 @@ export default function SubscriptionsProfile({ activeTab, translatedTexts }) {
                     </li>
                     <li>
                       <strong>{translatedTexts.planText}:</strong>{" "}
-                      {subscription?.plan?.metadata?.tipAbonament}
+                      {subscription?.productName}
                     </li>
                     <li>
                       <strong>{translatedTexts.expiryDateText}:</strong>{" "}
@@ -137,20 +171,49 @@ export default function SubscriptionsProfile({ activeTab, translatedTexts }) {
                         subscription?.current_period_end * 1000
                       ).toLocaleDateString()}
                     </li>
+
+                    <li>
+                      <strong>{translatedTexts.subscriptionStatusText}:</strong>{" "}
+                      {userData?.subscriptionStatus === "active"
+                        ? translatedTexts.activeStatusText
+                        : userData?.subscriptionStatus === "canceledUntilEnd"
+                        ? `${translatedTexts.subscriptionCanceledUntilText} ${
+                            userData?.subscriptionEndDate instanceof Date
+                              ? userData.subscriptionEndDate.toLocaleDateString()
+                              : new Date(
+                                  userData?.subscriptionEndDate?.seconds * 1000
+                                ).toLocaleDateString()
+                          }`
+                        : userData?.subscriptionStatus === "canceledImmediately"
+                        ? translatedTexts.subscriptionCanceledImmediatelyText
+                        : translatedTexts.subscriptionExpiredText}
+                    </li>
                   </ul>
 
-                  {/* Afișează spinner-ul în loc de text în timpul anulării */}
                   <div className="col-12">
                     {canceling ? (
                       <div className="spinner-container">
                         <div className="spinner"></div>
                         <p>{translatedTexts.cancelingText}</p>
                       </div>
+                    ) : userData?.subscriptionStatus === "canceledUntilEnd" ||
+                      userData?.subscriptionStatus === "canceledImmediately" ? (
+                      // Afișăm butonul de redirecționare dacă abonamentul este anulat
+                      <Link href="/subscriptions">
+                        <button
+                          type="button"
+                          className="button -md -green-1 text-white"
+                        >
+                          {translatedTexts.reactivateSubscriptionText ||
+                            translatedTexts.newSubText}
+                        </button>
+                      </Link>
                     ) : (
+                      // Butonul de anulare în caz că abonamentul este activ
                       <button
                         type="button"
                         className="button -md -red-1 text-white"
-                        onClick={cancelSubscription}
+                        onClick={confirmCancelSubscription}
                       >
                         {translatedTexts.cancelSubscriptionText}
                       </button>
@@ -181,6 +244,40 @@ export default function SubscriptionsProfile({ activeTab, translatedTexts }) {
         showAlert={alertMessage.showAlert}
         onClose={() => setAlertMessage({ ...alertMessage, showAlert: false })}
       />
+      {showConfirmDialog && (
+        <div
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            zIndex: 1000,
+            backgroundColor: "white",
+            padding: "20px",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+            textAlign: "center",
+            borderRadius: "8px",
+          }}
+        >
+          <p>
+            {translatedTexts.confirmCancelSubscriptionText ||
+              translatedTexts.confirmationCancelSubText}
+          </p>
+          <button
+            className="button -md -red-1 text-white"
+            onClick={handleCancelConfirmation}
+          >
+            {translatedTexts.confirmCancelText || translatedTexts.cancelSub}
+          </button>
+          <button
+            className="button -md -gray-1 text-dark-1"
+            onClick={closeConfirmDialog}
+            style={{ marginLeft: "10px" }}
+          >
+            {translatedTexts.cancelText || translatedTexts.nuAnulaText}
+          </button>
+        </div>
+      )}
     </div>
   );
 }

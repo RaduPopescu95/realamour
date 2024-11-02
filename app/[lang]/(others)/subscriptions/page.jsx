@@ -116,6 +116,9 @@ export default async function Page({ params }) {
     abonament6: await fetchTranslation("Abonnement 6 mois", targetLanguage),
     abonament3: await fetchTranslation("Abonnement 3 mois", targetLanguage),
     monthText: await fetchTranslation("month", targetLanguage),
+    signUpText: await fetchTranslation("Sign up", targetLanguage),
+    logInText: await fetchTranslation("Log in", targetLanguage),
+    contText: await fetchTranslation("Cont", targetLanguage),
   };
 
   return (
@@ -124,6 +127,7 @@ export default async function Page({ params }) {
       <Header
         tarifsText={translatedLinks.tarifsText}
         methodeText={translatedLinks.methodeText}
+        translatedLinks={translatedLinks}
       />
       <div className="content-wrapper js-content-wrapper overflow-hidden">
         {/* Transmitem datele traduse și limba către componenta PageLinks */}

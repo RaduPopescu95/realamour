@@ -27,7 +27,12 @@ export default function Subscriptions({
   const [isAccepted, setIsAccepted] = useState([false, false, false]);
   const [loading, setLoading] = useState(false); // Stare pentru a controla butonul de încărcare
   const router = useRouter();
-  const { currentUser, loading: loadingContext, userData } = useAuth();
+  const {
+    currentUser,
+    loading: loadingContext,
+    userData,
+    setUserData,
+  } = useAuth();
 
   // Funcția de schimbare a stării unui checkbox
   const handleCheckboxChange = (index) => {
@@ -86,7 +91,12 @@ export default function Subscriptions({
 
   useEffect(() => {
     if (!loadingContext && !userData?.username) {
-      console.log("no userData...", userData?.username);
+      router.push("/signup");
+
+      console.log("no userData...", userData);
+    }
+    if (!userData?.isActivated) {
+      router.push("/profil-client");
     }
   }, [loadingContext]);
 
@@ -115,7 +125,7 @@ export default function Subscriptions({
                   {translatedLinks.abonament3}
                 </div>
                 <div className="priceCard__price text-45 lh-11 fw-700 text-dark-1 mt-15">
-                  139 euro / {translatedLinks.monthText}
+                  139 Euro / {translatedLinks.monthText}
                 </div>
 
                 <Image
@@ -198,7 +208,7 @@ export default function Subscriptions({
                   {translatedLinks.abonament6}
                 </div>
                 <div className="priceCard__price text-45 lh-11 fw-700 text-dark-1 mt-15">
-                  109 euro / {translatedLinks.monthText}
+                  109 Euro / {translatedLinks.monthText}
                 </div>
 
                 <Image
@@ -281,7 +291,7 @@ export default function Subscriptions({
                   {translatedLinks.abonament12}
                 </div>
                 <div className="priceCard__price text-45 lh-11 fw-700 text-dark-1 mt-15">
-                  89 euro / {translatedLinks.monthText}
+                  89 Euro / {translatedLinks.monthText}
                 </div>
 
                 <Image

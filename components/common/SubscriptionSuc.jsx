@@ -25,8 +25,14 @@ export default function SubscriptionSuc({
   const [reservationData, setReservationData] = useState(null);
   const searchParams = useSearchParams(); // Utilizăm useSearchParams pentru a obține parametrii URL
   const session_id = searchParams?.get("session_id"); // Obținem session_id din URL
-  const { currentUser, loading: loadingContext, userData } = useAuth();
+  const {
+    currentUser,
+    loading: loadingContext,
+    userData,
+    setUserData,
+  } = useAuth();
   const router = useRouter();
+  const [isUpdated, setIsUpdated] = useState(false);
 
   const fetchSessionData = async () => {
     console.log("Fetching session data...");
@@ -84,53 +90,79 @@ export default function SubscriptionSuc({
   };
 
   // Function to update subscription data in Firestore
+  // Function to update subscription data in Firestore
   const updateSubscriptionInFirestore = async (sessionData) => {
     if (!userData || !userData.uid) {
-      console.error("User data or UID is missing.");
+      console.log("User data or UID missing.");
       return;
     }
 
     const userDocRef = doc(db, "Users", userData.uid);
-    console.log(`Updating Firestore for user: ${userData.uid}`);
-
     try {
       const subscriptionId = sessionData.subscription;
-      const priceId = sessionData.subscriptionDetails?.plan?.id; // Preluăm priceId din subscriptionDetails
+      const priceId = sessionData.subscriptionDetails?.plan?.id;
       const subscriptionEndDate = new Date(
         sessionData.subscriptionDetails?.current_period_end * 1000
       );
 
-      if (!subscriptionId || !priceId) {
-        console.error("Missing subscription ID or price ID.");
-        return;
-      }
+      // Setăm subscriptionStartDate doar la prima actualizare
+      const subscriptionStartDate = new Date();
+
+      console.log("Updating Firestore with subscription details...");
 
       await updateDoc(userDocRef, {
-        subscriptionActive: true,
+        subscriptionActive:
+          sessionData.subscriptionDetails?.status === "active",
         subscriptionId: subscriptionId,
         priceId: priceId,
         subscriptionAmount: sessionData.amount_total / 100,
-        subscriptionStartDate: new Date(),
+        subscriptionStartDate: subscriptionStartDate,
         subscriptionEndDate: subscriptionEndDate,
+        subscriptionStatus: sessionData.subscriptionDetails?.status,
+        cancelAtPeriodEnd:
+          sessionData.subscriptionDetails?.cancel_at_period_end,
       });
 
-      console.log("Subscription data saved to Firestore successfully.");
+      console.log("Subscription details updated in Firestore:", {
+        subscriptionActive:
+          sessionData.subscriptionDetails?.status === "active",
+        subscriptionId,
+        priceId,
+        subscriptionAmount: sessionData.amount_total / 100,
+        subscriptionStartDate,
+        subscriptionEndDate,
+        subscriptionStatus: sessionData.subscriptionDetails?.status,
+        cancelAtPeriodEnd:
+          sessionData.subscriptionDetails?.cancel_at_period_end,
+      });
+
+      setUserData((prevUserData) => ({
+        ...prevUserData,
+        subscriptionActive:
+          sessionData.subscriptionDetails?.status === "active",
+        subscriptionId: subscriptionId,
+        priceId: priceId,
+        subscriptionAmount: sessionData.amount_total / 100,
+        subscriptionStartDate: subscriptionStartDate,
+        subscriptionEndDate: subscriptionEndDate,
+        subscriptionStatus: sessionData.subscriptionDetails?.status,
+        cancelAtPeriodEnd:
+          sessionData.subscriptionDetails?.cancel_at_period_end,
+      }));
+      setIsUpdated(true);
     } catch (error) {
-      console.error("Error saving subscription data to Firestore:", error);
+      console.error("Error updating Firestore:", error);
     }
   };
 
-  // Apelează funcția de actualizare doar după ce `userData` și `reservationData` sunt disponibile
   useEffect(() => {
-    if (reservationData && userData && userData.uid) {
-      console.log(
-        "User data and session data available, updating Firestore..."
-      );
+    if (reservationData && userData && !isUpdated) {
+      console.log("Ready to update Firestore with reservation data...");
       updateSubscriptionInFirestore(reservationData);
     } else {
-      console.log("Waiting for userData or reservationData...");
+      console.log("Waiting for data or already updated...");
     }
-  }, [userData, reservationData]);
+  }, [reservationData, userData, isUpdated]);
 
   useEffect(() => {
     if (session_id) {
@@ -188,7 +220,7 @@ export default function SubscriptionSuc({
                             <strong>{phoneText}:</strong> {userData?.phone}
                             <br />
                             <strong>{amountPaidText}:</strong>{" "}
-                            {reservationData.amount_total / 100} RON
+                            {reservationData.amount_total / 100} EURO
                           </p>
                         </>
                       )}

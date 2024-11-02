@@ -126,7 +126,7 @@ export default function PaymentSuccessPage({
                         <strong>{phoneText}:</strong> {userData?.phone}
                         <br /> */}
                         <strong>{amountPaidText}:</strong>{" "}
-                        {reservationData.amount_total / 100} RON
+                        {reservationData.amount_total / 100} EURO
                       </p>
                     </>
                   ) : (

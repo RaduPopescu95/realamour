@@ -4,6 +4,8 @@ import { useState } from "react";
 import { authentication, db } from "@/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
+import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid";
+
 import {
   ref,
   uploadBytesResumable,
@@ -55,6 +57,7 @@ const SignUpForm = ({
     showAlert: false,
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const router = useRouter();
 
@@ -327,144 +330,71 @@ const SignUpForm = ({
                 onSubmit={handleSubmit}
               >
                 {/* Câmp pentru încărcarea imaginii */}
-                <div
-                  className="row y-gap-10 x-gap-10 items-center"
-                  style={{ flexWrap: "wrap" }}
-                >
-                  <label className="text-16 lh-1 fw-500 text-dark-1">
-                    {pozePlaceholder} *
-                  </label>
-                  {tempImages.map((image, index) => (
-                    <div
-                      key={image.fileName}
-                      className="position-relative"
-                      style={{
-                        backgroundColor: "#f2f3f4",
-                        width: 100,
-                        height: 100,
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        cursor: "pointer",
-                        borderRadius: "4px",
-                        border: image.isMain
-                          ? "2px solid #c13365"
-                          : "1px solid #ddd", // Border diferit pentru imaginea principală
-                        marginRight: 10, // Elimină margin-right la prima imagine de pe fiecare rând
-                        marginTop: tempImages.length >= 4 ? 10 : 0, // Adaugă margin-top pentru imaginile de pe al doilea rând
-                        position: "relative", // Poziționare relativă pentru iconul bin
-                      }}
-                      onClick={() => handleMainImageSelect(image.fileName)}
-                    >
-                      <Image
-                        width={100}
-                        height={100}
-                        className="rounded-md size-100"
-                        src={image.previewUrl}
-                        alt="uploaded image"
-                        style={{
-                          objectFit: "cover",
-                          width: "100%",
-                          height: "100%",
-                        }}
-                      />
-                      {/* Icon Bin pentru ștergerea imaginii */}
-                      <i
-                        className="icon-bin top-0 right-0 m-1 p-1 text-red-500"
-                        style={{
-                          cursor: "pointer",
-                          position: "absolute",
-                          top: 5,
-                          right: 5,
-                        }}
-                        onClick={(e) => {
-                          e.stopPropagation(); // Prevenim selectarea imaginii principale la ștergere
-                          handleImageDelete(image.fileName);
-                        }}
-                      ></i>
-                    </div>
-                  ))}
-
-                  {/* Label pentru adăugarea unei noi imagini */}
-                  <label
-                    className={`col-auto position-relative ${
-                      tempImages.length > 0 ? "ml-10" : ""
-                    }`}
-                    htmlFor="imageUpload"
-                    style={{
-                      backgroundColor: "#f2f3f4",
-                      width: 100,
-                      height: 100,
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      cursor: "pointer",
-                      borderRadius: "4px",
-                      border: "1px solid #ddd",
-                      marginTop: tempImages.length >= 4 ? 10 : 0, // Adaugă margin-top pentru rândurile următoare
-                    }}
+                {true ? null : (
+                  <div
+                    className="row y-gap-10 x-gap-10 items-center"
+                    style={{ flexWrap: "wrap" }}
                   >
-                    <div className="icon icon-cloud text-16"></div>
-                    <input
-                      id="imageUpload"
-                      type="file"
-                      accept="image/*"
-                      onChange={handleImageUpload}
-                      style={{ display: "none" }}
-                    />
-                  </label>
-                </div>
-
-                {/* Câmp pentru încărcarea videoclipului */}
-
-                <div className="row y-gap-10 x-gap-10 items-center mt-10">
-                  <label className="text-16 lh-1 fw-500 text-dark-1">
-                    {videoPlaceholder} *
-                  </label>
-                  {tempVideo ? (
-                    <div
-                      className="position-relative"
-                      style={{
-                        backgroundColor: "#f2f3f4",
-                        width: 200, // Dimensiune mai mare pentru video
-                        height: 200, // Dimensiune mai mare pentru video
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        cursor: "pointer",
-                        borderRadius: "4px",
-                        border: "1px solid #ddd",
-                        marginRight: 10,
-                        position: "relative", // Asigură poziționarea relativă pentru iconul bin
-                      }}
-                    >
-                      <video
-                        width={200}
-                        height={200}
-                        src={tempVideo.previewUrl}
-                        controls
+                    <label className="text-16 lh-1 fw-500 text-dark-1">
+                      {pozePlaceholder} *
+                    </label>
+                    {tempImages.map((image, index) => (
+                      <div
+                        key={image.fileName}
+                        className="position-relative"
                         style={{
-                          objectFit: "cover",
-                          width: "100%",
-                          height: "100%",
-                        }}
-                      />
-                      {/* Icon Bin pentru ștergerea videoclipului */}
-                      <i
-                        className="icon-bin top-0 right-0 m-1 p-1 text-red-500"
-                        style={{
+                          backgroundColor: "#f2f3f4",
+                          width: 100,
+                          height: 100,
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
                           cursor: "pointer",
-                          position: "absolute",
-                          top: 5,
-                          right: 5,
+                          borderRadius: "4px",
+                          border: image.isMain
+                            ? "2px solid #c13365"
+                            : "1px solid #ddd", // Border diferit pentru imaginea principală
+                          marginRight: 10, // Elimină margin-right la prima imagine de pe fiecare rând
+                          marginTop: tempImages.length >= 4 ? 10 : 0, // Adaugă margin-top pentru imaginile de pe al doilea rând
+                          position: "relative", // Poziționare relativă pentru iconul bin
                         }}
-                        onClick={handleVideoDelete}
-                      ></i>
-                    </div>
-                  ) : (
+                        onClick={() => handleMainImageSelect(image.fileName)}
+                      >
+                        <Image
+                          width={100}
+                          height={100}
+                          className="rounded-md size-100"
+                          src={image.previewUrl}
+                          alt="uploaded image"
+                          style={{
+                            objectFit: "cover",
+                            width: "100%",
+                            height: "100%",
+                          }}
+                        />
+                        {/* Icon Bin pentru ștergerea imaginii */}
+                        <i
+                          className="icon-bin top-0 right-0 m-1 p-1 text-red-500"
+                          style={{
+                            cursor: "pointer",
+                            position: "absolute",
+                            top: 5,
+                            right: 5,
+                          }}
+                          onClick={(e) => {
+                            e.stopPropagation(); // Prevenim selectarea imaginii principale la ștergere
+                            handleImageDelete(image.fileName);
+                          }}
+                        ></i>
+                      </div>
+                    ))}
+
+                    {/* Label pentru adăugarea unei noi imagini */}
                     <label
-                      className="col-auto position-relative"
-                      htmlFor="videoUpload"
+                      className={`col-auto position-relative ${
+                        tempImages.length > 0 ? "ml-10" : ""
+                      }`}
+                      htmlFor="imageUpload"
                       style={{
                         backgroundColor: "#f2f3f4",
                         width: 100,
@@ -475,21 +405,96 @@ const SignUpForm = ({
                         cursor: "pointer",
                         borderRadius: "4px",
                         border: "1px solid #ddd",
+                        marginTop: tempImages.length >= 4 ? 10 : 0, // Adaugă margin-top pentru rândurile următoare
                       }}
                     >
                       <div className="icon icon-cloud text-16"></div>
                       <input
-                        id="videoUpload"
+                        id="imageUpload"
                         type="file"
-                        accept="video/*"
-                        onChange={handleVideoUpload}
+                        accept="image/*"
+                        onChange={handleImageUpload}
                         style={{ display: "none" }}
                       />
                     </label>
-                  )}
-                </div>
+                  </div>
+                )}
 
-                {/* Inputuri pentru informații utilizator */}
+                {/* Câmp pentru încărcarea videoclipului */}
+                {false && (
+                  <div className="row y-gap-10 x-gap-10 items-center mt-10">
+                    <label className="text-16 lh-1 fw-500 text-dark-1">
+                      {videoPlaceholder} *
+                    </label>
+                    {tempVideo ? (
+                      <div
+                        className="position-relative"
+                        style={{
+                          backgroundColor: "#f2f3f4",
+                          width: 200, // Dimensiune mai mare pentru video
+                          height: 200, // Dimensiune mai mare pentru video
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          cursor: "pointer",
+                          borderRadius: "4px",
+                          border: "1px solid #ddd",
+                          marginRight: 10,
+                          position: "relative", // Asigură poziționarea relativă pentru iconul bin
+                        }}
+                      >
+                        <video
+                          width={200}
+                          height={200}
+                          src={tempVideo.previewUrl}
+                          controls
+                          style={{
+                            objectFit: "cover",
+                            width: "100%",
+                            height: "100%",
+                          }}
+                        />
+
+                        <i
+                          className="icon-bin top-0 right-0 m-1 p-1 text-red-500"
+                          style={{
+                            cursor: "pointer",
+                            position: "absolute",
+                            top: 5,
+                            right: 5,
+                          }}
+                          onClick={handleVideoDelete}
+                        ></i>
+                      </div>
+                    ) : (
+                      <label
+                        className="col-auto position-relative"
+                        htmlFor="videoUpload"
+                        style={{
+                          backgroundColor: "#f2f3f4",
+                          width: 100,
+                          height: 100,
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          cursor: "pointer",
+                          borderRadius: "4px",
+                          border: "1px solid #ddd",
+                        }}
+                      >
+                        <div className="icon icon-cloud text-16"></div>
+                        <input
+                          id="videoUpload"
+                          type="file"
+                          accept="video/*"
+                          onChange={handleVideoUpload}
+                          style={{ display: "none" }}
+                        />
+                      </label>
+                    )}
+                  </div>
+                )}
+
                 <div className="col-lg-6">
                   <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
                     {emailAdresaPlaceholder} *

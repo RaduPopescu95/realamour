@@ -12,7 +12,7 @@ import MobileMenu from "../component/MobileMenu";
 import { handleLogout } from "@/utils/authUtils";
 import { useAuth } from "@/context/AuthContext";
 
-export default function Header({ methodeText, tarifsText }) {
+export default function Header({ methodeText, tarifsText, translatedLinks }) {
   const [activeMobileMenu, setActiveMobileMenu] = useState(false);
   const { userData, currentUser } = useAuth();
   return (
@@ -47,8 +47,10 @@ export default function Header({ methodeText, tarifsText }) {
               allClasses={"menu__nav text-white -is-active"}
               tarifsText={tarifsText}
               methodeText={methodeText}
+              translatedLinks={translatedLinks}
             />
             <MobileMenu
+              translatedLinks={translatedLinks}
               setActiveMobileMenu={setActiveMobileMenu}
               activeMobileMenu={activeMobileMenu}
               tarifsText={tarifsText}
@@ -87,13 +89,13 @@ export default function Header({ methodeText, tarifsText }) {
                         href="/login"
                         className="button -underline text-white"
                       >
-                        Log in
+                        {translatedLinks.logInText}
                       </Link>
                       <Link
                         href="/signup"
                         className="button -sm -white text-dark-1 ml-30"
                       >
-                        Sign up
+                        {translatedLinks.signUpText}
                       </Link>
                     </>
                   ) : (
@@ -102,7 +104,7 @@ export default function Header({ methodeText, tarifsText }) {
                       className="button -sm -white text-dark-1 ml-30"
                       // onClick={handleLogout}
                     >
-                      Cont
+                      {translatedLinks.contText}
                     </Link>
                   )}
                 </div>

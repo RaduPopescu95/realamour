@@ -36,7 +36,7 @@ export default function HomePage() {
   return (
     <>
       <Preloader />
-      <Header />
+      {/* <Header /> */}
 
       <div className="content-wrapper  js-content-wrapper overflow-hidden">
         {/* <HomeHero /> */}

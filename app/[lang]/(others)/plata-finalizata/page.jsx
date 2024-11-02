@@ -74,6 +74,9 @@ export default async function Page({ params }) {
     emailText: await fetchTranslation("Email", targetLanguage),
     phoneText: await fetchTranslation("Telefon", targetLanguage),
     amountPaidText: await fetchTranslation("Sumă plătită", targetLanguage),
+    signUpText: await fetchTranslation("Sign up", targetLanguage),
+    logInText: await fetchTranslation("Log in", targetLanguage),
+    contText: await fetchTranslation("Cont", targetLanguage),
   };
 
   return (
@@ -83,6 +86,7 @@ export default async function Page({ params }) {
       <Header
         tarifsText={translatedLinks.tarifsText}
         methodeText={translatedLinks.methodeText}
+        translatedLinks={translatedLinks}
       />
       <div className="content-wrapper js-content-wrapper overflow-hidden">
         <PageLinks
