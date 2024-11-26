@@ -20,14 +20,27 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "@/firebase";
+import { QuizResultsDocument } from "../InformatiiUtilizator/QuizResultsDocument ";
 
 export default function ListCompatibilitati({
   data,
   translatedTexts,
+  compatibility,
   userUid,
 }) {
   const router = useRouter();
   const [isCompatible, setIsCompatible] = useState(false); // Starea pentru compatibilitate
+
+  const handleCopyResponses = async () => {
+    try {
+      const userRef = doc(db, "Users", userUid); // Referința utilizatorului selectat
+      await updateDoc(userRef, { responses: data.responses || {} }); // Copiază răspunsurile
+      alert("Răspunsurile au fost copiate cu succes!");
+    } catch (error) {
+      console.error("Eroare la copierea răspunsurilor:", error);
+      alert("A apărut o eroare la copierea răspunsurilor.");
+    }
+  };
 
   useEffect(() => {
     const checkCompatibility = async () => {
@@ -164,7 +177,7 @@ export default function ListCompatibilitati({
       <td>{data.username}</td>
       <td>{data.gender ? data.gender : "N/A"}</td>
       <td>{data.isActivated ? "Cont activ" : "Cont inactiv"}</td>
-      <td>28%</td>
+      <td>{compatibility}%</td>
       <td style={{ display: "flex", gap: "10px" }}>
         <button
           onClick={(e) => {
@@ -177,7 +190,7 @@ export default function ListCompatibilitati({
         </button>
 
         <PDFDownloadLink
-          document={PDFDocument}
+          document={<QuizResultsDocument userData={data} />}
           fileName={`Rezultate_Chestionar_${data.username}.pdf`}
         >
           {({ loading }) => (
@@ -198,6 +211,16 @@ export default function ListCompatibilitati({
           className="btn custom-btn-compatibilitati"
         >
           {isCompatible ? "Elimină compatibilitate" : "Marchează compatibil"}
+        </button>
+
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            handleCopyResponses();
+          }}
+          className="btn custom-btn-compatibilitati"
+        >
+          Copiază Răspunsuri
         </button>
       </td>
     </tr>

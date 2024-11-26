@@ -15989,3 +15989,183 @@ table.table td {
 }
 
 /* LISTA COMPATIBILITATI */
+
+/* ARRAY PENTRU API COD POSTAL */
+/* CSS pentru dropdown-ul din componenta React - clase unice */
+.question-group {
+  position: relative;
+  margin-bottom: 1.5rem; /* Spatiu între câmpurile de input */
+}
+
+.question-input {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.question-input:focus {
+  border-color: #007bff; /* Culoarea la focus pentru input */
+}
+
+.question-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin-top: 5px;
+  padding: 0;
+}
+
+.question-dropdown-item {
+  padding: 10px 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #fff;
+  transition: background-color 0.3s;
+}
+
+.question-dropdown-item:hover {
+  background-color: #f8f9fa; /* Culoare la hover pentru fiecare element din dropdown */
+}
+
+.question-dropdown-item:active {
+  background-color: #e2e6ea; /* Culoare la click */
+}
+
+/* Stilizare pentru mesajul de eroare */
+.question-error-text {
+  color: #e3342f;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* Stilizare pentru butonul de validare */
+.question-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.question-button-md {
+  font-size: 1rem;
+}
+
+.question-button-dark {
+  background-color: #343a40;
+}
+
+.question-button-text-white {
+  color: #fff;
+}
+
+.question-button-dark:hover {
+  background-color: #495057;
+}
+
+/* ARRAY PENTRU API COD POSTAL */
+
+.custom-input {
+  outline: none;
+  width: 100%;
+  background-color: transparent;
+  border-radius: 8px;
+  border: 1px solid grey !important;
+  font-size: 15px;
+  line-height: 1.5;
+  padding: 15px 22px;
+  transition: all 0.15s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.custom-input:focus {
+  border-color: #007bff; /* Schimbă culoarea pentru focus */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Adaugă un efect subtil */
+}
+
+.custom-input::placeholder {
+  color: #aaaaaa; /* Culoare pentru placeholder */
+  opacity: 1;
+}
+
+.custom-input:hover {
+  border-color: #bbbbbb; /* Schimbă culoarea la hover */
+}
+
+.range-track {
+  position: relative;
+  width: 100%;
+  background-color: #e0e0e0;
+  height: 8px;
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+.range-thumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  width: 24px;
+  background: #6c63ff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.range-thumb:hover {
+  background: #4a47d0;
+}
+
+.value-tooltip {
+  position: absolute;
+  top: -30px;
+  background: #6c63ff;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.messages-container {
+  height: 400px; /* Înălțime fixă a zonei de chat */
+  overflow-y: auto; /* Scroll vertical */
+  overflow-x: hidden; /* Prevenim scroll-ul orizontal */
+}
+
+.message-content {
+  white-space: pre-wrap; /* Păstrează newline (\n) și permite împărțirea liniilor */
+  word-wrap: break-word; /* Rupe cuvintele foarte lungi */
+  max-width: 300px; /* Limitează lățimea mesajului */
+  display: inline-block; /* Păstrează mesajele compacte */
+  background-color: #f1f1f1; /* Fundal pentru mesaje */
+  padding: 10px; /* Spațiu interior */
+  border-radius: 10px; /* Colțuri rotunjite */
+  box-sizing: border-box; /* Include padding-ul în dimensiuni */
+}
+
+.message-content.text-right {
+  align-self: flex-end; /* Mesajele proprii se aliniază la dreapta */
+  background-color: #e0f7fa; /* Opțional: fundal pentru mesaje trimise */
+}

@@ -285,7 +285,9 @@ export default function EditProfile({ activeTab, translatedTexts }) {
             <div className="col-12">
               <PDFDownloadLink
                 document={<QuizResultsDocument userData={userData} />}
-                fileName="QuizResults.pdf"
+                fileName={`Rezultate_Chestionar_${
+                  userData?.username || "Utilizator"
+                }.pdf`}
                 className="button -md -purple-1 text-white"
               >
                 {({ loading }) =>

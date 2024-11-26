@@ -7,11 +7,9 @@ import SocialProfiles from "./SocialProfiles";
 import CloseAccount from "./CloseAccount";
 import FooterNine from "@/components/layout/footers/FooterNine";
 import Notification from "./Notifications";
-import CoursesCardDashboard from "../DashBoardCards/CoursesCardDashboard";
 import Pagination from "@/components/common/Pagination";
-import { coursesData } from "@/data/dashboard";
 import { useRouter, useSearchParams } from "next/navigation";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDoc, getDocs, doc } from "firebase/firestore";
 import { db } from "@/firebase";
 import ListCompatibilitati from "../DashBoardCards/ListaCompatibilitatiComp";
 
@@ -24,20 +22,27 @@ const buttons = [
 ];
 
 export default function Settings({ translatedTexts }) {
-  const [pageItems, setPageItems] = useState([]);
-  const [activeTab, setActiveTab] = useState(1);
   const [users, setUsers] = useState([]);
+  const [currentUserResponses, setCurrentUserResponses] = useState({});
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(5);
   const [searchTerm, setSearchTerm] = useState("");
+  const [activeTab, setActiveTab] = useState(1);
   const router = useRouter();
-  const searchParams = useSearchParams(); // Obține parametrii query din URL
-  const uid = searchParams.get("uid"); // Extragem UID-ul din query-ul URL-ului
+  const searchParams = useSearchParams();
+  const uid = searchParams.get("uid"); // UID-ul utilizatorului curent
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
+        // Obține datele utilizatorului curent
+        const currentUserDoc = await getDoc(doc(db, "Users", uid));
+        if (currentUserDoc.exists()) {
+          setCurrentUserResponses(currentUserDoc.data().responses || {});
+        }
+
+        // Obține lista altor utilizatori
         const usersCollection = collection(db, "Users");
         const userSnapshot = await getDocs(usersCollection);
         const usersList = userSnapshot.docs
@@ -45,30 +50,19 @@ export default function Settings({ translatedTexts }) {
             id: doc.id,
             ...doc.data(),
           }))
-          .filter((user) => user.id !== uid); // Exclude utilizatorul curent
-
-        // Sortare utilizatori după `registrationDate`
-        usersList.sort((a, b) => {
-          const dateA = new Date(
-            a.registrationDate.split("-").reverse().join("-")
-          );
-          const dateB = new Date(
-            b.registrationDate.split("-").reverse().join("-")
-          );
-          return dateB - dateA;
-        });
+          .filter((user) => user.id !== uid && user.responses); // Exclude utilizatorul curent și utilizatorii fără `responses`
 
         setUsers(usersList);
         setFilteredUsers(usersList);
       } catch (error) {
-        console.error("Error fetching users: ", error);
+        console.error("Error fetching users or current user:", error);
       }
     };
 
     fetchUsers();
   }, [uid]);
 
-  // Filtrează utilizatorii pe baza termenului de căutare
+  // Filtrare utilizatori pe baza termenului de căutare
   useEffect(() => {
     const filtered = users.filter((user) =>
       user.username.toLowerCase().includes(searchTerm.toLowerCase())
@@ -85,7 +79,82 @@ export default function Settings({ translatedTexts }) {
   // Funcție de schimbare a paginii
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo({ top: 0, behavior: "smooth" }); // opțional: scroll la partea de sus a componentei după schimbarea paginii
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Funcție pentru calcularea compatibilității
+  // Funcție pentru calcularea compatibilității
+  const calculateCompatibility = (userResponses) => {
+    const currentResponses = currentUserResponses || {};
+
+    // Găsește întrebările comune între utilizatorul curent și cel comparat
+    const questionSets = [
+      "firstQuestions",
+      "questionsSet1",
+      "questionsSet2",
+      "questionsSet3",
+    ];
+    let commonQuestions = [];
+
+    questionSets.forEach((set) => {
+      const currentSet = currentResponses[set] || [];
+      const userSet = userResponses[set] || [];
+
+      currentSet.forEach((currentQuestion) => {
+        const matchedQuestion = userSet.find(
+          (q) => q.id === currentQuestion.id
+        );
+
+        if (matchedQuestion && currentQuestion.compatibility) {
+          // Adaugă doar întrebările cu proprietatea `compatibility: true`
+          commonQuestions.push({
+            currentQuestion,
+            matchedQuestion,
+          });
+        }
+      });
+    });
+
+    // Dacă nu există întrebări compatibile, scorul este 0%
+    if (commonQuestions.length === 0) {
+      return 0;
+    }
+
+    // Verifică dacă toate întrebările `matchRequired` au răspunsuri identice
+    const allMatchRequiredAreMatching = commonQuestions.every(
+      ({ currentQuestion, matchedQuestion }) => {
+        if (currentQuestion.matchRequired) {
+          return (
+            currentQuestion.answer &&
+            matchedQuestion.answer &&
+            JSON.stringify(currentQuestion.answer) ===
+              JSON.stringify(matchedQuestion.answer)
+          );
+        }
+        return true; // Dacă `matchRequired` nu este setat, continuă
+      }
+    );
+
+    if (!allMatchRequiredAreMatching) {
+      return 0; // Dacă vreuna dintre întrebările `matchRequired` nu se potrivesc, scorul este 0%
+    }
+
+    // Calculează scorul pe baza întrebărilor `compatibility`
+    const matchingAnswers = commonQuestions.filter(
+      ({ currentQuestion, matchedQuestion }) => {
+        return (
+          currentQuestion.answer &&
+          matchedQuestion.answer &&
+          JSON.stringify(currentQuestion.answer) ===
+            JSON.stringify(matchedQuestion.answer)
+        );
+      }
+    ).length;
+
+    const compatibilityScore = Math.round(
+      (matchingAnswers / commonQuestions.length) * 100
+    );
+    return compatibilityScore;
   };
 
   return (
@@ -95,12 +164,13 @@ export default function Settings({ translatedTexts }) {
           <div className="col-12">
             <div className="rounded-16 bg-white -dark-bg-dark-1 shadow-4 h-100">
               <div className="tabs -active-purple-2 js-tabs pt-0">
-                {/* <div className="tabs__controls d-flex  x-gap-30 y-gap-20 flex-wrap items-center pt-20 px-30 border-bottom-light js-tabs-controls">
+                {/* Tabs Controls */}
+                <div className="tabs__controls d-flex x-gap-30 y-gap-20 flex-wrap items-center pt-20 px-30 border-bottom-light">
                   {buttons.map((elm, i) => (
                     <button
                       key={i}
                       onClick={() => setActiveTab(i + 1)}
-                      className={`tabs__button text-light-1 js-tabs-button ${
+                      className={`tabs__button text-light-1 ${
                         activeTab == i + 1 ? "is-active" : ""
                       } `}
                       type="button"
@@ -108,21 +178,30 @@ export default function Settings({ translatedTexts }) {
                       {elm}
                     </button>
                   ))}
-                </div> */}
-
-                <div className="tabs__content py-30 px-30 js-tabs-content">
-                  <EditProfile
-                    activeTab={activeTab}
-                    translatedTexts={translatedTexts}
-                  />
                 </div>
+
+                {/* Content Tabs */}
+                <div className="tabs__content py-30 px-30 js-tabs-content">
+                  {activeTab === 1 && (
+                    <EditProfile
+                      activeTab={activeTab}
+                      translatedTexts={translatedTexts}
+                    />
+                  )}
+                  {activeTab === 2 && <Password />}
+                  {activeTab === 3 && <SocialProfiles />}
+                  {activeTab === 4 && <Notification />}
+                  {activeTab === 5 && <CloseAccount />}
+                </div>
+
+                {/* Lista Compatibilități */}
                 <div className="tabs__content py-30 px-30 js-tabs-content mt-5">
                   <div className="tabs__pane -tab-item-1 is-active">
                     <div className="row y-gap-30 pt-30">
                       <div className="col-12">
                         <h2 className="text-black">
                           <i className="icon-person-2 text-40 mr-10"></i>
-                          Lista Compatibilitati
+                          Lista Compatibilități
                         </h2>
                       </div>
                       <table className="table table-striped">
@@ -132,16 +211,24 @@ export default function Settings({ translatedTexts }) {
                             <th>Gen</th>
                             <th>Status</th>
                             <th>Compatibilitate</th>
-                            <th>Actiuni</th>
+                            <th>Acțiuni</th>
                           </tr>
                         </thead>
                         <tbody>
                           {currentUsers
                             .filter((user) => user.responses) // Filtrează utilizatorii care au `responses`
+                            .map((user) => ({
+                              ...user,
+                              compatibility: calculateCompatibility(
+                                user.responses
+                              ),
+                            }))
+                            .sort((a, b) => b.compatibility - a.compatibility) // Sortează descrescător după compatibilitate
                             .map((user) => (
                               <ListCompatibilitati
                                 data={user}
                                 key={user.id}
+                                compatibility={user.compatibility}
                                 translatedTexts={translatedTexts}
                                 userUid={uid}
                               />
@@ -161,16 +248,12 @@ export default function Settings({ translatedTexts }) {
                       </div>
                     </div>
                   </div>
-
-                  <div className="tabs__pane -tab-item-2"></div>
-                  <div className="tabs__pane -tab-item-3"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
       <FooterNine />
     </div>
   );

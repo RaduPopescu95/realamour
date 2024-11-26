@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import FooterNine from "../layout/footers/FooterNine";
 import Image from "next/image";
 import { useAuth } from "@/context/AuthContext";
@@ -24,6 +24,14 @@ export default function Message() {
   const [newMessage, setNewMessage] = useState("");
   const [unseenMessages, setUnseenMessages] = useState({});
 
+  // Referință pentru containerul de mesaje
+  const messagesEndRef = useRef(null);
+
+  // Funcție pentru scroll la ultimul mesaj
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   // Fetch compatible users and count unseen messages
   useEffect(() => {
     const fetchCompatibleUsers = async () => {
@@ -32,7 +40,7 @@ export default function Message() {
         const compatibilitatiRef = collection(
           db,
           "Users",
-          userData.uid,
+          userData?.uid,
           "Compatibilitati"
         );
         const compatibilitatiSnapshot = await getDocs(compatibilitatiRef);
@@ -51,24 +59,28 @@ export default function Message() {
 
             // Numără mesajele necitite pentru fiecare utilizator
             const messagesQuery = query(
-              collection(db, "Chats", `${userId}-${userData.uid}`, "Messages"),
+              collection(db, "Chats", `${userId}-${userData?.uid}`, "Messages"),
               where("seen", "==", false),
-              where("receiverId", "==", userData.uid) // Numără doar mesajele primite necitite
+              where("receiverId", "==", userData?.uid) // Numără doar mesajele primite necitite
             );
             const messagesSnapshot = await getDocs(messagesQuery);
             unseenMessagesCount[userId] = messagesSnapshot.size; // Salvează numărul mesajelor necitite
 
             const mainImage =
-              userData.images?.find((image) => image.isMain)?.fileUri ||
-              userData.images?.[0]?.fileUri ||
+              userData?.images?.find((image) => image.isMain)?.fileUri ||
+              userData?.images?.[0]?.fileUri ||
               "/default-avatar.png";
             return { ...userData, mainImage };
           })
         );
 
         setCompatibleUsers(usersData);
-        console.log("setUnseenMessages", unseenMessagesCount);
         setUnseenMessages(unseenMessagesCount); // Actualizează starea cu mesajele necitite
+
+        // Selectează automat primul utilizator din listă
+        if (usersData.length > 0) {
+          setSelectedUser(usersData[0]);
+        }
       } catch (error) {
         console.error("Error fetching compatible users:", error);
       }
@@ -76,6 +88,11 @@ export default function Message() {
 
     fetchCompatibleUsers();
   }, [userData?.uid]);
+
+  // Scroll la ultimul mesaj atunci când lista de mesaje se schimbă
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   // Real-time listener for messages between user and selected user
   useEffect(() => {
@@ -104,7 +121,7 @@ export default function Message() {
     if (!newMessage.trim() || !selectedUser) return;
 
     const messageData = {
-      senderId: userData.uid,
+      senderId: userData?.uid,
       receiverId: selectedUser.id,
       content: newMessage,
       timestamp: new Date(),
@@ -112,11 +129,21 @@ export default function Message() {
     };
 
     await addDoc(
-      collection(db, "Chats", `${userData.uid}-${selectedUser.id}`, "Messages"),
+      collection(
+        db,
+        "Chats",
+        `${userData?.uid}-${selectedUser.id}`,
+        "Messages"
+      ),
       messageData
     );
     await addDoc(
-      collection(db, "Chats", `${selectedUser.id}-${userData.uid}`, "Messages"),
+      collection(
+        db,
+        "Chats",
+        `${selectedUser.id}-${userData?.uid}`,
+        "Messages"
+      ),
       messageData
     );
 
@@ -125,7 +152,12 @@ export default function Message() {
 
   // Handle sending message on Enter key press
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && e.ctrlKey) {
+      // Adaugă un nou rând
+      setNewMessage((prev) => prev + "\n");
+    } else if (e.key === "Enter") {
+      // Trimite mesajul
+      e.preventDefault(); // Previne adăugarea unui nou rând în textarea
       handleSendMessage();
     }
   };
@@ -225,19 +257,19 @@ export default function Message() {
                 <div className="row y-gap-20">
                   {messages.map((msg) => (
                     <div
-                      key={msg.id}
+                      key={msg?.id}
                       className={`col-xl-7 col-lg-10 ${
-                        msg.senderId === userData.uid
-                          ? "offset-xl-5 offset-lg-2"
+                        msg?.senderId === userData?.uid
+                          ? "offset-xl-5 offset-lg-2 text-right"
                           : ""
                       }`}
                     >
                       <div
                         className={`d-flex items-center ${
-                          msg.senderId === userData.uid ? "justify-end" : ""
+                          msg?.senderId === userData?.uid ? "justify-end" : ""
                         }`}
                       >
-                        {msg.senderId !== userData.uid && (
+                        {msg?.senderId !== userData?.uid && (
                           <div className="shrink-0">
                             <Image
                               width={50}
@@ -251,36 +283,42 @@ export default function Message() {
                           </div>
                         )}
                         <div className="lh-11 fw-500 text-dark-1 ml-10">
-                          {msg.senderId === userData.uid
+                          {msg?.senderId === userData?.uid
                             ? "You"
                             : selectedUser?.username}
                         </div>
                         <div className="text-14 lh-11 ml-10">
-                          {msg.timestamp instanceof Date
-                            ? msg.timestamp.toLocaleTimeString()
-                            : msg.timestamp?.toDate().toLocaleTimeString()}
+                          {msg?.timestamp instanceof Date
+                            ? msg?.timestamp.toLocaleTimeString()
+                            : msg?.timestamp?.toDate().toLocaleTimeString()}
                         </div>
                       </div>
                       <div className="d-inline-block mt-15">
                         <div
-                          className={`py-20 px-30 rounded-8 ${
-                            msg.senderId === userData.uid
+                          className={`py-20 px-30 rounded-8 message-content ${
+                            msg?.senderId === userData?.uid
                               ? "bg-light-7 -dark-bg-dark-2 text-purple-1 text-right"
                               : "bg-light-3"
                           }`}
+                          style={{
+                            whiteSpace: "pre-wrap",
+                            wordWrap: "break-word",
+                          }}
                         >
-                          {msg.content}
+                          {msg?.content}
                         </div>
                       </div>
                     </div>
                   ))}
+                  {/* Adaugăm un div pentru a face scroll automat */}
+                  <div ref={messagesEndRef}></div>
                 </div>
               </div>
 
               <div className="py-25 px-40 border-top-light">
                 <div className="row y-gap-10 justify-between">
                   <div className="col-lg-7">
-                    <input
+                    <textarea
                       required
                       className="-dark-bg-dark-1 py-20 w-1/1"
                       type="text"
@@ -288,6 +326,15 @@ export default function Message() {
                       onChange={(e) => setNewMessage(e.target.value)}
                       placeholder="Type a Message"
                       onKeyDown={handleKeyDown} // Trigger on Enter
+                      style={{
+                        resize: "none", // Dezactivează redimensionarea manuală
+                        maxHeight: "100px", // Înălțime fixă
+                        width: "100%", // Lățime fixă sau proporțională
+                        boxSizing: "border-box", // Include padding în dimensiuni
+                        border: "1px solid #ccc", // Linie de contur
+                        padding: "10px", // Spațiu interior
+                        overflowY: "auto", // Scroll vertical dacă textul depășește înălțimea
+                      }}
                     />
                   </div>
                   <div className="col-auto">
